@@ -1,0 +1,68 @@
+template(name='user_tithes')
+    .content.animate-panel
+        .row
+            .col-lg-12
+                .hpanel
+                    .panel-heading
+                        h2 My Gifts
+                    .panel-body
+                        .table-responsive
+                            table#user_tithesDatatable.table.table-striped.table-bordered.table-hover
+                                thead
+                                    tr
+                                        th Date
+                                        th Amount
+                                        th Organization
+                                        th Status
+                                        th Receipt
+                                tbody
+                                    each tithes
+                                        +titheDetail
+
+
+template(name='titheDetail')
+    tr
+        td #{newDate}
+        td
+            |#{newAmount}
+            unless is_church
+                if this.data.metadata.plan
+                    span.label.label-primary Recurring Gift
+                unless ../noLink
+                    br
+                    a(href='/plan/{{this.data.metadata.plan}}') View / Edit Recurrence
+            td
+                if is_church
+                    | #{userName}
+                if is_user
+                    | #{churchName}
+            td
+                if is_church
+                    if churchVerified
+                        .label.label-success(style='text-transform:uppercase') verified
+                    else
+                        button#giveVerification.btn.btn-sm.btn-primary(type='button') Verify
+                if is_user
+                    if churchVerified
+                        .label.label-success(style='text-transform:uppercase') give verified
+                    else
+                        .label.label-danger(style='text-transform:uppercase') give not verified
+            td
+                a(href='/receipt/{{_id}}' target='_blank') View Receipt
+
+
+template(name='titheDetailWell')
+    .well.well-default.well-sm.text-center
+        h1
+            sub You Gave
+            br
+            | #{newAmount}
+        p to #{churchName} #{newDate}
+        if this.data.metadata.plan
+            .alert.alert-info
+                h4
+                    | This is a Recurring Gift
+                    br
+                    sup
+                        a(href='/plan/{{this.data.metadata.plan}}') View / Edit Recurrence
+        a.btn.btn-success(href='/receipt/{{_id}}' target='_blank') View Receipt

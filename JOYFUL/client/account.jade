@@ -1,0 +1,131 @@
+template(name='account')
+    .ui.padded.stackable.three.column.grid
+        .row
+            .sixteen.wide.column
+                h2.ui.center.aligned.header My Account
+        .row
+            .column
+                .ui.segment
+                    .ui.header
+                        i.user.icon
+                        |Profile Info
+                    .image.img-responsive
+                        if currentUser.profile.profilePic
+                            img.img-responsive.clsProfilePic(src="{{currentUser.profile.profilePic}}" alt='Profile Pic' width='100' height='100')
+                        else
+                            img.img-responsive.clsProfilePic(src='/icons/Logo_sm_100.png' alt='Profile Pic' width='100' height='100')
+                    .ui.form
+                        .field
+                            label Name
+                            input#pname(type='text' name='name' placeholder='Your Name' value='{{currentUser.profile.name}}')
+                        .field
+                            label Profile Pic
+                            input#Profile_photo.generate(type='file')
+                    .ui.fluid.blue.button.update_profile Update
+            .column
+                +user_messages
+            .column
+                +password_editor
+            .column
+                +phone_editor
+            .column
+                .ui.segment
+                    .ui.small.header Payment Methods
+                    .panel-body
+                        .ui.button.addCard Add Card
+                        .clearfix
+                        if cards
+                            each cards
+                                +card_holder
+                        else
+                            .alert.alert-danger
+                                h3 You don't have any cards saved.
+                                p
+                                    | Add a card or simply Donate to a organization or cause to store cards for future use.
+            +add_card_modal
+
+
+template(name='card_holder')
+    .well.well-default
+        .row
+            .col-lg-4
+                | {{brand}} {{last4}}
+                if default
+                    span.label.label-info Default
+                else
+                    span.btn.btn-default.btn-sm.make_default Make Default
+            .col-lg-4
+                | Expires {{exp_month}} / {{exp_year}}
+            .col-lg-4
+                .btn.btn-info.remove Remove
+                // <div class='btn btn-info edit'>Edit</div>
+
+
+template(name='phone_editor')
+    .ui.segment
+        .ui.small.dividing.header
+            i.phone.icon
+            |Phone Number
+        .ui.labeled.icon.fluid.input
+            if currentUser.profile.phone_verified
+                .ui.green.label Verified
+            else
+                .ui.orange.label Unverified
+            i.link.refresh.icon.resend_verification(title='Resend Verification')
+            input#phone(type='phone' name='phone' value='{{newNumber}}')
+        i.remove.circular.red.link.icon.remove_phone(title='Remove Phone')
+        .ui.fluid.blue.button.update_phone Add / Update Phone
+
+template(name='add_card_modal')
+    #add_card_modal.modal(style='display:none')
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    h4.modal-title Add A Card
+                if isPhone
+                    #scanBtn.btn.btn-info.pull-right Scan Card
+                .modal-body
+                    #addcardform.form-horizontal.row
+                        .ui.input
+                            label.col-lg-2.control-label(for='name') Name
+                            .col-lg-10
+                                input#name.form-control(type='text' name='name')
+                        .ui.input
+                            label.col-lg-2.control-label(for='card') Card
+                            .col-lg-10
+                                input#card.form-control(type='tel' name='card')
+                        .ui.input
+                            label.col-lg-2.control-label(for='exp') Exp.
+                            .col-lg-4
+                                input#exp.form-control(type='text' name='exp' placeholder='MM/YY')
+                        .col-xs-6
+                            .ui.input
+                                label.col-lg-4.control-label(for='zip') Zip
+                                .col-lg-8
+                                    input#zip.form-control(type='tel' name='zip')
+                        .col-xs-6
+                            .ui.input
+                                label.col-lg-4.control-label(for='exp') CVC
+                                .col-lg-8
+                                    input#cvc.form-control(type='tel' name='cvc')
+                #add_buttons.modal-footer(style='display:none')
+                    .btn.btn-info.save_new_card Save Card
+                    .btn.btn-info.closePopup Cancel
+                #edit_buttons.modal-footer(style='display:none')
+                    .btn.btn-info.update_existing_card Update Card
+                    .btn.btn-info.closePopup Cancel
+
+
+
+
+template(name='password_editor')
+    .ui.segment
+        .ui.dividing.small.header
+            i.lock.icon
+            |Change Password
+        .ui.form
+            .field
+                input#password.form-control(type='password' name='password' placeholder='Old Password')
+            .field
+                input#new_password(type='password' name='new_password' placeholder='New Password')
+        .ui.fluid.blue.button.change_password Change Password

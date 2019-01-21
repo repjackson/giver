@@ -1,0 +1,51 @@
+template(name='userProfile')
+    .normalheader
+        .hpanel
+            .panel-body
+                .row
+                    .col-md-8.col-md-offset-2
+                        .social-talk
+                            .media.social-profile.clearfix
+                                a.pull-left
+                                    if userDet.profile.profilePic
+                                        img.img-circle.m-b(src='{{userDet.profile.profilePic}}' alt='profile-picture')
+                                    else
+                                        img.img-circle.m-b(src='/brand/android_hdpi.png' alt='profile-picture')
+                                .media-body
+                                    h2
+                                        span.font-bold {{userDet.profile.name}}
+                        .col-md-6
+                            h3
+                                b #{TotalDonation}
+                                small.text-muted  Donations made
+                        .col-md-6
+                            h3
+                                b ${{titheTotalGive}}
+                                small.text-muted  Donation give
+    .content
+        .row
+            each codeDetail
+                .col-md-8.col-md-offset-2
+                    .hpanel.blog-box
+                        .panel-heading
+                            .media.clearfix
+                                a.pull-left
+                                    if userDet.profile.profilePic
+                                        img.img-circle.m-b(src='{{userDet.profile.profilePic}}' alt='profile-picture')
+                                    else
+                                        img.img-circle.m-b(src='/brand/android_hdpi.png' alt='profile-picture')
+                                .media-body
+                                    h5
+                                        span.font-bold
+                                            b {userDet.profile.name}
+                                        | donated
+                                        b ${{this.giveAmount}}
+                                    small.text-muted #{this.date}
+                        .panel-body
+                            a(href='/{{this.code}}' target='_blank')
+                                h4 #{this.campaign}
+                            img.img-responsive(src='{{this.customPage.header_image}}')
+                            p
+                                | !{this.customPage.textContent}
+                iframe#ravi039s-immediate-intestinal-surgery.gfm-media-widget(image='1' coinfo='1' width='100%' height='100%' frameborder='0')
+                script(src='//funds.gofundme.com/js/5.0/media-widget.js')

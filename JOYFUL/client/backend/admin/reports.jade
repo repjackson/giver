@@ -1,0 +1,87 @@
+template(name='adminReports')
+  .normalheader.transition.animated.fadeIn
+    .hpanel
+      .panel-body
+        h2.font-light.m-b-xs
+          | Reports
+  .content
+    .row
+      .col-md-4
+        .hpanel
+          .panel-body.text-center.h-200
+            i.pe-7s-graph1.fa-4x
+            h1.m-xs #{total}
+            h3.font-extra-bold.no-margins.text-success
+              | Total Gifts
+      .col-md-4
+        .hpanel
+          .panel-body.text-center.h-200
+            i.pe-7s-graph1.fa-4x
+            h1.m-xs {{getPublishedCount 'registerdChurch'}}
+            h3.font-extra-bold.no-margins.text-success
+              | Registered Organizations
+      .col-md-4
+        .hpanel
+          .panel-body.text-center.h-200
+            i.pe-7s-graph1.fa-4x
+            h1.m-xs {{getPublishedCount 'registerdUser'}}
+            h3.font-extra-bold.no-margins.text-success
+              | Registered users
+  .normalheader
+    .hpanel
+      .panel-body
+        div
+          .hpanel
+            .hpanel
+              ul.nav.nav-tabs
+                li.active.text-small(data-toggle='collapse' data-target='#collapseExample3' aria-expanded='true' aria-controls='collapseExample3')
+                  a.glyphicon.glyphicon-filter(data-toggle='tab' href='#tab-1')  Filter
+              #collapseExample3.tab-content.collapse.in(aria-expanded='true')
+                #tab-1.tab-pane.active
+                  .well
+                    form#filterAdminReports.form-inline(style='padding:0px;')
+                      .ui.input
+                        #datepicker.input-daterange.input-group
+                          input.input-md.form-control.input-sm(type='text' name='start')
+                          span.input-group-addon to
+                          input.input-md.form-control.input-sm(type='text' name='end')
+                      .ui.input
+                        select#donorCode.form-control.select2.input-sm
+                          option(value='-1') Select a donor
+                          each giverList
+                            option(value=this._id) #{this.text}
+                      .ui.input
+                        select#churchId.form-control.select2.input-sm
+                          option(value='-1') Select a organization
+                          each churchList
+                            option(value=this._id) #{this.text}
+                      .ui.input
+                        select#giveCode.form-control.select2.input-sm
+                          option(value='-1') Select a give code
+                          each giveCodeList
+                            option(value=this._id) #{this.text}
+                      button.btn.btn-sm.btn-primary(type='submit') Submit
+                      button#resetFilter.btn.btn-sm.btn-primary(type='button') Reset
+        .row(style=' margin-top: 3px; ')
+          .col-md-12(style='padding:10px 0px 0px 0px;')
+            .hpanel
+              .table-responsive
+                table#adminReportDatatable.table.table-striped.table-bordered.table-hover
+                  thead
+                    tr
+                      th Date
+                      th Church Name
+                      th Giver
+                      th Give Code
+                      th Amount
+                      th Receipt
+                  tbody
+                    each tithes
+                      tr
+                        td #{newDate}
+                        td #{churchName}
+                        td #{userName}
+                        td #{this.churchCODE}
+                        td #{newAmount}
+                        td
+                          a(href='/receipt/{{_id}}' target='_blank') View Receipt

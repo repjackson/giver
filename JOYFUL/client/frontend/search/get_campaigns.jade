@@ -1,0 +1,31 @@
+template(name='getcampaigns')
+    .row
+        .col-lg-3.col-md-3.col-md-offset-3.col-lg-offset-3
+            a.btn.btn-danger.btn-block(href='{{backPath}}')
+                span.glyphicon.glyphicon-chevron-left
+                | Go Back
+        .col-lg-6.col-lg-offset-3.col-md-6.col-md-offset-3
+            if campaigns
+                h2.text-center
+                    i.fa.fa-flag
+                    |  Campaigns
+                hr
+                each campaigns
+                    +allCampaignInfo
+            else
+                .alert.alert-danger We couldn't find any registered organizations with campaigns.
+
+template(name='allCampaignInfo')
+    .well.well-default.text-center(style='padding-top: 0px; padding-bottom: 0px;')
+        .row
+            .col-sm-6.col-xs-12
+                h3
+                    i.fa.fa-flag
+                    |  {{campaign}}
+                p
+                    | By:
+                    b {{churchName}}
+                    |#{church.address.city}, #{church.profile.address.state}
+            .col-sm-6.col-xs-12
+                p
+                    .btn.btn-success.give Give to this Campaign

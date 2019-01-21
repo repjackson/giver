@@ -1,0 +1,15 @@
+template(name='churchMap')
+  .map-container(style='height:400px;')
+    +googleMap name='churchMap' options=churchMapOptions
+template(name='churchInfoWindow')
+  .churchInfo
+    address(style='margin-bottom: 0px;')
+      a(href='/churchDetail/{{_id}}')
+        strong {{name}}
+      br
+      | {{address.street}}
+      br
+      | {{address.city}}, {{address.state}} {{address.zip}}
+    //
+      <a style="margin-right:5px;" class="pull-right btn btn-xs btn-success" href='/give/{{_id}}'>Give</a>
+      <a style="margin-right:5px;" class="pull-right btn btn-xs btn-default" href='/churchDetail/{{_id}}'>More info</a>

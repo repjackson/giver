@@ -1,0 +1,24 @@
+template(name='footer')
+	.ui.two.column.padded.grid
+		.row
+			.column
+				a(href='/')
+					| Home
+				.ui.list
+					if currentUser
+						a.item(href='/dashboard')
+							i.dashboard.icon
+							| Dashboard
+						a.item(href='/logout')
+							i.sign.out.icon
+							| Logout
+					else
+						a.item(href='login')
+							i.sign.in.icon
+							| Login
+					a.item(href='/register')
+						i.user.icon
+						| Register
+			.column
+				a.twitter-timeline(data-width='400' data-height='300' href='https://twitter.com/Joyful_Giver?ref_src=twsrc%5Etfw') Twitter
+					script(async='' src='https://platform.twitter.com/widgets.js' charset='utf-8')

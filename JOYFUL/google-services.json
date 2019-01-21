@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "563471978323",
+    "project_id": "resonant-grail-804"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:563471978323:android:d5e9fecd789874ff",
+        "android_client_info": {
+          "package_name": "com.joyful_giver.jg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "563471978323-110f1rnamchulm4rg4t41f6ajhbamd4f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.joyful_giver.jg",
+            "certificate_hash": "f18b2ec988e63f77764708ac26b3a581eb8b6a25"
+          }
+        },
+        {
+          "client_id": "563471978323-uga0ovmopqiq2pbaj4tk6o8u5gti5udr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsc5rwR8Hnzo4UghSFRDPAYVAiaSNbLMY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,42 @@
+template(name='church_dashboard')
+  .content.animate-panel
+    .row
+      .col-md-6
+        .hpanel.stats
+          .panel-body
+            div
+              i.pe-7s-cash.fa-4x
+              b
+                h1.m-xs.text-success.text-center #{total}
+            p
+              b
+                h2.m-xs.text-success.text-center Gifts this Year.
+      .col-md-6
+        .hpanel.stats
+          .panel-body
+            p.lead Donations for specific campaigns.
+            .btn.btn-info.generate Generate New campaign
+      .col-md-12
+        .hpanel
+          .panel-title Total gifts per day
+          .panel-body
+            div
+              #stocked
+        .hpanel
+          .panel-title Links
+          .panel-body
+            h4.font-light.m-b-xs(style='text-decoration:underline')
+              | Your Joyful Giver home page.
+              br
+            .hpanel.filter-item
+              a.text-primary(target='_blank' href=churchUrl) {{churchUrl}}
+            p &nbsp;
+            h4.font-light.m-b-xs(style='text-decoration:underline')
+              | Links to your campaigns.
+              br
+            // {{#if codes}}
+            each codes
+              .hpanel.filter-item
+                p
+                  | {{campaign}} -
+                  a.text-primary(href="{{JGUrl}}{{code}}" target='_blank')  {{JGUrl}}{{code}}

@@ -1,0 +1,87 @@
+template(name='mobileSearch')
+  #page-top.content-fluid
+    .text-center(style="background: url('/image/home_banner.jpg') 50% 0 no-repeat; color:white; height:400px;")
+      .ui.basic.segment
+        h2
+          b Web Donations for the Modern Donor
+        | Make donations to your organization a beautiful three-tap experience. No contracts, register, or monthly fees ever.
+        p
+          .col-sm-11.col-md-6.col-md-offset-3
+            .hpanel
+              .input-group.m-b
+                input#name.form-control(type='text' placeholder='Enter Name or Code..')
+                span.input-group-btn
+                  button#find.btn.btn-success
+                    span.glyphicon.glyphicon-search(aria-hidden='true')
+    .row(style='margin-top: -195px;')
+      .col-sm-12(style='z-index: 1000; ')
+        div
+          ul.nav.nav-tabs(style='color:#fff; ')
+            li.active.col-xs-4.text-center
+              a(data-toggle='tab' href='#tab-5' aria-expanded='true')
+                i.pe-7s-map-marker.icon-medium
+            li.col-xs-4.text-center
+              a(data-toggle='tab' href='#tab-3' aria-expanded='false')
+                i.pe-7s-culture.icon-medium
+            li.col-xs-4.text-center
+              a(data-toggle='tab' href='#tab-4' aria-expanded='false')
+                i.pe-7s-display2.icon-medium
+          .tab-content
+            #tab-5.tab-pane.active(style='height: 600px;')
+              div
+                unless geolocationError
+                  +churchMap
+            #tab-3.tab-pane(style='overflow: scroll; height: 600px;')
+              div
+                if churches
+                  each churches
+                    .hpanel.filter-item
+                      a.recenter(href='/churchDetail/{{_id}}')
+                        .row.panel-body(style='padding:7px 10px; background-color:white;')
+                          .col-xs-2.text-center
+                            if this.profile.profilePic
+                              img.img-rounded(src='{{this.profile.profilePic}}' alt='...' style='height: 45px; width: 45px; margin-right: 8px;')
+                            else
+                              // <img src="/icons/Logo_1239px.png" alt="..." class="img-rounded" style="height: 55px; width: 55px; margin-right: 8px; opacity:0.40; ">
+                              .col-xs-8(style='margin:0px;')
+                                h5.m-b-xs
+                                  | #{profile.churchName}
+                                  h6
+                                    |#{profile.address.city}, #{profile.address.state}
+                                  if currentUser
+                                    a.btn.btn-link.add(id='{{code}}')
+                                      span.glyphicon.glyphicon-star
+                else
+                  .panel-body
+                    .hpanel
+                      a(href='#')
+                        div
+                          p.m-b-xs.text-center No Organizations found matching your filter.
+            #tab-4.tab-pane(style='overflow: scroll; height: 600px;')
+              .panel-body
+                if campaigns
+                  .row
+                    each campaigns
+                      a.coderecenter
+                        .col-md-12.col-sm12.col-xs-12(style='padding-bottom:10px;')
+                          .w3-card.w3-hover-shadow
+                            if customPage.header_image
+                              div(style='height:150px; overflow:hidden; background-image: url({{customPage.header_image}}); background-position:center center; background-repeat: repeat; ')
+                            else
+                              div(style="height:150px; overflow:hidden; background-image: url('/image/events-header.jpg'); background-position:center center; background-repeat: repeat;  ")
+                              // <div style="height:150px; overflow:hidden;">
+                            .w3-container(style='background: #fff;')
+                              a.w3-btn(href='/{{code}}' style='padding:0px 0px 0px 0px; float: right;' role='button')
+                                span.glyphicon.glyphicon-chevron-right.fa-2x(aria-hidden='true')
+                              h5(style='margin-bottom: 3px;')
+                                | #{campaign}
+                                p(style='font-size: x-small; color:#000;') {{codeChurchName}}
+                else
+                  .hpanel
+                    a(href='#')
+                      div
+                        p.m-b-xs.text-center No Campaign found matching your filter.
+    br
+    br
+    br
+// - ############## BEGGINNING OF NORMAL ANDING STUFF  ####################

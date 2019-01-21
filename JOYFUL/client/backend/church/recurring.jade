@@ -1,0 +1,58 @@
+template(name='churchRecurring')
+  .normalheader.transition.animated.fadeIn
+    .hpanel
+      .panel-body
+        h2.font-light.m-b-xs
+          | Your Recurring Gifts
+        unless count
+          h3 No recurring plans.
+  if active}}
+    .content.animate-panel
+      .row
+        .col-lg-12
+          .hpanel
+            .panel-heading
+              h2 Active Plans
+            .panel-body.table-responsive
+              table#churchRecuringActiveDatatable.table.table-striped.table-bordered.table-hover.example2
+                thead
+                  tr
+                    th Amount
+                    th Organization
+                    th Recurrence
+                    th Status
+                    th
+                tbody
+                  each active
+                    +ChurchRecurringDetail
+  if paused
+    .content.animate-panel
+      .row
+        .col-lg-12
+          .hpanel
+            .panel-heading
+              h2 Paused Plans
+            .panel-body.table-responsive
+              table#churchRecuringPauseDatatable.table.table-striped.table-bordered.table-hover.example2
+                thead
+                  tr
+                    th Amount
+                    th Organization
+                    th Recurrence
+                    th Status
+                    th
+                tbody
+                  each paused
+                    +ChurchRecurringDetail
+
+
+template(name='ChurchRecurringDetail')
+  tr
+    td {{newAmount}}
+    td {{churchName}}
+    td {{newRecurrence}}
+    td
+      .label(class='label-{{action.style}}' style='text-transform:uppercase') {{status}}
+    td
+      a(href='/plan/{{_id}}') View / Edit
+      |  -

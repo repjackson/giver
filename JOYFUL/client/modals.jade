@@ -1,0 +1,93 @@
+template(name='modals')
+      #pressRelease.modal.fade(tabindex='-1' role='dialog' aria-hidden='true')
+         .modal-dialog.modal-lg
+            .modal-content
+               .color-line
+               .modal-header
+                  .row
+                     .col-md-6
+                        | Company Name:
+                     .col-md-6
+                        | Joyful Giver
+                     .col-md-6
+                        | Contact Person:
+                     .col-md-6
+                        | Brandon Spencer &ndash; Founder &amp; CEO
+                     .col-md-6
+                        | URL:
+                     .col-md-6
+                        a(href='www.Joyful-Giver.com ')  www.Joyful-Giver.com
+                  .row.text-center
+                     b PRESS RELEASE
+                  br
+                  br
+                  .row.text-center
+                     b
+                        | JOYFUL GIVER HAS REVOLUTIONIZED THE SPIRIT OF HELPING PEOPLE IN NEED WITH ITS AMAZING SMARTPHONE APP
+                  br
+                  br
+                  .row.text-center
+                     | DONORS WILL BE ABLE TO HELP THE CHARITY OF THEIR OWN CHOICE WITH A SEAMLESS THREE-TAP EXPERIENCE
+                  .row
+                     b
+                        u December 2, 2017:
+                     |  Giver has proudly introduced a remarkable Donation Delivery Service that enables Non-Profit, Charities and Faith-Based Organizations with the ability to accept online giving. Founded in 2015 by Brandon Spencer, the company has revolutionized donating by introducing smartphone applications that have simplified the process of donating in three simple taps on a phone. With Christmas and blessed holiday season approaching, the online charity platform will continue to play a major role in helping those who truly deserve the giving.
+                  .row
+                     | &ldquo;We have introduced a web donation system for the modern day donor so that people can easily make a donation to the organization of their own choice with a beautiful three-tap experience through their smartphone.&rdquo; Said Brandon Spencer, while talking about the online charity platform. &ldquo;There is absolutely no contract loging and we do not charge any type of register or monthly fees ever and the project is solely based on serving the community.&rdquo; He added. Followed by making a donation, the donor will immediately get a donation receipt and at the end of the year, an annual donation report will also be sent to the user
+                  .row
+                     | In addition, charitable organizations can accept payments for their church camp, conferences, building programs and other preconfigured campaigns with this amazing platform. Moreover, they can also set up ways to help the natural disaster victims within minutes by initiating a campaign for charity. The process of Joyful Giver works simply by accepting donations from the donor and depositing them directly into the bank account of the charity of donor&rsquo;s choice.
+                  .row
+                     | The Joyful Giver smartphone applications are available on both App Store and Google Play for iOS and Android users respectively. These apps can be downloaded for free from the company&rsquo;s website and using them is as simple as downloading. Moreover, the inspiring and noble initiative will not only speed up the process of transferring donations to the deserving people but will also encourage people to make donations at any time or place. With endless benefits, the service is faster and easier than online giving and text donations. Furthermore, it is also more convenient than giving kiosks and less complicated than PayPal.
+                  .row To start giving now, please visit:
+                  .row
+                     a(href='www.Joyful-Giver.com ')  www.Joyful-Giver.com
+      #feedbackForm.modal.fade(tabindex='-1' role='dialog' aria-hidden='true')
+         .modal-dialog.modal-lg
+            .modal-content
+               .color-line
+               .modal-header
+                  h2 Feedback
+                  p
+                     | Please provide your feedback below:
+               .row(style='margin-top: 50px')
+                  .col-md-12.col-md-offset-2.form-container
+                     form#reused_form(role='form')
+                        .row
+                           .col-sm-8.ui.input
+                              label How do you rate your overall experience?
+                              p
+                                 label.radio-inline
+                                    input#radio_experience(type='radio' name='experience' value='bad')
+                                    | Bad
+                                 label.radio-inline
+                                    input#radio_experience(type='radio' name='experience' value='average')
+                                    | Average
+                                 label.radio-inline
+                                    input#radio_experience(type='radio' name='experience' value='good')
+                                    | Good
+                        .row
+                           .col-sm-8.ui.input
+                              label(for='comments')
+                                 | Comments:
+                              textarea#comments.form-control(type='textarea' name='comments' placeholder='Your Comments' maxlength='6000' rows='7')
+                        .row
+                           .col-sm-8
+                              .col-sm-6.ui.input
+                                 label(for='name')
+                                    | Your Name:
+                                 input#feedBack_name.form-control(type='text' name='name' required='')
+                              .col-sm-6.ui.input
+                                 label(for='email')
+                                    | Email:
+                                 input#feedBack_email.form-control(type='email' name='email' required='')
+                        .row
+                           .col-sm-8.ui.input
+                              button.btn.btn-lg.btn-1.btn-block.feedbackSubmit(type='button') Submit
+      #demoModalpopup.modal.fade(tabindex='-1' role='dialog' aria-hidden='true')
+         .modal-dialog.modal-lg(style='width: 80%;')
+            .modal-content
+               .color-line
+               .modal-body
+                  +demo
+               .modal-footer
+                  button.btn.btn-default(type='button' data-dismiss='modal') Close

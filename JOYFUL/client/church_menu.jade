@@ -1,0 +1,69 @@
+template(name='church_menu')
+    aside#menu
+        #navigation
+            if currentUser
+                .profile-picture
+                    a(href='/church_dashboard')
+                        if currentUser.profile.profilePic
+                            img.img-circle.m-b(src='{{currentUser.profile.profilePic}}' alt='logo' width='100' height='79')
+                        else
+                            img.img-circle.m-b(src='/icons/Logo_sm_100.png' alt='logo' width='100' height='79')
+                    .stats-label.text-color
+                        .dropdown
+                            a.dropdown-toggle(href='#' data-toggle='dropdown')
+                                medium.text-muted
+                                    | {{currentUser.profile.churchName}}
+                                    b.caret
+                            ul.dropdown-menu.animated.fadeInRight.m-t-xs
+                                li
+                                    a#linkLogout(href='/logout') Logout
+            ul#side-menu.nav
+                li
+                    a.text-center(href='/church_dashboard')
+                        span.nav-label
+                            i.pe-7s-display1.icon-medium
+                            br
+                            small.icon-text DASHBOARD
+                li
+                    a.text-center(href="{{pathFor route='churchTithes'}}")
+                        span.nav-label
+                            i.pe-7s-gift.icon-medium
+                            br
+                            small.icon-text GIFTS
+                li
+                    a.text-center(href="{{pathFor route='churchRecurring'}}")
+                        span.nav-label
+                            i.pe-7s-repeat.icon-medium
+                            br
+                            small.icon-text RECURRING GIFTS
+                li
+                    a.text-center(href="{{pathFor route='churchCodes'}}")
+                        span.nav-label
+                            i.pe-7s-display2.icon-medium
+                            br
+                            small.icon-text Campaign
+                li
+                    a.text-center(href="{{pathFor route='churchReports'}}")
+                        span.nav-label
+                            i.pe-7s-news-paper.icon-medium
+                            br
+                            small.icon-text Reports
+                li
+                    a.text-center(href="{{pathFor route='church_account'}}")
+                        span.nav-label
+                            i.pe-7s-users.icon-medium
+                            br
+                            small.icon-text MY ACCOUNT
+                if ischurchAdmin
+                    li
+                        a.text-center(href="{{pathFor route='churchUsers'}}")
+                            span.nav-label
+                                i.pe-7s-user.icon-medium
+                                br
+                                small.icon-text Add Users
+                li
+                    a#linkLogout.text-center(href='/logout')
+                        span.nav-label
+                            i.pe-7s-delete-user.icon-medium
+                            br
+                            small.icon-text Logout

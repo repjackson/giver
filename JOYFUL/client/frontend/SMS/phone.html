@@ -1,0 +1,44 @@
+<template name='smsaddphone'>
+    <div class='container'>
+    <div class='row'>
+        {{#if currentUser.profile.phone}}
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>Your phone number is enabled.</strong>
+        </div>
+        {{#unless cardCount}}
+        <h3>Add a credit card to complete setup:</h3>
+        {{>addSMSCardForm}}
+        <button type="button" class="btn btn-primary save_new_card">Save Card</button>
+        {{else}}
+        <a class='btn btn-primary' href='sms://+18555784483'>Text {{code}} to Continue</a>
+        {{/unless}}
+        <!-- {{else}}
+        {{>spin}} -->
+        {{/if}}
+    </div>
+</div>
+</template>
+
+<template name='addSMSCardForm'>
+    <div class='form-horizontal' id='addcardform'>
+        <div class="ui.input">
+            <label for="card" class="col-lg-2 control-label">Card</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="card" name='card'  maxlength="16">
+            </div>
+        </div>
+        <div class="ui.input">
+            <label for="exp" class="col-lg-2 control-label">Exp.</label>
+            <div class="col-lg-4">
+                <input type="text" class="form-control" id="exp" name='exp' placeholder="MM/YY"  maxlength="5">
+            </div>
+        </div>
+        <div class="ui.input">
+            <label for="exp" class="col-lg-2 control-label">CVC</label>
+            <div class="col-lg-4">
+                <input type="text" class="form-control" id="cvc" name='cvc'  maxlength="5">
+            </div>
+        </div>
+    </div>
+</template>

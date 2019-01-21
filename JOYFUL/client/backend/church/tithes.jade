@@ -1,0 +1,22 @@
+template(name='churchTithes')
+  .normalheader.transition.animated.fadeIn
+    .hpanel
+      .panel-body
+        h2.font-light.m-b-xs
+          | Your Gifts
+  .content.animate-panel
+    .row
+      .col-lg-12
+        .hpanel
+          .panel-body.table-responsive
+            table#giftsChurchDatatable.table.table-striped.table-bordered.table-hover
+              thead
+                tr
+                  th Date
+                  th Amount
+                  th Giver Name
+                  th status
+                  th Receipt
+              tbody
+                each tithes
+                  | titheDetail

@@ -1,0 +1,98 @@
+template(name='login')
+    .ui.padded.stackable.grid.register-body
+        .centered.row
+            .twelve.wide.column
+                .ui.segment
+                    .ui.center.aligned.large.header Log In
+                    form.ui.form#login
+                        .field(class=login_class)
+                            label
+                                i.user.icon
+                                |Email
+                            input#username(type='text' placeholder='example@gmail.com' required='' value='' name='username' autofocus='')
+                        .field(class=login_class)
+                            label
+                                i.lock.icon
+                                |Password
+                            input#password(type='password' placeholder='******' required='' value='' name='password')
+                        .ui.hidden.divider
+                        button#submit.ui.green.fluid.circular.button(type='submit' class=enter_class)
+                            i.play.icon
+                        .ui.hidden.divider
+                    .ui.center.aligned.divided.horizontal.relaxed.list
+                        a.item(href='/register') Register
+                        a.item(href='/forgot-password') Forgot Password?
+                        +social_login_buttons
+
+template(name='forgot_password')
+    .ui.container
+        a.ui.button(href='/') Back to Home
+        .panel-body.text-center
+            h3.font-light.m-b-xs
+                b Reset Password
+            .login-container
+                .row
+                    .col-md-12
+                        .hpanel
+                            .panel-body
+                                form#forgot_passwordForm(action='#')
+                                    .ui.input
+                                        label.control-label(for='username') Email
+                                        input#username.form-control(type='email' placeholder='example@gmail.com' title='Please enter you username' required='' value='' name='username' autofocus='')
+                                    button#reset.btn.btn-success.btn-block(type='submit') Send Reset Link
+                                    p.text-center
+                                        br
+                                        a(href='/register') Create an Account
+                                        a(href='/login') Sign-in
+
+
+
+template(name='select_role')
+    .color-line
+    .back-link
+        a.btn.btn-primary(href="{{pathFor route='front'}}") Back to Home Page
+    .normalheader.transition.animated.fadeIn
+        .panel-body.text-center
+            h3.font-light.m-b-xs
+                b Select your role
+    .animate-panel.bluegraybg
+        .login-container
+            .row
+                .col-md-12
+                    .hpanel
+                        .panel-body
+                            .col-lg-6.border-right
+                                p
+                                    .btn-top-space.text-center.btn1-div
+                                        a.btn.btn-1.roleSelect(href='#' data-role='Organization') Organization
+                            .col-lg-6
+                                p
+                                    .btn-top-space.text-center.btn1-div
+                                        a.btn.btn-1.roleSelect(href='#' data-role='Giver') Giver
+
+
+
+template(name='reset_password')
+    .color-line
+    .back-link
+        a.btn.btn-primary(href="{{pathFor route='front'}}") Back to Home Page
+    .normalheader.transition.animated.fadeIn
+        .panel-body.text-center
+            h3.font-light.m-b-xs
+                b Reset your password?
+    .animate-panel.bluegraybg
+        .login-container
+            .row
+                .col-md-12
+                    .hpanel
+                        .panel-body
+                            form#reset_passwordForm
+                                if reset_password
+                                    .ui.input
+                                        label.control-label(for='Password') Password
+                                        input#reset_passwordPassword.form-control.validationRequired.validationEqualTo(type='password' placeholder='password' name='password')
+                                    .ui.input
+                                        label.control-label(for='CPassword') Confirm Password
+                                        input#reset_passwordPasswordConfirm.form-control.validationRequired.validationEqualTo(type='password' euqalto='#reset_passwordPassword' placeholder='confirm password' name='confirmpassword')
+                                button.btn.btn-success.btn-block(type='submit') Submit
+                                a(href='/login') Sign-in

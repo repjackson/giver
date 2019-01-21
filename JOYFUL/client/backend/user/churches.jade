@@ -1,0 +1,37 @@
+template(name='userChurches')
+    .content.animate-panel
+        .row
+            .col-lg-12.text-center.m-t-md
+                h2
+                    i.fa.fa-group
+                    |  My Organizations
+                p
+                    a.ui.button(href='/search-by-name')
+                        span.glyphicon.glyphicon-plus
+                        |  Add / Search
+        br
+        .row.projects
+            each churches
+                +churchInfoNew
+
+template(name='churchInfoNew')
+    .col-lg-6
+        .hpanel.hgreen
+            .panel-body
+                span.label.label-success.pull-right NEW
+                .row
+                    .col-sm-8
+                        h4
+                            a(href='')
+                                i.fa.fa-building-o
+                                | #{ch.profile.churchName}
+                        p #{ch.profile.address.city}, #{ch.profile.address.state}
+                    .col-sm-4.project-info
+                        .project-action.m-t-md
+                            .btn-group
+                                button.btn.btn-success.give
+                                    i.fa.fa-credit-card
+                                    | &nbsp; Give
+                                button.btn.btn-danger.remove
+                                    i.fa.fa-remove
+                                    | &nbsp; Remove

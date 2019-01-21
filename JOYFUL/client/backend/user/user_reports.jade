@@ -1,0 +1,43 @@
+template(name='user_reports')
+    .ui.padded.stackable.grid
+        .row
+            .ui.header
+                | User Give Report
+        .row
+            .sixteen.wide.column
+                form#filterGiveReports.ui.form
+                    .field
+                        input.input-md.form-control(type='date' name='start')
+                        span.input-group-addon to
+                        input.input-md.form-control(type='date' name='end')
+                    .field
+                        each churchList
+                            option(value='{{this._id}}') #{this.text}
+                    button.ui.button(type='submit') Submit
+                    button#resetFilter.ui.button(type='button') Reset
+        .row
+            .twelve.wide.column
+                .ui.header Report
+                table.ui.table
+                    thead
+                        tr
+                            th Date
+                            th Org. Name
+                            // <th>Give Code</th>
+                            th Amount
+                            th Receipt
+                    tbody
+                        each tithes
+                            tr
+                                td #{newDate}
+                                td #{userName}
+                                // <td>{{this.churchCODE}}</td>
+                                td #{newAmount}
+                                td
+                                    a(href='/receipt/{{_id}}' target='_blank') View Receipt
+            .four.wide.column
+                .panel-heading
+                    h2 Chart
+                .panel-body
+                    div
+                        #lineChart

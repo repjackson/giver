@@ -1,0 +1,59 @@
+template(name='user_messages')
+    .ui.segment
+        .ui.header
+            i.inbox.icon
+            | Inbox
+        each messages
+            .ui.item
+                .content
+                    |#{text}
+        .ui.primary.button.new_message
+            |New Message
+
+template(name='friend_list')
+    .ui.segment
+        .ui.header
+            i.users.icon
+            |Friends
+        .ui.list
+            each users
+                .item #{_id} #{username}
+
+
+template(name='mail')
+    .ui.header
+        i.mail.icon
+        |Mail
+
+
+template(name='chat')
+    .ui.segment
+        .ui.header
+            i.chat.icon
+            |Chat
+        each chats
+            .ui.small.header #{text}
+        .ui.input
+            input(type='text')
+
+
+template(name='assigned_tasks')
+    .ui.segment
+        a.ui.header(href='/tasks')
+            i.tasks.icon
+            |Assigned Tasks
+        each assigned_tasks
+            .ui.small.header #{text}
+
+
+
+template(name='following')
+    .ui.segment
+        .ui.header
+            i.bullhorn.icon
+            |Following
+        .ui.list
+            each following
+                a.item(href="/#{type}/#{_id}/view")
+                    |#{title}
+                    .ui.basic.label #{type}

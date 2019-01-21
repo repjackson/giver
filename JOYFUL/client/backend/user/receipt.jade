@@ -1,0 +1,82 @@
+template(name='userReceipt')
+  .row
+    .col-lg-3.col-md-4.col-sm-12.col-xs-12.text-center
+      img(src='/brand/Logorev01.png' height='80')
+      .well.well-sm
+        h4.white
+          strong Donation Receipt
+      h4
+        i Thank you for your donation to
+      h2 {{church.profile.churchName}}
+      p.lead
+        | {{church.profile.address.street}}
+        br
+        |                 {{church.profile.address.city}}, {{church.profile.address.state}} {{church.profile.address.zip}}
+      hr
+      table.table.table-striped.table-hover.table-responsive
+        tbody
+          tr
+            td
+              strong Date
+            td {{date}}
+          tr
+            td
+              strong Amount
+            td {{amount}}
+          tr
+            td
+              strong Card
+            td {{tithe.data.source.brand}} ending in {{tithe.data.source.last4}}
+  |  --&gt;
+  .content.content-boxed
+    .row
+      .col-md-12
+        .hpanel.blog-article-box
+          .panel-heading
+            img(src='/brand/Logorev01.png' height='80')
+          .panel-body
+            p
+            h3 Thank You So Much for Your Kind Donation!
+            p
+            br
+            p
+            h4 Dear {{giver}},
+            p
+            p
+              | Thank you for your donation. Your generosity is appreciated! Here are the details of your donation.
+            .table-responsive
+              table.table.table-striped.table-hover.table-responsive
+                tbody
+                  tr
+                    td
+                      strong Donor
+                    td {{giver}}
+                  tr
+                    td
+                      strong Donation
+                    td
+                      | {{church.profile.churchName}}
+                      br
+                      |                                       {{church.profile.address.street}}
+                      br
+                      |                                       {{church.profile.address.city}}, {{church.profile.address.state}} {{church.profile.address.zip}}
+                  tr
+                    td
+                      strong Donation Date
+                    td {{date}}
+                  tr
+                    td
+                      strong Amount
+                    td {{amount}}
+                  tr
+                    td
+                      strong Card
+                    td {{tithe.data.source.brand}} ending in {{tithe.data.source.last4}}
+                  tr
+                    td
+                      strong Payment Id
+                    td {{tithe.data.id}}
+                  tr
+                    td
+                      strong Reciept Id
+                    td {{tithe._id}}

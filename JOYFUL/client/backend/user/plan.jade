@@ -1,0 +1,59 @@
+template(name='editRecurring')
+  .col-lg-4
+    h2 Recurring Gift
+    .panel.panel-primary
+      .panel-heading
+        h3.panel-title Gift to #{churchName}
+      .panel-body.PlanView
+        h5 Give #{newAmount}
+        i #{newRecurrence}
+        unless is_church
+          .btn-group.btn-group-justified
+            a.btn.btn-default.edit(href='#') Edit
+            a.btn(href='#' class="btn-{{action.style}} {{action.class}}" id=plan._id) {{action.title}}
+            a.btn.btn-danger.delete(href='#') Delete
+      .panel-body.form-horizontal.PlanEdit(style='display:none')
+        unless is_church
+          .ui.input
+            label.col-lg-2.control-label(for='amount') Amount
+            .col-lg-10
+              input#amount.form-control(type='text' name='amount' placeholder='$5' value=flatAmount)
+        | !{recurSelect}
+        div
+          i On #{card_details}
+        .btn-group.btn-group-justified
+          a.btn.btn-success.save_edit(href='#') Save
+          a.btn.btn-danger.cancel_edit(href='#' id=plan._id) Cancel
+  .col-lg-8.table-responsive
+    h2 Gifts from this Plan
+    table#editRecurringDT.table.table-striped.table-bordered.table-hover
+      thead
+        tr
+          th Date
+          th Amount
+          th Organization
+          th Receipt
+      tbody
+        each tithes
+          +titheDetail this
+        each tithes
+          +titheDetailWell this
+
+// template(name='editRecurringDetail')
+//   tr
+//     td
+//       input#amt.form-control(name='amt' value=newAmount)
+//     td #{churchName}
+//     td
+//       | #{newRecurrence}
+//       br
+//       | Test
+//       br
+//       | !{recurSelect}
+//     td
+//       .label(class="label-{{action.style}}" style='text-transform:uppercase') {{status}}
+//       br
+//       a.(href='#' class=action.class id=_id) #{action.title}
+//     td
+//       a(href="/plan/{{_id}}") View / Edit
+//       |  -

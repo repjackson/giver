@@ -1,0 +1,35 @@
+{
+  "name": "JOYFUL",
+  "mod-project-name": "JOYFUL",
+  "scripts": {
+    "start": "meteor --settings settings.json",
+    "sim": "meteor run ios --settings settings.json",
+    "ios": "meteor run ios-device --settings settings.json",
+    "build": "meteor build --server https://joyful-giver.com --architecture os.linux.x86_64  --settings settings.json",
+    "deploy": "modulus deploy --settings settings.json"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.2.0",
+    "babel-runtime": "^6.26.0",
+    "bcrypt": "^0.8.7",
+    "connect": "^3.6.6",
+    "fibers": "^1.0.15",
+    "html-pdf": "^2.2.0",
+    "mongodb-uri": "^0.9.7",
+    "phantomjs-prebuilt": "^2.1.16",
+    "tar.gz2": "^1.0.0",
+    "temp": "^0.8.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.1"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {
+        "browsers": [
+          "last 2 versions"
+        ]
+      }
+    }
+  }
+}

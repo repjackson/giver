@@ -1,0 +1,50 @@
+template(name='header')
+    .ui.attached.borderless.menu
+        .image.item
+            a(href='/')
+                img.ui.tiny.image(src='/brand/Logorev01.png')
+        a.item(href='/blog')
+            |Blog
+        if currentUser
+            a.item(href='/campaigns')
+                i.bullhorn.grey.icon
+                .mobile.hidden Campaigns
+            // a.item(href='/search-by-name' title='Search')
+            //     i.search.icon
+            //     .mobile.hidden Search
+            // a.item(href='/mytithes' title='My Gifts')
+            //     i.gift.icon
+            //     .mobile.hidden My Gifts
+            // a.item(href='/user_recurring' title='Recurring')
+            //     i.refresh.icon
+            //     .mobile.hidden Recurring
+            a.item(href='/user_reports' title='Reports')
+                i.newspaper.grey.icon
+                .mobile.hidden Reports
+            .right.menu
+                a.icon.item(href='/alerts')
+                    i.grey.bell.icon
+                a.icon.item(href='/mail' title='Inbox')
+                    i.grey.inbox.icon
+                a.icon.item(href='/tasks' title='Tasks')
+                    i.grey.tasks.icon
+                a.item(href='/dashboard')
+                    i.grey.dashboard.icon
+                    .mobile.hidden Dashboard
+                a.item(href='/account')
+                    i.grey.user.icon
+                    .mobile.hidden Account
+                    |#{currentUser.username}
+                if logging_out
+                    .icon.disabled.item
+                        i.loading.refresh.icon
+                else
+                    a.icon.item.logout(href='#' title='Logout')
+                        i.sign.out.grey.icon
+        else
+            .right.menu
+                a.item.pagescroll(href='#causes') Campaigns
+                a.item.pagescroll(href='#gallery') Gallery
+                a.item.pagescroll(href='#contact') Contact Us
+                a.item(href='/login') Login
+                a.item(href='/register') Register

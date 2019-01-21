@@ -1,0 +1,46 @@
+template(name='churchUsers')
+  .content
+    .row
+      .col-md-6
+        .hpanel
+          .panel-heading
+            | Add Organization User
+          .panel-body
+            form.form-horizontal.addEditChurchUser
+              .hr-line-dashed
+              .ui.input
+                label.col-md-2.control-label Email Id
+                .col-md-10
+                  input.form-control.emailID(type='text' placeholder='email@example.com' data-index='-1')
+              .hr-line-dashed
+              .ui.input
+                .col-md-8.col-sm-offset-2
+                  button.btn.btn-primary(type='submit') Save changes
+    .row
+      .col-md-12
+        .hpanel
+          .panel-heading
+          .panel-body
+            .table-responsive
+              table.table.table-bordered.table-striped(cellpadding='1' cellspacing='1')
+                thead
+                  tr
+                    th Organization User
+                    th Action
+                tbody
+                  if associatedUserList
+                    each associatedUserList
+                      tr
+                        td #{this.address}
+                        td
+                          .project-action
+                            .btn-group
+                              button.btn.btn-xs.btn-default.btnEdit
+                                i.fa.fa-pencil-square-o(aria-hidden='true')
+                                |  Edit
+                              button.btn.btn-xs.btn-default.btnDelete
+                                i.fa.fa-trash-o(aria-hidden='true')
+                                |  Delete
+                  else
+                    tr
+                      td.text-center(colspan='2') There is no records found

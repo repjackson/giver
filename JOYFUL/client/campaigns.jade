@@ -1,0 +1,121 @@
+template(name='campaigns')
+    .ui.stackable.padded.grid
+        .four.wide.column
+            .ui.center.aligned.header
+                i.grey.bullhorn.icon
+                |Campaigns
+            .ui.circular.fluid.button.add_campaign
+                i.plus.icon
+                |Add Campaign
+            .ui.small.header
+                i.greytags.icon
+                |Filter Tags
+            .ui.icon.small.input
+                i.search.icon
+                input#search(type='text' autocomplete='off' placeholder='Search Tags')
+            if selected_tags
+                #clear_tags.ui.grey.icon.circular.button
+                    i.remove.icon
+            each selected_tags
+                .unselect_tag.ui.grey.circular.button
+                    b #{this}
+            each global_tags
+                .select_tag.ui.circular.button
+                    |#{this.name}
+                    small #{this.count}
+        .twelve.wide.column
+            each campaigns
+                +campaign_item
+
+
+template(name='campaign_item')
+    .ui.segment
+        a.ui.header(href="/campaign/#{_id}/view")
+            |#{title}
+        .description
+            .ui.small.header #{body}
+            i.tags.icon
+            each tags
+                .ui.basic.circular.label #{this}
+        .extra
+            +voting
+            +bookmark_button
+            a.ui.circular.button(href="/campaign/#{_id}/view")
+                |View
+                i.right.chevron.icon
+            a.ui.icon.circular.button(href="/campaign/#{_id}/edit" title='Edit')
+                i.pencil.icon
+
+
+template(name='campaign_edit')
+    with doc
+        .ui.stackable.padded.grid
+            .four.wide.column
+                .ui.header
+                    i.pencil.icon
+                    |Edit campaign
+                a.ui.fluid.circular.button(href="/campaign/#{_id}/view")
+                    i.checkmark.icon
+                    |Save
+                .ui.circular.button.delete_campaign
+                    i.remove.icon
+                    |Delete
+            .twelve.wide.column
+                .ui.segment
+                    .ui.form
+                        .field
+                            label Title
+                            input.title(type='text' value=title)
+                        .field
+                            label Story
+                            textarea.story(rows='5') #{story}
+                        .field
+                            label Tags
+                            each tags
+                                .ui.basic.circular.label
+                                    i.remove.link.icon.remove_tag
+                                    |#{this}
+                            .ui.icon.input
+                                input.new_tag(type='text' placeholder='Add tag...')
+                                i.plus.icon
+                        .field
+                            label
+                                i.dollar.icon
+                                |Goal: #{goal}
+                            input.goal(type='number' value=goal)
+
+template(name='campaign_view')
+    with doc
+        .ui.stackable.padded.grid
+            .four.wide.column
+                .ui.header
+                    a(href="/campaigns" title='Campaigns')
+                        i.bullhorn.link.circular.icon
+                    |View campaign
+                a.ui.fluid.circular.button(href="/campaign/#{_id}/edit")
+                    i.pencil.icon
+                    |Edit
+                +follow
+            .twelve.wide.column
+                .ui.header
+                    if complete
+                        i.green.checkmark.icon
+                    |#{title}
+                h4 #{body}
+                i.tags.icon
+                |Tags
+                each tags
+                    .ui.basic.circular.label #{this}
+                div
+                +bookmark_button
+                div
+                i.calendar.icon
+                |Due
+                strong #{due_date}
+                div
+                i.user.icon
+                |Assignee
+                strong #{assignee}
+                div
+                +voting
+                +comments

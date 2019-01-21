@@ -1,0 +1,50 @@
+template(name='adminDashboard')
+    .ui.stackable.padded.grid
+        .row
+            .eight.wide.column
+                a.btn.btn-joyful.btn-block.btn-lg(href='/admin/churches' style='color:#a5356c;')
+                    h1
+                        span.glyphicon.glyphicon-home
+                    h4 VIEW ORGANIZATIONS
+                a.btn.btn-joyful.btn-block.btn-lg(href='/admin/users' style='color:#a5356c;')
+                    h1
+                        span.glyphicon.glyphicon-user
+                    h4 USERS
+            .eight.wide.column
+                a.btn.btn-joyful.btn-block.btn-lg(href='/admin/reports' style='color:#a5356c;')
+                    h1
+                        span.glyphicon.glyphicon-stats
+                    h4 REPORTS
+                a.btn.btn-joyful.btn-block.btn-lg(href='/admin/settings' style='color:#a5356c;')
+                    h1
+                        span.glyphicon.glyphicon-cog
+                    h4 APP SETTINGS
+        .row
+            .sixteen.wide.column
+                .panel-heading
+                    | Demo Requests
+                .panel-body
+                    .table-responsive
+                        table.ui.table
+                            thead
+                                tr
+                                    th Name
+                                    th Email Id
+                                    th Contact No.
+                                    th Demo Date
+                                    th Action
+                            tbody
+                                each requestDemoData
+                                    tr
+                                        td #{firstName} #{lastName}
+                                        td #{emailId}
+                                        td #{phoneNo}
+                                        td #{formatDate date}
+                                        td
+                                            #isComplete.ui.button(data-id='{{_id}}') Complete Demo
+            // .col-md-6
+            //     .hpanel
+            //         .panel-heading
+            //             | calendar
+            //         .panel-body
+            //             #calendar

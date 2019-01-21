@@ -1,0 +1,56 @@
+{
+    "development": {
+        "public": {
+            "stripePublishable": "pk_test_nKAEIow2MIiHw1MQYGWWoOj3",
+            "stripeClientId": "ca_6RRBYgxCy530ZpeD2njVFZZrQKqVYEBM",
+            "stripeConnectRedirect": "https://connect.stripe.com/oauth/authorize?response_type=code&scope=read_write&redirect_uri=http://development.joyful-giver.com/church/connect&client_id="
+
+        },
+        "private": {
+            "stripeSecret": "sk_test_DO3qR59n9I8AzeyCkx2cItFg",
+            "STRIPE_SECRET": "sk_test_DO3qR59n9I8AzeyCkx2cItFg",
+            "makeAdminPW": "987DRS20!5",
+            "makeAdminCODE": "0089",
+            "TWILIO": {
+                "FROM": "13235242934",
+                "SID": "ACd3c6c02aab6acfa728a0b645c9d80bb4",
+                "TOKEN": "9cf806d6b843b8582e3eaab8a1ab7f87"
+            }
+        }
+    },
+    "staging": {
+        "public": {
+            "stripePublishable": "pk_test_nKAEIow2MIiHw1MQYGWWoOj3",
+            "stripeClientId": "ca_6RRBYgxCy530ZpeD2njVFZZrQKqVYEBM",
+            "stripeConnectRedirect": "https://connect.stripe.com/oauth/authorize?response_type=code&scope=read_write&redirect_uri=http://joyful-giver.com/church/connect&client_id="
+
+        },
+        "private": {
+            "stripeSecret": "sk_test_DO3qR59n9I8AzeyCkx2cItFg",
+            "makeAdminPW": "987DRS20!5",
+            "makeAdminCODE": "0089",
+            "TWILIO": {
+                "FROM": "18329814483",
+                "SID": "ACd3c6c02aab6acfa728a0b645c9d80bb4",
+                "TOKEN": "9cf806d6b843b8582e3eaab8a1ab7f87"
+            }
+        }
+    },
+    "production": {
+        "public": {
+            "stripePublishable": "pk_live_YIbHlzoVocZreZdL6B1s7IXS",
+            "stripeClientId": "ca_6RRBbYJA695Ev9V5qIFrGnJ6ATwdOqFD",
+            "stripeConnectRedirect": "https://connect.stripe.com/oauth/authorize?response_type=code&scope=read_write&redirect_uri=https://joyful-giver.com/church/connect&client_id="
+        },
+        "private": {
+            "stripeSecret": "sk_live_QZUWzMGN39wPN5M6pJk9bAft",
+            "makeAdminPW": "987DRS20!5",
+            "makeAdminCODE": "0089",
+            "TWILIO": {
+                "FROM": "18329814483",
+                "SID": "ACd3c6c02aab6acfa728a0b645c9d80bb4",
+                "TOKEN": "9cf806d6b843b8582e3eaab8a1ab7f87"
+            }
+        }
+    }
+}

@@ -1,0 +1,24 @@
+template(name='smsloginup')
+  .row
+    .col-lg-3.col-md-4.col-sm-12.col-xs-12.text-center
+      img(src='/brand/Logorev01.png' height='80')
+      #giverForm.form-horizontal.row
+        fieldset
+          .col-lg-6
+            legend Sign Up or Sign In
+            .ui.input
+              label.col-lg-2.control-label(for='phone') Cell Phone
+              .col-lg-10
+                input#phone.form-control(type='text' name='phone' value='{{phone}}' disabled='true')
+                i *required for Text-to-Give
+            .ui.input
+              label.col-lg-2.control-label(for='email') Email
+              .col-lg-10
+                input#email.form-control(type='text' name='email' placeholder='name@yourchurch.com')
+            .ui.input
+              label.col-lg-2.control-label(for='password') Password
+              .col-lg-10
+                input#password.form-control(type='password' name='password' placeholder='Password')
+            .ui.input
+              a.btn.btn-default(onclick='window.close();' href='sms://+18555784483') Cancel
+              #register.btn.btn-primary Register

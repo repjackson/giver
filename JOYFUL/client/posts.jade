@@ -1,0 +1,52 @@
+template(name='posts')
+    .ui.stackable.padded.grid
+        .four.wide.column
+            .ui.header
+                i.book.icon
+                |posts
+            .ui.button.add_post
+                i.plus.icon
+                |Add Post
+        .twelve.wide.column
+            each posts
+                +post_item
+
+
+template(name='post_item')
+    .ui.segment
+        .item
+            .content
+                a.header #{title}
+                .description
+                .extra
+                    +voting
+                    +bookmark_button
+                    a.ui.fluid.button(href="/post/#{_id}/view")
+                        |View
+
+
+template(name='post_edit')
+    with doc
+        .ui.stackable.padded.grid
+            .four.wide.column
+                .ui.header
+                    i.pencil.icon
+                    |Edit Post
+                // a.ui.fluid.button(href="/post/#{_id}/view")
+                .ui.fluid.button.save
+                    |Save
+            .twelve.wide.column
+                .summernote
+                    h5 Hello Jonathan!
+
+
+template(name='post_view')
+    with doc
+        .ui.stackable.padded.grid
+            .four.wide.column
+                .ui.header
+                    i.book.icon
+                    |View Post
+                a.ui.fluid.button(href="/post/#{_id}/edit")
+                    |Edit
+

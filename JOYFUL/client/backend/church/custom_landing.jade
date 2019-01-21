@@ -1,0 +1,41 @@
+template(name='customLanding')
+  .content
+    if isPhone
+      .pull-left.back-link(style='position: absolute')
+        button.btn.btn-link(onclick='window.history.back();')
+          i.fa.fa-chevron-left
+          |  Back
+    .content.animate-panel
+      .row
+        .col-lg-8.col-md-7
+          .col-lg-12.col-md-12
+            .hpanel
+              .panel-body
+                h1.text-center {{code.campaign}}
+                img.img-responsive(src='{{code.customPage.header_image}}')
+                br
+                | !{code.customPage.textContent}
+                br
+          .col-lg-12.col-md-12
+            .hpanel
+              .panel-body
+                .fb-comments(data-href='{{currentpageURL}}' data-numposts='5')
+        .col-lg-4.col-md-5
+          +give cid=cid mycards=mycards church=church street=church.profile.address.street city=church.profile.address.city state=church.profile.address.state zip=church.profile.address.zip cardCount=cardCount widthClass=widthClass code=code titheTotalGive=titheTotalGive
+          hr
+          if totalGiver
+            .border-right.border-left.hpanel
+              .list-item-container.panel-body
+                each totalGiver
+                  .list-item
+                    .social-talk
+                      .media.social-profile.clearfix
+                        a.pull-left
+                          img(src='{{this.profilePic}}' alt='profile-picture')
+                        .media-body
+                          a(href='{{this.redirectionLink}}' target='_blank')
+                            span.font-bold #{this.name}
+                          small.text-muted #{this.date}
+                          .font-bold
+                            | $#{this.giveAmount}
+              hr

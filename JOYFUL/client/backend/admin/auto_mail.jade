@@ -1,0 +1,71 @@
+template(name='auto_mail')
+    .normalheader
+        .hpanel
+            .panel-body
+                h2.font-light.m-b-xs
+                    | Mailbox
+    .content
+        .row
+            .col-md-9
+                .hpanel.email-compose
+                    .panel-heading.hbuilt
+                        .p-xs.h4
+                            | New Email
+                    .panel-heading.hbuilt
+                        .p-xs
+                            form.form-horizontal(method='get')
+                                .ui.input
+                                    label.col-sm-1.control-label.text-left To:
+                                    .col-sm-11
+                                        // <input type="text" class="form-control input-sm" placeholder="example@email.com">
+                                        select.emailList(multiple='multiple' style='width: 100%')
+                                            option(value='all') All
+                                            option(value='users') All Users
+                                            option(value='org') All Organizations
+                                            optgroup(label='Users Email')
+                                                each userEmailList
+                                                    option(value='{{this}}') #{this}
+                                            optgroup(label='Organizations Email')
+                                                each orgEmailList
+                                                    option(value='{{this}}') #{this}
+                                .ui.input
+                                    label.col-sm-1.control-label.text-left Subject:
+                                    .col-sm-11
+                                        input.form-control.input-sm.mailSub(type='text' placeholder='Enter Email subject')
+                    .panel-body.no-padding
+                        .summernote
+                            h5 Hello Jonathan!
+                            p
+                                | dummy text of the printing and typesetting industry.
+                                strong Lorem Ipsum has been the dustrys
+                                |  standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+                                br
+                                br
+                                | All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.
+                                |                                 recently with.
+                            p
+                                | Mark Smith
+                        if attachments}}
+                            .border-bottom.border-left.border-right.bg-white.p-m
+                                p.m-b-md
+                                    span
+                                        i.fa.fa-paperclip
+                                        |  {{attachments.length}} attachments
+                                div
+                                    .row
+                                        each attachments
+                                            .col-sm-3
+                                                .hpanel
+                                                    a.closebox(data-index='{{@index}}')
+                                                        i.fa.fa-times
+                                                    .panel-body.file-body
+                                                        i.fa.text-info(class='{{fileTypeIcon this.contentType}}')
+                                                    .panel-footer
+                                                        a(href='{{this.path}}' target='_blank') #{this.filename}
+                    .panel-footer
+                        button.btn.btn-primary.bulkMailSend Send email
+                        .btn-group
+                            // <button class="btn btn-default"><i class="fa fa-paperclip"></i> </button>
+                            label.btn.btn-default(for='fileInput')
+                                i.fa.fa-paperclip
+                            input#fileInput(type='file' style='display: none')

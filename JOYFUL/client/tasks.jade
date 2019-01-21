@@ -1,0 +1,140 @@
+template(name='tasks')
+    .ui.stackable.padded.grid
+        .four.wide.column
+            .ui.center.aligned.header
+                i.tasks.icon
+                |Tasks
+            .ui.circular.fluid.button.add_task
+                i.plus.icon
+                |Add Task
+            .ui.small.header
+                i.tags.icon
+                |Filter Tags
+            .ui.icon.small.input
+                i.search.icon
+                input#search(type='text' autocomplete='off' placeholder='Search Tags')
+            if selected_tags
+                #clear_tags.ui.grey.icon.circular.button
+                    i.remove.icon
+            each selected_tags
+                .unselect_tag.ui.grey.circular.button
+                    b #{this}
+            each global_tags
+                .select_tag.ui.circular.button
+                    |#{this.name}
+                    small #{this.count}
+        .twelve.wide.column
+            each tasks
+                +task_item
+
+
+template(name='task_item')
+    .ui.segment
+        a.ui.header(href="/task/#{_id}/view")
+            if complete
+                i.green.checkmark.icon
+            |#{title}
+        .description
+            .ui.small.header #{body}
+            i.tags.icon
+            each tags
+                .ui.basic.circular.label #{this}
+            i.calendar.circular.icon(title='Due Date')
+            |#{due_date}
+            i.user.circular.icon(title='Assignee')
+            |#{assignee}
+        .extra
+            +voting
+            +bookmark_button
+            a.ui.circular.button(href="/task/#{_id}/view")
+                |View
+                i.right.chevron.icon
+            a.ui.icon.circular.button(href="/task/#{_id}/edit" title='Edit')
+                i.pencil.icon
+
+
+template(name='task_edit')
+    with doc
+        .ui.stackable.padded.grid
+            .four.wide.column
+                .ui.header
+                    i.pencil.icon
+                    |Edit Task
+                a.ui.fluid.circular.button(href="/task/#{_id}/view")
+                    i.checkmark.icon
+                    |Save
+                .ui.circular.button.delete_task
+                    i.remove.icon
+                    |Delete
+            .twelve.wide.column
+                .ui.form
+                    .field
+                        label Title
+                        input.title(type='text' value=title)
+                    .field
+                        label Notes
+                        textarea.body(rows='5') #{body}
+                    .two.fields
+                        .field
+                            label Priority
+                            .ui.circular.button High
+                            .ui.circular.button Medium
+                            .ui.circular.button Low
+                        .field
+                            label Status
+                            .ui.circular.button.toggle_complete(class="{{#if complete}} green {{/if}}")
+                                if complete
+                                    |Complete
+                                else
+                                    |Incomplete
+                    .field
+                        label Tags
+                        each tags
+                            .ui.basic.label
+                                i.remove.link.icon.remove_tag
+                                |#{this}
+                        .ui.icon.input
+                            input.new_tag(type='text' placeholder='Add tag...')
+                            i.plus.icon
+                    .field
+                        label Due Date: #{due_date}
+                        input.due_date(type='date' value=due_date)
+                    .field
+                        label Assignee: #{asignee}
+                        input.assignee(type='text' value=asignee)
+
+template(name='task_view')
+    with doc
+        .ui.stackable.padded.grid
+            .four.wide.column
+                .ui.header
+                    a(href="/tasks" title='Tasks')
+                        i.tasks.link.circular.icon
+                    |View Task
+                a.ui.fluid.circular.button(href="/task/#{_id}/edit")
+                    i.pencil.icon
+                    |Edit
+                +follow
+            .twelve.wide.column
+                .ui.header
+                    if complete
+                        i.green.checkmark.icon
+                    |#{title}
+                h4 #{body}
+                i.tags.icon
+                |Tags
+                each tags
+                    .ui.basic.circular.label #{this}
+                div
+                +bookmark_button
+                div
+                i.calendar.icon
+                |Due
+                strong #{due_date}
+                div
+                i.user.icon
+                |Assignee
+                strong #{assignee}
+                div
+                +voting
+                +comments

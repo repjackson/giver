@@ -1,0 +1,30 @@
+template(name='userDashboard')
+    unless currentUser.profile.tour
+        +newUserTour
+    else
+        .ui.padded.three.column.grid
+            .column
+                +give_stats
+            .column
+                +user_messages
+            .column
+                +friend_list
+            .column
+                +chat
+            .column
+                +assigned_tasks
+            .column
+                +following
+
+template(name='give_stats')
+    .ui.segment
+        .ui.header
+            | Give statistics
+        .panel-body
+            div
+                i.money.icon
+                b
+                    h1.m-xs.text-success.text-center #{total}
+            p
+                b
+                    h2.m-xs.text-success.text-center Gifts this Year.

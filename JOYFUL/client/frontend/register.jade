@@ -1,0 +1,273 @@
+template(name='register')
+    .register-body.ui.padded.stackable.grid
+        .centered.row
+            .ten.wide.column
+                .ui.center.aligned.large.white.header
+                    | Cheerful Giving Starts Here
+                    hr.hr1
+                .ui.center.aligned.white.header
+                    | A Joyful Giver account for your nonprofit or place of worship connects your organization with the world&apos;s most generous giving community.
+        .two.column.row
+            .column
+                .ui.circular.segment.donor
+                    // img(src='/image/donor-img.png')
+                    .ui.red.large.icon.header
+                        i.red.large.heartbeat.icon
+                        .content
+                            |Donor
+                            .ui.divider
+                            .sub.header I'm an individual and want to give to an organization through Joyful Giver.
+                    .block
+                        a(href="/register/giver")
+                            .ui.big.circular.red.button(type='button') Register
+                    a(href='/login') Already have an account?
+            .column
+                .ui.circular.segment.org
+                    .ui.red.large.icon.header
+                        i.university.large.red.icon
+                        .content
+                            |Organization
+                            .ui.divider
+                            .sub.header I represent a Non-Profit or Faith-Based Organization and want my members to give through Joyful Giver.
+                    .block
+                        a(href="{{pathFor 'register_church'}}")
+                            .ui.big.circular.red.button(type='button') Get Started
+                    a(href='/login') Already have an account?
+        .centered.row
+            .ten.wide.center.aligned.column
+                h3.ui.white.header Safe.  Secured.  Trusted.
+                .ui.centered.small.images
+                    img.ui.image(src='/images/stripe.png')
+                    img.ui.image(src='/images/ssl.png')
+                    a(href='https://www.bbb.org/dallas/business-reviews/financial-services/joyful-giver-in-plano-tx-90907663#bbbseal' target='_blank')
+                        img.ui.image(src='/images/bbb.svg')
+
+template(name='register_giver')
+    .ui.stackable.padded.grid.register-body
+        .centered.row
+            .six.wide.column
+                .ui.segment
+                    .ui.center.aligned.header
+                        i.user.plus.icon
+                        | User Account Registration
+                    p
+                        | By registering an account with Joyful Giver you agree to our
+                        u
+                            b
+                                a#tosModal.undl(href='#') Terms of Service
+                        |  and the
+                        u
+                            b
+                                a.undl(href='https://stripe.com/connect/account-terms' target='_blank') Stripe Connected Account Agreement
+                        | .
+                        | You understand that Stripe will be processing donations on your behalf through the Joyful Giver platform.
+                    p
+                        | We respect your right to privacy. You can view our privacy policy
+                        u
+                            b
+                                a#privacyPolicyModal.undl(target='_blank' href='#') here.
+            .six.wide.column
+                .ui.segment
+                    .ui.large.form
+                        .field
+                            label Name
+                            input#lname.form-control(type='text' name='name' placeholder='John Smith' required='')
+                        .field
+                            label Email
+                            input#lemail.form-control(type='text' name='email' placeholder='name@yourchurch.com' required='')
+                        .field
+                            label Phone
+                            input#phone.form-control(type='text' name='phone' placeholder='xxx-xxx-xxxx' required='')
+                        .field
+                            label Password
+                            input#password.form-control(type='password' name='password' placeholder='Password' required='')
+                        .field
+                            #register.ui.primary.fluid.large.button Agree & Register
+
+        #tosModalpopup.ui.modal.fade
+            i.close.icon
+            .header Terms of Service
+            .scrolling.content
+                +tos
+            .actions
+                button.ui.fluid.ok.button(type='button' data-dismiss='modal') Close
+
+        #privacyPolicyDisplayModal.ui.modal.fade
+            .header Privacy Policy
+            .content
+                +privacyPolicyDisplay
+            .actions
+                button.ui.fluid.ok.button(type='button' data-dismiss='modal') Close
+
+
+
+template(name='register_church')
+    .ui.padded.stackable.grid.register-body
+        h3.font-light.m-b-xs
+                    | Organization Signup
+            medium
+                | I represent a Non-Profit or Faith-Based Organization and want my members to give through Joyful Giver.
+    .register-container.bluegraybg
+        .row.bluegraybg
+            .col-md-12
+                .hpanel
+                    .panel-body
+                        #churchForm.form-horizontal.row
+                            fieldset
+                                .col-lg-6
+                                    legend Organization Details
+                                    .ui.input
+                                        label.col-lg-2.control-label(for='name') Organization Name
+                                        .col-lg-10
+                                            input#cname.form-control(type='text' name='name' placeholder='Your Non-Profit Name')
+                                    .ui.input
+                                        label.col-lg-2.control-label(for='address') Address
+                                        .col-lg-10
+                                            input#caddress.form-control(type='text' name='address' placeholder='123 Mulberry Street')
+                                    .ui.input
+                                        label.col-lg-2.control-label(for='city') City
+                                        .col-lg-10
+                                            input#ccity.form-control(type='text' name='city' placeholder='Los Angeles')
+                                    .ui.input
+                                        label.col-lg-2.control-label(for='state') State
+                                        .col-lg-4
+                                            input#cstate.form-control(type='text' name='state' placeholder='CA')
+                                        label.col-lg-2.control-label(for='zip') Zip
+                                        .col-lg-4
+                                            input#czip.form-control(type='text' name='zip' placeholder='90019')
+                                    .ui.input
+                                        label.col-lg-2.control-label(for='website') Website
+                                        .col-lg-10
+                                            input#cwebsite.form-control(type='text' name='website' placeholder='www.nonprofit.com')
+                                    .ui.input
+                                        label.col-lg-2.control-label(for='phone') Phone Number
+                                        .col-lg-10
+                                            input#cphone.form-control(type='text' name='phone' placeholder='000-000-0000')
+                                .col-lg-6
+                                    legend Representative Information
+                                    .ui.input
+                                        label.col-lg-2.control-label(for='name') Your Name
+                                        .col-lg-10
+                                            input#cfirstname.form-control(type='text' name='firstname' placeholder='John')
+                                    .ui.input
+                                        label.col-lg-2.control-label(for='email') Email
+                                        .col-lg-10
+                                            input#cemail.form-control(type='text' name='email' placeholder='name@yourchurch.com')
+                                    .ui.input
+                                        label.col-lg-2.control-label(for='password') Password
+                                        .col-lg-10
+                                            input#cpassword.form-control(type='password' name='password' placeholder='Password')
+                                    .well
+                                        p
+                                            | By registering an account with Joyful Giver you agree to our
+                                            u
+                                                b
+                                                    a#tosModal.undl(href='#') Terms of Service
+                                            |  and the
+                                            u
+                                                b
+                                                    a(href='https://stripe.com/connect/account-terms' target='_blank') Stripe Connected Account Agreement
+                                            | .
+                                        p
+                                            | You understand that Stripe will be processing donations on your behalf through the Joyful Giver platform.
+                                    .text-right.col-lg-10.col-lg-offset-2
+                                        a.btn.btn-default(href='/register') Cancel
+                                        #register.ui.primary.button Agree &amp; Register
+    #tosModalpopup.modal.fade(tabindex='-1' role='dialog' aria-hidden='true')
+        .modal-dialog.modal-lg(style='width: 80%;')
+            .modal-content
+                .color-line
+                .modal-header
+                    h4.modal-title Terms of Service
+                .modal-body
+                    +tos
+                .modal-footer
+                    button.btn.btn-default(type='button' data-dismiss='modal') Close
+
+template(name='register_nonprofit')
+    .color-line
+    .back-link
+        a.ui.primary.button(href="{{pathFor route='front'}}") Back to Home Page
+    .normalheader.transition.animated.fadeIn.bluegraybg
+        .panel-body.text-center
+            h3.font-light.m-b-xs
+                b
+                    | Organization Signup
+            medium
+                | I represent a Non-Profit or Faith-Based Organization and want my members to give through Joyful Giver.
+    .register-container.bluegraybg
+        .row.bluegraybg
+            .col-md-12
+                .hpanel
+                    .panel-body
+                        #churchForm.form-horizontal.row
+                            fieldset
+                                .col-lg-6
+                                    legend Organization Details
+                                    .ui.input
+                                        label.col-lg-2.control-label(for='name') Organization Name
+                                        .col-lg-10
+                                            input#nname.form-control(type='text' name='name' placeholder='Your Non-Profit Name')
+                                    .ui.input
+                                        label.col-lg-2.control-label(for='address') Address
+                                        .col-lg-10
+                                            input#naddress.form-control(type='text' name='address' placeholder='123 Mulberry Street')
+                                    .ui.input
+                                        label.col-lg-2.control-label(for='city') City
+                                        .col-lg-10
+                                            input#ncity.form-control(type='text' name='city' placeholder='Los Angeles')
+                                    .ui.input
+                                        label.col-lg-2.control-label(for='state') State
+                                        .col-lg-4
+                                            input#nstate.form-control(type='text' name='state' placeholder='CA')
+                                        label.col-lg-2.control-label(for='zip') Zip
+                                        .col-lg-4
+                                            input#nzip.form-control(type='text' name='zip' placeholder='90019')
+                                    .ui.input
+                                        label.col-lg-2.control-label(for='website') Website
+                                        .col-lg-10
+                                            input#nwebsite.form-control(type='text' name='website' placeholder='www.nonprofit.com')
+                                    .ui.input
+                                        label.col-lg-2.control-label(for='phone') Phone Number
+                                        .col-lg-10
+                                            input#nphone.form-control(type='text' name='phone' placeholder='000-000-0000')
+                                .col-lg-6
+                                    legend Representative Information
+                                    .ui.input
+                                        label.col-lg-2.control-label(for='name') Your Name
+                                        .col-lg-10
+                                            input#nfirstname.form-control(type='text' name='firstname' placeholder='John')
+                                    .ui.input
+                                        label.col-lg-2.control-label(for='email') Email
+                                        .col-lg-10
+                                            input#nemail.form-control(type='text' name='email' placeholder='name@yourchurch.com')
+                                    .ui.input
+                                        label.col-lg-2.control-label(for='password') Password
+                                        .col-lg-10
+                                            input#npassword.form-control(type='password' name='password' placeholder='Password')
+                                    .well
+                                        p
+                                            | By registering an account with Joyful Giver you agree to our
+                                            u
+                                                b
+                                                    a#tosModal.undl(href='#') Terms of Service
+                                            |  and the
+                                            u
+                                                b
+                                                    a(href='https://stripe.com/connect/account-terms' target='_blank') Stripe Connected Account Agreement
+                                            | .
+                                        p
+                                            | You understand that Stripe will be processing donations on your behalf through the Joyful Giver platform.
+                                    .text-right.col-lg-10.col-lg-offset-2
+                                        a.btn.btn-default(href='/register') Cancel
+                                        #register.ui.primary.button Agree &amp; Register
+    #tosModalpopup.modal.fade(tabindex='-1' role='dialog' aria-hidden='true')
+        .modal-dialog.modal-lg(style='width: 80%;')
+            .modal-content
+                .color-line
+                .modal-header
+                    h4.modal-title Terms of Service
+                .modal-body
+                    +tos
+                .modal-footer
+                    button.btn.btn-default(type='button' data-dismiss='modal') Close

@@ -1,0 +1,62 @@
+template(name='churchReports')
+  .normalheader.transition.animated.fadeIn
+    .hpanel
+      .panel-body
+        h2.font-light.m-b-xs
+          | Reports
+  .normalheader
+    .hpanel
+      .panel-body
+        div
+          .hpanel
+            .hpanel
+              ul.nav.nav-tabs
+                li.active.text-small(data-toggle='collapse' data-target='#collapseExample3' aria-expanded='true' aria-controls='collapseExample3')
+                  a.glyphicon.glyphicon-filter(data-toggle='tab' href='#tab-1')  Filter
+              #collapseExample3.tab-content.collapse.in(aria-expanded='true')
+                #tab-1.tab-pane.active
+                  .well
+                    form#filterChurchReports.form-inline(style='padding:0px;')
+                      .ui.input
+                        #datepicker.input-daterange.input-group
+                          input.input-md.form-control.input-sm(type='text' name='start')
+                          span.input-group-addon to
+                          input.input-md.form-control.input-sm(type='text' name='end')
+                      .ui.input
+                        select#donorCode.form-control.select2
+                          option(value='-1') Select a donor
+                          each giverList
+                            option(value=this._id) #{this.text}
+                      .ui.input
+                        select#giveCode.form-control.select2
+                          option(value='-1') Select a give code
+                          each giveCodeList
+                            option(value=this._id) #{this.text}
+                      button.btn.btn-sm.btn-primary(type='submit') Submit
+                      button#resetFilter.btn.btn-sm.btn-primary(type='button') Reset
+        .row(style=' margin-top: 3px; ')
+          .col-md-12(style='padding:0px;')
+            .well.table-responsive(style='padding:5px;')
+              div
+                div
+                  #lineChart
+          .col-md-12(style='padding:10px 0px 0px 0px;')
+            .hpanel
+              .table-responsive
+                table#churchReportDatatable.table.table-striped.table-bordered.table-hover
+                  thead
+                    tr
+                      th Date
+                      th Giver
+                      th Give Code
+                      th Amount
+                      th Receipt
+                  tbody
+                    each tithes
+                      tr
+                        td #{newDate}
+                        td #{userName}
+                        td #{this.churchCODE}
+                        td #{newAmount}
+                        td
+                          a(href="/receipt/{{_id}}" target='_blank') View Receipt

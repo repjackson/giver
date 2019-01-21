@@ -1,0 +1,18 @@
+template(name='churchShowConnect')
+  if show_register
+    .container
+      .row
+        .alert.alert-warning
+          h1 No Stripe Account Connected.
+          .row
+            .col-lg-6
+              p Joyful Giver uses Stripe to connect your congregation to you.
+              p
+                | In order to begin accepting tithes, you must connect to Stripe and register your 501(c)(3) status.
+              p
+                | By default, stripe asks for &quot;business&quot; information. Just use your church name and Tax-Exempt-ID.
+              a(href="{{SETTINGS id='stripeConnectRedirect'}}{{SETTINGS id='stripeClientId'}}")
+                img(src='/image/blue.png')
+            .col-lg-6
+              .well(style='background:#f8f8f8; color:#222')
+                p FAQ

@@ -1,0 +1,10 @@
+template(name='masterMenu')
+  if currentUser
+    if isInRole 'church'
+      +church_menu
+    if isInRole 'admin'
+      +adminMenu
+    if isInRole 'user'
+      +userMenu
+    else
+      +mainMenu

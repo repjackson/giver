@@ -1,0 +1,75 @@
+template(name='userMenu')
+  aside#menu
+    #navigation
+      if currentUser
+        .profile-picture
+          a(href="{{pathFor route='dashboard'}}")
+            if currentUser.profile.profilePic
+              img.img-circle.m-b(src='{{currentUser.profile.profilePic}}' alt='logo' width='100' height='79')
+            else
+              img.img-circle.m-b(src='/icons/Logo_sm_100.png' alt='logo' width='100' height='79')
+          .stats-label.text-color
+            .dropdown
+              a.dropdown-toggle(href='#' data-toggle='dropdown')
+                medium.text-muted
+                  | #{currentUser.profile.name}
+                  b.caret
+              ul.dropdown-menu.animated.fadeInRight.m-t-xs
+                li
+                  a#linkLogout(href='/logout') Logout
+      ul#side-menu.nav(style='overflow:scroll; height: 600px;')
+        li
+          a.text-center(href="{{pathFor route='dashboard'}}")
+            span.nav-label
+              i.pe-7s-display1.icon-medium
+              br
+              small.icon-text DASHBOARD
+        li
+          a.text-center(href="{{pathFor route='userChurches'}}")
+            span.nav-label
+              i.pe-7s-culture.icon-medium
+              br
+              small.icon-text MY ORGS
+        li
+          a.text-center(href="{{pathFor route='searchByName'}}")
+            span.nav-label
+              i.pe-7s-search.icon-medium
+              br
+              small.icon-text Search
+        li
+          a.text-center(href="{{pathFor route='user_tithes'}}")
+            span.nav-label
+              i.pe-7s-gift.icon-medium
+              br
+              small.icon-text MY GIFTS
+        li
+          a.text-center(href="{{pathFor route='user_recurring'}}")
+            span.nav-label
+              i.pe-7s-repeat.icon-medium
+              br
+              small.icon-text RECURRING GIFTS
+        li
+          a.text-center(href="{{pathFor route='account'}}")
+            span.nav-label
+              i.pe-7s-users.icon-medium
+              br
+              small.icon-text MY ACCOUNT
+        li
+          a.text-center.viewTour(href='#')
+            span.nav-label
+              i.pe-7s-film.icon-medium
+              br
+              small.icon-text View the Tour
+        li
+          a.text-center(href="{{pathFor route='userReports'}}")
+            span.nav-label
+              i.pe-7s-news-paper.icon-medium
+              br
+              small.icon-text Reports
+        li
+          a#linkLogout.text-center(href='/logout')
+            span.nav-label
+              i.pe-7s-delete-user.icon-medium
+              br
+              small.icon-text Logout
+    div(stye='height:65px;')

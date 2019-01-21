@@ -1,0 +1,18 @@
+template(name='makeAdmin')
+  .col-lg-4
+    if is_admin
+      .alert.alert-warning
+        h4 You are Already an Admin User
+    else if is_church
+      .alert.alert-warning
+        h4 Only Users can become Admins
+    else
+      if currentUser
+        #loginError.alert.alert-warning(style='display:none')
+    label
+      | Admin Password
+      input#password.form-control(type='password')
+    label
+      | Unique Code
+      input#code.form-control(type='password')
+    #makeAdmin.btn.btn-info Elevate

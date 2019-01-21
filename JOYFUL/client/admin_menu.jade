@@ -1,0 +1,50 @@
+template(name='adminMenu')
+  aside#menu
+    #navigation
+      if currentUser
+          .profile-picture
+            a(href="{{pathFor route='adminDashboard'}}")
+              if currentUser.profile.profilePic
+                img.img-circle.m-b(src='{{currentUser.profile.profilePic}}' alt='logo' width='100' height='79')
+              else
+                img.img-circle.m-b(src='/icons/Logo_sm_100.png' alt='logo' width='100' height='79')
+            .stats-label.text-color
+              .dropdown
+                a.dropdown-toggle(href='#' data-toggle='dropdown')
+                  medium.text-muted
+                    | Admin
+                    b.caret
+                ul.dropdown-menu.animated.fadeInRight.m-t-xs
+                  li
+                    a#linkLogout(href='/logout') Logout
+      ul#side-menu.nav
+        li
+          a(href="{{pathFor route='adminDashboard'}}")
+            span.nav-label
+              i.fa.fa-dashboard
+              |  Home
+        li
+          a(href="/admin/churches")
+            span.nav-label
+              i.fa.fa-building-o
+              |  Organizations
+        li
+          a(href="{{pathFor route='admin_users'}}")
+            span.nav-label
+              i.fa.fa-users
+              |  Users
+        li
+          a(href="{{pathFor route='adminReports'}}")
+            span.nav-label
+              i.glyphicon.glyphicon-stats
+              |  Reports
+        li
+          a(href="{{pathFor route='auto_mail'}}")
+            span.nav-label
+              i.glyphicon.glyphicon-envelope
+              |  Compose Mail
+        li
+          a(href="{{pathFor route='appSettings'}}")
+            span.nav-label
+              i.glyphicon.glyphicon-cog
+              |  Settings

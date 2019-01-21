@@ -1,0 +1,435 @@
+Router.configure
+	layoutTemplate: 'layout'
+	notFoundTemplate: 'notFound'
+	trackPageView: true
+
+
+Router.map ->
+	@route 'logout',
+		path: '/logout'
+		layoutTemplate: 'layout'
+		onBeforeAction: (pause) ->
+			document.cookie = 'loggedinEmailId=; expires=' + new Date + ';'
+			Meteor.logout()
+			@redirect '/'
+
+	@route 'church_detail_public',
+		path: '/churchDetail/:_id'
+		layoutTemplate: false
+		waitOn: ->
+			[ Meteor.subscribe('church_detail_public', @params._id) ]
+		data: ->
+			templateData = churchDet: Meteor.users.findOne(_id: @params._id)
+			templateData
+	# @route 'resetPassword',
+	# 	path: '/reset-password/:token'
+	# 	fastRender: true
+	# 	layoutTemplate: false
+	# 	data: ->
+	# 		Session.set 'resetPassword', @params.token
+	@route 'select_role',
+		path: '/select-role'
+		fastRender: true
+		layoutTemplate: false
+
+
+Router.route '/tasks', -> @render 'tasks'
+Router.route '/task/:id/edit', -> @render 'task_edit'
+Router.route '/task/:id/view', -> @render 'task_view'
+
+Router.route '/reset-password/:token', -> @render 'reset-password'
+Router.route '/forgot-password', -> @render 'forgot_password'
+
+Router.route '/', -> @render 'front'
+Router.route '/login', -> @render 'login'
+Router.route '/register', -> @render 'register'
+Router.route '/register/church', -> @render 'register_church'
+Router.route '/register/nonprofits', -> @render 'register_nonprofits'
+Router.route '/register/giver', -> @render 'register_giver'
+Router.route '/demo', -> @render 'demo'
+
+
+# Router.map ->
+	# @route 'customLanding',
+	# 	path: '/:code'
+	# 	layoutTemplate: 'layout'
+	# 	waitOn: ->
+	# 		console.log 'subs called'
+	# 		[
+	# 			Meteor.subscribe('oneCode', @params.code.toUpperCase())
+	# 			Meteor.subscribe('oneChurchByCode', @params.code.toUpperCase())
+	# 			Meteor.subscribe('myCards', Meteor.userId())
+	# 		]
+	# 	data: ->
+	# 		templateData = code: @params.code.toUpperCase()
+	# 		templateData
+	# return
+Router._filters = resetScroll: ->
+	scrollTo = window.currentScroll or 0
+	$('body').scrollTop scrollTo
+	$('body').css 'min-height', 0
+	return
+filters = Router._filters
+if Meteor.isClient
+	Router.onAfterAction filters.resetScroll
+	# for all pages
+
+
+
+Router.route 'user_tithes', ->
+	@render 'user_tithes'
+	path: '/user_tithes'
+	layoutTemplate: 'layout'
+	waitOn: ->
+		[ Meteor.subscribe('myTithes', Meteor.userId()) ]
+	data: ->
+		templateData = tithes: Tithes.find({ userID: Meteor.userId() }, sort: date: -1)
+		templateData
+
+Router.route 'iosAuth', ->
+	path: '/auth/:token/rr/:_id'
+	layoutTemplate: 'layout'
+	onAfterAction: ->
+		Meteor.loginWithToken @params.token, ->
+			Session.set 'ios', true
+			#Router.go('/give/'+this.params._id)
+			iosgivepageload @params._id
+
+Router.route 'user_recurring', ->
+	@render 'user_recurring'
+	path: '/user_recurring'
+	layoutTemplate: 'layout'
+	waitOn: ->
+		[ Meteor.subscribe('myPlans', Meteor.userId()) ]
+	data: ->
+		templateData =
+			active: TithePlans.find({
+				userID: Meteor.userId()
+				status: 'active'
+			}, sort: amount: -1)
+			paused: TithePlans.find({
+				userID: Meteor.userId()
+				status: 'paused'
+			}, sort: amount: -1)
+			canceled: TithePlans.find({
+				userID: Meteor.userId()
+				status: 'canceled'
+			}, sort: amount: -1)
+			count: TithePlans.find(
+				userID: Meteor.userId()
+				status: $in: Array('paused', 'active')).count()
+		templateData
+
+
+Router.route 'editRecurring', ->
+		path: '/plan/:id'
+		layoutTemplate: 'layout'
+		waitOn: ->
+			[
+				Meteor.subscribe('onePlan', @params.id)
+				Meteor.subscribe('planCharges', @params.id)
+				Meteor.subscribe('myCards', Meteor.userId())
+			]
+		data: ->
+			templateData =
+				plan: TithePlans.findOne(@params.id)
+				tithes: Tithes.find(plan: @params.id)
+			templateData
+
+Router.route 'userChurches', ->
+	path: '/mychurches'
+	layoutTemplate: 'layout'
+	waitOn: ->
+		[ Meteor.subscribe('myChurches', Meteor.userId()) ]
+
+Router.route 'userReceipt', ->
+	path: '/receipt/:id'
+	layoutTemplate: 'receiptLayout'
+	waitOn: ->
+		[ Meteor.subscribe('TitheDetails', @params.id) ]
+	data: ->
+		templateData = tithe: Tithes.findOne(@params.id)
+		templateData
+
+Router.route '/user_reports', ->
+	@render 'user_reports',
+		waitOn: ->
+			Meteor.subscribe 'userReportPub'
+
+Router.route 'user_profile', ->
+	path: '/user/profile/:_id'
+	layoutTemplate: 'layout'
+	waitOn: ->
+		Meteor.subscribe 'userProfilePub', @params._id
+
+Router.route '/account', ->
+	console.log 'account'
+	@render 'account'
+	# waitOn: ->
+	# 	[ Meteor.subscribe('myCards', Meteor.userId()) ]
+	# data: ->
+	# 	templateData =
+	# 		profile: Meteor.users.find(Meteor.userId())
+	# 		cards: MyCards.find(user: Meteor.userId())
+	# 	templateData
+
+Router.route 'mail', ->
+	path: '/mail'
+	layoutTemplate: 'layout'
+	@render 'mail'
+
+
+
+Router.map ->
+	@route 'churchTithes',
+		path: '/church/tithes'
+		layoutTemplate: 'layout'
+		onBeforeAction: (pause) ->
+			loggedInUser = Meteor.user()
+			if !loggedInUser
+				@render '/signin'
+			else
+				@next()
+			return
+		waitOn: ->
+			[ Meteor.subscribe('churchTithes', Meteor.userId()) ]
+		data: ->
+			templateData = tithes: Tithes.find({ church: Meteor.userId() }, sort: date: -1)
+			templateData
+	@route 'churchRecurring',
+		path: '/church/recurring'
+		layoutTemplate: 'layout'
+		onBeforeAction: (pause) ->
+			loggedInUser = Meteor.user()
+			if !loggedInUser
+				@render '/signin'
+			else
+				@next()
+			return
+		waitOn: ->
+			[ Meteor.subscribe('churchPlans', Meteor.userId()) ]
+		data: ->
+			templateData =
+				active: TithePlans.find({
+					church: Meteor.userId()
+					status: 'active'
+				}, sort: amount: -1)
+				paused: TithePlans.find({
+					church: Meteor.userId()
+					status: 'paused'
+				}, sort: amount: -1)
+				canceled: TithePlans.find({
+					church: Meteor.userId()
+					status: 'canceled'
+				}, sort: amount: -1)
+				count: TithePlans.find(
+					church: Meteor.userId()
+					status: $in: Array('paused', 'active')).count()
+			templateData
+	@route 'churchCodes',
+		path: '/church/codes'
+		layoutTemplate: 'layout'
+		onBeforeAction: (pause) ->
+			loggedInUser = Meteor.user()
+			if !loggedInUser
+				@render '/signin'
+			else
+				@next()
+			return
+		waitOn: ->
+			[ Meteor.subscribe('ChurchCodes', Meteor.userId()) ]
+		data: ->
+			templateData = codes: ChurchCodes.find(church: Meteor.userId())
+			templateData
+	@route 'churchCustomPage',
+		path: '/church/custom-page/:id'
+		layoutTemplate: 'layout'
+		onBeforeAction: (pause) ->
+			loggedInUser = Meteor.user()
+			if !loggedInUser
+				@render '/signin'
+			else
+				@next()
+			return
+		waitOn: ->
+			[ Meteor.subscribe('ChurchCodes', Meteor.userId()) ]
+		data: ->
+			templateData =
+				code: ChurchCodes.findOne(@params.id)
+				uploader: new (Slingshot.Upload)('myFileUploads')
+			templateData
+	@route 'churchReports',
+		path: '/church/reports'
+		layoutTemplate: 'layout'
+		onBeforeAction: (pause) ->
+			loggedInUser = Meteor.user()
+			if !loggedInUser
+				@render '/signin'
+			else
+				@next()
+			return
+		waitOn: ->
+			Meteor.subscribe 'ChurchReportPub'
+
+
+	@route 'church_account',
+		path: '/church/account'
+		layoutTemplate: 'layout'
+		onBeforeAction: (pause) ->
+			loggedInUser = Meteor.user()
+			if !loggedInUser
+				@render '/signin'
+			else
+				@next()
+
+
+	@route 'churchConnect',
+		path: '/church/connect'
+		onBeforeAction: (pause) ->
+			loggedInUser = Meteor.user()
+			if !loggedInUser
+				@render '/signin'
+			else
+				if @params.query.error
+					console.log @params.query.error
+				else
+					Meteor.call 'stripeChurchAuth', @params.query.code, Meteor.userId()
+					@redirect '/church/dashboard'
+				@next()
+
+
+	@route 'churchUsers',
+		path: '/church/addUsers'
+		layoutTemplate: 'layout'
+		onBeforeAction: (pause) ->
+			loggedInUser = Meteor.user()
+			if !loggedInUser
+				@render '/signin'
+			else
+				@next()
+
+
+
+Router.map ->
+    @route 'smssigninup',
+        path: '/SMS/reg'
+        layoutTemplate: 'receiptLayout'
+        data: ->
+            templateData =
+                phone: @params.query.p
+                code: @params.query.c
+            templateData
+    @route 'smsaddphone',
+        path: '/SMS/phone'
+        layoutTemplate: 'receiptLayout'
+        waitOn: ->
+            Meteor.call 'updatePhoneNo', Session.get('phone')
+            [ Meteor.subscribe('myCards', Meteor.userId()) ]
+        data: ->
+            cards = MyCards.find(user: Meteor.userId())
+            templateData =
+                phone: Session.get('phone')
+                code: Session.get('code')
+                cards: cards
+                cardCount: cards.count()
+            templateData
+
+
+Router.map ->
+    @route 'appSettings',
+        path: '/admin/settings'
+        layoutTemplate: 'layout'
+        data: ->
+            templateData = config: AppSettings.findOne()
+            templateData
+        onBeforeAction: ->
+            if Roles.userIsInRole(Meteor.user(), 'superadmin') or Roles.userIsInRole(Meteor.userId(), 'admin')
+                @next()
+            else
+                @redirect '/dashboard'
+                @next()
+
+
+    @route 'makeAdmin',
+        path: '/admin/create'
+        layoutTemplate: 'layout'
+
+    @route 'admin_churches',
+        path: '/admin/churches'
+        layoutTemplate: 'layout'
+        waitOn: ->
+            [ Meteor.subscribe('admin_churches') ]
+        data: ->
+            templateData = churches: Meteor.users.find(roles: 'church')
+            templateData
+        onBeforeAction: ->
+            if Roles.userIsInRole(Meteor.user(), 'superadmin') or Roles.userIsInRole(Meteor.userId(), 'admin')
+                @next()
+            else
+                @redirect '/dashboard'
+
+
+    @route 'adminReports',
+        path: '/admin/reports'
+        layoutTemplate: 'layout'
+        waitOn: ->
+            [
+                Meteor.subscribe('toalRegisterdChurch')
+                Meteor.subscribe('toalRegisterdUser')
+                Meteor.subscribe('TitheTotalsForAdmin')
+                Meteor.subscribe('adminReportPub')
+            ]
+        onBeforeAction: ->
+            if Roles.userIsInRole(Meteor.user(), 'superadmin') or Roles.userIsInRole(Meteor.userId(), 'admin')
+                @next()
+            else
+                @redirect '/dashboard'
+
+
+    @route 'userGifts',
+        path: '/user/gifts/:id'
+        layoutTemplate: 'layout'
+        onBeforeAction: (pause) ->
+            loggedInUser = Meteor.user()
+            if !loggedInUser
+                @render '/signin'
+            else
+                @next()
+            return
+        waitOn: ->
+            Meteor.subscribe 'userReportPub', @params.id
+
+
+    @route 'auto_mail',
+        path: '/admin/auto_mail'
+        layoutTemplate: 'layout'
+        waitOn: ->
+            [ Meteor.subscribe('adminEmailList') ]
+        data: ->
+            users = Meteor.users.find('roles': 'user').fetch()
+            org = Meteor.users.find('roles': 'church').fetch()
+            userEmailList = []
+            orgEmailList = []
+            if users
+                users.forEach (d, i) ->
+                    userEmailList.push d.emails[0].address
+                    return
+            if org
+                org.forEach (d, i) ->
+                    orgEmailList.push d.emails[0].address
+                    return
+            templateData =
+                userEmailList: userEmailList
+                orgEmailList: orgEmailList
+            templateData
+
+
+
+Router.route 'admin/users', ->
+    @render 'admin_users'
+        # onBeforeAction: ->
+        #     if Roles.userIsInRole(Meteor.user(), 'superadmin') or Roles.userIsInRole(Meteor.userId(), 'admin')
+        #         @next()
+        #     else
+        #         @redirect '/dashboard'
+        #     return

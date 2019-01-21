@@ -1,0 +1,55 @@
+template(name='church_detail_public')
+  .content
+    .pull-left.back-link
+      a.btn.btn-link(href="{{pathFor route='front'}}")
+        i.fa.fa-chevron-left
+        |  Back
+    .row
+      .col-sm-5.col-xs-12
+        .hpanel.hgreen
+          .row
+            .col-xs-12.text-center(style='padding:0px;')
+              if churchDet.profile.profilePic
+                div(style='margin:0px; padding: 0px; overflow: hidden; max-height:200px;')
+                  img.text-center.img-responsive.img-rounded.m-b.m-t-md(alt='logo' src='{{churchDet.profile.profilePic}}' style='margin:5px  0px; padding: 0px; ')
+              else
+                // <img alt="logo" class="text-center img-responsive img-circle m-b m-t-md" src="/icons/Logo_sm_100.png" style="margin-bottom:0px; opacity:0.50;">
+                h3 {{churchDet.profile.churchName}}
+            +give cid=cid mycards=mycards church=churchDet cardCount=cardCount widthClass="col-xs-12" infoWidthClass="col-xs-12" content="" subtitle="" title=""
+          .border-right.border-left
+            section#map
+              .map-container
+                +googleMap name='churchDetailMap' options=churchDetailMapOptions
+          .panel-footer.contact-footer
+      if campaigns
+        .col-sm-7.col-xs-12
+          .hpanel
+            .hpanel
+              ul.nav.nav-tabs
+                li.active
+                  a(data-toggle='tab' href='#tab-1') Campaigns
+                // <li class=""><a data-toggle="tab" href="#tab-2">Messages</a></li>
+              br
+              .tab-content
+                #tab-1.tab-pane.active
+                  .col-md-12(style='padding-left:0px; padding-right:0px;')
+                    if campaigns
+                      .row
+                        each campaigns
+                          .col-md-4.col-sm-6.col-xs-12(style='padding-bottom:10px;')
+                            .w3-card.w3-hover-shadow
+                              div(style='max-height:125px; overflow:hidden;')
+                                if customPage.header_image
+                                  img.img-responsive(src='{{customPage.header_image}}' alt='')
+                                else
+                                  img.img-responsive(src='{{churchProfilePic}}' alt='' style='opacity:0.8;')
+                              .w3-container(style='background: #f7f9fa;')
+                                h5(style='margin-bottom: 3px;') {{campaign}}
+                                if customPage.textConten
+                                  p.w3-small.truncate #{campaignText customPage.textContent }
+                                a.btn.btn-xs.btn-primary.pull-right(href='/{{code}}' style='margin:0px 0px 10px 0px;' role='button') More info...
+      else
+        .hpanel.filter-item
+          a(href='#')
+            .panel-body
+              h4.m-b-xs No Campaign found matching your filter.

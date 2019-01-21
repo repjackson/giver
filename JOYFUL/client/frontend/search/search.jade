@@ -1,0 +1,55 @@
+template(name='search')
+  .row
+    .col-lg-3.col-md-3.col-md-offset-3.col-lg-offset-3
+      a.btn.btn-danger.btn-block(href='{{backPath}}')
+        span.glyphicon.glyphicon-chevron-left
+        | Go Back
+    .col-lg-6.col-lg-offset-3.col-md-6.col-md-offset-3
+      if churches
+        if campaigns
+          h2.text-center
+            i.fa.fa-flag
+            |  Campaigns
+          hr
+          each campaigns
+            +campaignInfo
+        h2.text-center
+          i.fa.fa-building-o
+          | Organizations
+        hr
+        each churches
+          +churchInfoHolder
+      else
+        .alert.alert-danger
+          | We couldn't find a registered organizations or campaigns with that code or name. Are you sure it's correct?
+
+template(name='churchInfoHolder')
+  .well.well-default.text-center(style='padding-top: 0px; padding-bottom: 0px;')
+    .row
+      .col-sm-6.col-xs-12
+        h3
+          i.fa.fa-building-o
+          |  #{profile.churchName}
+        p #{profile.address.city}, #{profile.address.state}
+      .col-sm-6.col-xs-12
+        p
+          .btn.btn-success.give Give to this Organization
+        if currentUser
+          p
+            .btn.btn-info.add(id='{{../code}}') Add to My Organizations
+
+
+template(name='campaignInfo')
+  .well.well-default.text-center(style='padding-top: 0px; padding-bottom: 0px;')
+    .row
+      .col-sm-6.col-xs-12
+        h3
+          i.fa.fa-flag
+          | #{campaign}
+        p
+          | By:
+          b #{church.churchName}
+          |  #{church.address.city}, #{church.profile.address.state}
+      .col-sm-6.col-xs-12
+        p
+          .btn.btn-success.give Give to this Campaign

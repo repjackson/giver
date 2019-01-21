@@ -1,0 +1,844 @@
+template(name='front')
+    .ui.container
+        // +slider
+        +what_we_do
+        // +causes
+        // +adopt_child
+        // +gallery
+        // // +cta
+        // // +fund_needed
+        // // +care_senior_citizen
+        +counter
+        // // +free_camp
+        +video
+        // +help_homeless
+        +our_features
+        +our_volunteers
+        // +contact_us
+        // +packages
+        +testimonials
+        +clients
+        // +footer1
+
+
+
+
+template(name='clients')
+    .ui.container.basic.segment
+        .heading-div-1.text-center
+            h2 Trusted Organizations
+            img(src='/images/underline-1.png' alt='116x22')
+        .ui.stackable.five.column.grid
+            .column
+                img.ui.small.image(src='/images/100_black.jpg')
+            .column
+                img.ui.small.image(src='/images/balm_of_gilead.jpg')
+            .column
+                img.ui.small.image(src='/images/cot.jpg')
+            .column
+                img.ui.small.image(src='/images/Tree-of-Life-Gathering-.png')
+            .column
+                img.ui.small.image(src='/images/3emacey.png')
+
+
+template(name='testimonials')
+    .ui.basic.segment
+        .heading-div-1.text-center
+            h2 TESTIMONIES
+            img(src='/images/underline-2.png' alt='116x22')
+        .ui.stackable.three.column.grid
+            .column
+                .testimonial-div
+                    p.testimonial-name
+                        | David Daniels
+                        span Pastor
+                    // <p class="testimonial-para">“We were having a difficult time engaging people with our current online giving system. After we implemented Joyful Giver we received over a 1,000% increase. I had to re-run the numbers because it was so astonishing.”
+                    p.testimonial-para
+                        | Balm of Gilead - Global Ministries
+                    img.ui.image(src='/images/david_daniels_balm.jpg' alt='100x100x5')
+            .column
+                .testimonial-div
+                    p.testimonial-name
+                        | Pastor Dwayne Campbell
+                        span Pastor
+                    // <p class="testimonial-para">“Wanted to give you an update. We rolled out Joyful Giver today to the church and about 75% of those that use envelopes used Joyfu giver in service. Can’t wait to see how this does once everyone downloads the app and sees how easy it is!”
+                    p.testimonial-para
+                        | City of Transformation Christian Center
+                    img.ui.image(src='/images/Pastor_Dwayne.jpg' alt='100x100x6')
+            .column
+                .testimonial-div
+                    p.testimonial-name
+                        | Mike Hatch
+                        span Pastor
+                    // <p class="testimonial-para">“I just wanted to say thank you for caring about us and our congregation. We have also noticed an increase in giving! Between the videos and the convenience that the app brings, this was a big step forward for our church. There are people giving now that never really gave before, simply because they don’t have to wait for Sunday morning. Thanks!”
+                    p.testimonial-para
+                        | Balm of Gilead - Global Ministries
+                    img.ui.image(src='/images/Mike_Hatch.jpg' alt='100x100x7')
+
+
+template(name='packages')
+  #packages.section-2-bg.packages-main
+    .container
+      .heading-div-1.text-center
+        h2 OUR PACKAGES
+        img(src='/images/underline-1.png' alt='116x22')
+      .row.packages-row
+        .col-sm-4.packages-col.text-center.section-bottom-space30
+          .packages-col-1.packages-bg-1
+            .packages-price.top-space20
+              p
+                | $23
+                span Per Month
+            .packages-border
+              h4.top-space20 STANDARD
+              .packages-content
+                p.content-top-space Mauris consectetur non odio ut aliquet
+                p.content-top-space Nunc tempus consequat blandit
+                p.content-top-space Phasellus vitae semper adipiscing nulla.
+                p.content-top-space Lorem ipsum dolor sit consectetur elit
+              .btn-top-space.text-center.btn1-div
+                a.btn.btn-1(href='#') PURCHASE
+        .col-sm-4.packages-col.text-center.section-bottom-space30
+          .packages-col-1.packages-bg
+            .packages-price.top-space20
+              p
+                | $33
+                span Per Month
+            .packages-border
+              h4.top-space20 BUSINESS
+              .packages-content
+                p.content-top-space Mauris consectetur non odio ut aliquet
+                p.content-top-space Nunc tempus consequat blandit
+                p.content-top-space Phasellus vitae semper adipiscing nulla.
+                p.content-top-space Lorem ipsum dolor sit consectetur elit
+              .btn-top-space.text-center.btn1-div
+                a.btn.btn-1-white(href='#') PURCHASE
+        .col-sm-4.packages-col.text-center
+          .packages-col-1.packages-bg-1
+            .packages-price.top-space20
+              p
+                | $43
+                span Per Month
+            .packages-border
+              h4.top-space20 PREMIUM
+              .packages-content
+                p.content-top-space Mauris consectetur non odio ut aliquet
+                p.content-top-space Nunc tempus consequat blandit
+                p.content-top-space Phasellus vitae semper adipiscing nulla.
+                p.content-top-space Lorem ipsum dolor sit consectetur elit
+              .btn-top-space.text-center.btn1-div
+                a.btn.btn-1(href='#') PURCHASE
+
+template(name='contact_us')
+    section#services.section-padding.section-2-bg
+        .container
+            .heading-div-1.text-center
+                h2 FAQ
+                img(src='/images/underline-1.png' alt='116x22')
+            .row.features-row
+                .col-xs-6.col-sm-6.col-md-4.features-col
+                            #accordion.hpanel.panel-group(role='tablist' aria-multiselectable='true')
+                                .panel-body.borderNone
+                                    h4.m-t-none.m-b-none.logoFontColor_2 General FAQ
+                                    small.text-muted All general questions about our app.
+                                .panel-body.borderNone
+                                    a.collapsed(data-toggle='collapse' data-parent='#accordion' href='#q1' aria-expanded='false')
+                                        i.fa.fa-chevron-down.pull-right.text-muted
+                                        | How Does It Work?
+                                    #q1.panel-collapse.collapse(aria-expanded='false' style='height: 0px;')
+                                        hr
+                                        | Your organization will give you their Joyful-Giver Search Code Enter this 4-digit code on the homepage, verify the organization name, and send a donation. If you create an account you can then view your donation history and create recurring gifts.
+                                        p
+                                            // <a class="navy-link btn btn-sm" href="{{pathFor 'demo'}}" role="button">View the Demo</a>
+                                            a#demoModal.navy-link.btn.btn-sm(href='#') View the Demo
+                                .panel-body.borderNone
+                                    a.collapsed(data-toggle='collapse' data-parent='#accordion' href='#q2' aria-expanded='false')
+                                        i.fa.fa-chevron-down.pull-right.text-muted
+                                        | What form of Payments does Joyful Giver accept?
+                                    #q2.panel-collapse.collapse(aria-expanded='false' style='height: 0px;')
+                                        hr
+                                        | Mastercard, Visa, American Express, and Discover
+                                .panel-body.borderNone
+                                    a.collapsed(data-toggle='collapse' data-parent='#accordion' href='#q3' aria-expanded='false')
+                                        i.fa.fa-chevron-down.pull-right.text-muted
+                                        | Is it Safe?
+                                    #q3.panel-collapse.collapse(aria-expanded='false' style='height: 0px;')
+                                        hr
+                                        | Joyful-Giver uses Stripe to process payments and handle distribution of funds. Stripes system uses the latest tokenization method of processing Credit Card Payments meaning neither Joyful-Giver or Stripe stores your credit card information. We use the latest SSL Encryption Technology to encrypt communication with Stripe and always maintain current certificates and adequate monitoring to ensure safe and seamless transactions.
+                .col-xs-6.col-sm-6.col-md-4.features-col
+                    .features-div
+                        .features-div-1
+                            #accordion2.hpanel.panel-group(role='tablist' aria-multiselectable='true')
+                                .panel-body.borderNone
+                                    h4.m-t-none.m-b-none.logoFontColor_2 FAQ for Donors
+                                    small.text-muted All donors questions about our app.
+                                .panel-body.borderNone
+                                    a(data-toggle='collapse' data-parent='#accordion2' href='#q4' aria-expanded='true')
+                                        i.fa.fa-chevron-down.pull-right.text-muted
+                                        | Do I Have to Create an Account?
+                                    #q4.panel-collapse.collapse
+                                        hr
+                                        | As a donor you are not required to create an account. As long as you know your Organizations Search Code you can make payments and download receipts without ever sharing your email address.
+                                .panel-body.borderNone
+                                    a(data-toggle='collapse' data-parent='#accordion2' href='#q5' aria-expanded='true')
+                                        i.fa.fa-chevron-down.pull-right.text-muted
+                                        | Why Create an Account?
+                                    #q5.panel-collapse.collapse
+                                        hr
+                                        | While accounts are not required for donors, with an account you can create recurring Weekly, Monthly, or Annual donations so you can &quot;set it and forget it&quot;. You can also view your donation history, download charitable receipts, and download end-of-year charitable gift statements for Tax Deduction purposes.
+                                .panel-body.borderNone
+                                    a(data-toggle='collapse' data-parent='#accordion2' href='#q6' aria-expanded='true')
+                                        i.fa.fa-chevron-down.pull-right.text-muted
+                                        | Is it Free?
+                                    #q6.panel-collapse.collapse
+                                        hr
+                                        | Joyful-Giver is free for donors to give in any amount.
+                                .panel-body.borderNone
+                                    a(data-toggle='collapse' data-parent='#accordion2' href='#q7' aria-expanded='true')
+                                        i.fa.fa-chevron-down.pull-right.text-muted
+                                        | Is there a Minimum Donation?
+                                    #q7.panel-collapse.collapse
+                                        hr
+                                        | Because of fees charged by our transaction processor (Stripe) we cannot accept donations under $3 USD.
+                .col-xs-6.col-sm-6.col-md-4.features-col.services2-col-topSpace
+                    .features-div
+                        .features-div-1
+                            #accordion3.hpanel.panel-group(role='tablist' aria-multiselectable='true')
+                                .panel-body.borderNone
+                                    h4.m-t-none.m-b-none.logoFontColor_2 FAQ for Non-Profits and Faith-Based Organizations
+                                    small.text-muted All Non-Profits and Faith-Based Organizations questions about our app.
+                                .panel-body.borderNone
+                                    a(data-toggle='collapse' data-parent='#accordion2' href='#q8' aria-expanded='true')
+                                        i.fa.fa-chevron-down.pull-right.text-muted
+                                        | Do I Have to Create an Organization Account?
+                                    #q8.panel-collapse.collapse
+                                        hr
+                                        | Yes. In order to accept payments from your donor-base you must create an Organization Account.
+                                .panel-body.borderNone
+                                    a(data-toggle='collapse' data-parent='#accordion2' href='#q9' aria-expanded='true')
+                                        i.fa.fa-chevron-down.pull-right.text-muted
+                                        | How long does it take money to go into organizations account?
+                                    #q9.panel-collapse.collapse
+                                        hr
+                                        | The first payment takes up to 7 business days to deposit for verification purposes through our payment processor,
+                                        a(href='http://stripe.com') Stripe
+                                        | Subsequent payments are deposited on a &quot;2 business day rolling basis&rdquo; meaning that charges processed before a given Thursday will be grouped together and deposited in your account on the following Monday. Payments processed before Friday would be deposited Tuesday, Monday deposited on Wednesday, etc.
+                                .panel-body.borderNone
+                                    a(data-toggle='collapse' data-parent='#accordion2' href='#q10' aria-expanded='true')
+                                        i.fa.fa-chevron-down.pull-right.text-muted
+                                        | What if someone questions a transaction?
+                                    #q10.panel-collapse.collapse
+                                        hr
+                                        | If someone questions a withdrawal, we will work with you to determine if it was legitimate or not.
+                                        | If it is not, then we can suspend the account and take a look at our anti-fraud measures again.
+                                        | For disputed transactions, you can refund part or all of the disputed charge.
+                                .panel-body.borderNone
+                                    a(data-toggle='collapse' data-parent='#accordion2' href='#q11' aria-expanded='true')
+                                        i.fa.fa-chevron-down.pull-right.text-muted
+                                        | Is it Free?
+                                    #q11.panel-collapse.collapse
+                                        hr
+                                        | For each donation 1.30 and 1.9% is deducted from the final amount deposited. This is the fee charged by Stripe to process payments and upkeep servers and maintenance. Unfortunately we cannot change this.
+                                .panel-body.borderNone
+                                    a(data-toggle='collapse' data-parent='#accordion2' href='#q12' aria-expanded='true')
+                                        i.fa.fa-chevron-down.pull-right.text-muted
+                                        | Why Does Stripe Need our EIN?
+                                    #q12.panel-collapse.collapse
+                                        hr
+                                        | In order to process payments on behalf of your Organization, Stripe must verify your Organizations Tax Identity.
+                                .panel-body.borderNone
+                                    a(data-toggle='collapse' data-parent='#accordion2' href='#q13' aria-expanded='true')
+                                        i.fa.fa-chevron-down.pull-right.text-muted
+                                        | Do I Have to Enter a Organization Bank Account?
+                                    #q13.panel-collapse.collapse
+                                        hr
+                                        | You can accept payments without entering a Bank Account, however Stripe cannot distribute funds until you enter your account information. All information is tokenized and deleted once verified by your bank. Stripe and Joyful-Giver can only distribute payments directly to an Organizations Bank Account.
+
+    .container.section-padding
+        .row
+            .col-sm-12.col-md-8.section-bottom-space30
+                iframe.map-frame(src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2988853.8283661404!2d-109.79819478383385!3d42.98243242389649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x875ee23448e12e69%3A0x26b02279d27d382f!2sWyoming%2C+USA!5e0!3m2!1sen!2sin!4v1444977908624' allowfullscreen='')
+            .col-sm-12.col-md-4
+                .form-head.text-center
+                    img(src='/images/48x48x14.png' alt='48x48x14')
+                    h3 Contact Us
+                .book-now-form
+                    form.book-form.form1-common(action='#' method='post')
+                        .form-div
+                            input.form-input(type='text' name='name' value='' placeholder='Enter Your Name' required='' autocomplete='off')
+                        .form-div
+                            input.form-input(type='email' name='email' value='' placeholder='Enter Your Email' required='' autocomplete='off')
+                        .form-div
+                            textarea.form-textarea(name='message' placeholder='Please Enter Message' cols='40' rows='5' required='' autocomplete='off')
+                        .form1-btn.button.btn1-div
+                            button.btn.btn-1-white(type='submit') Submit
+                        .messageDiv
+                            span.sucessMessage
+                            span.failMessage
+
+template(name='our_volunteers')
+    .ui.basic.segment
+        .ui.center.aligned.dividing.header
+            | OUR TEAM
+    .ui.stackable.four.column.grid
+        .centered.row
+            .column
+                .ui.circular.segment
+                    .ui.small.header Brandon Spencer
+                    p Founder, CEO
+                    img.ui.medium.circular.image(src='/images/2603ece.jpg' alt='170x170x1')
+            .column
+                .ui.circular.segment
+                    .ui.small.header Oliver Sims
+                    p CFO
+                    img.ui.medium.circular.image(src='/images/Oliver.jpg' alt='170x170x2')
+            .column
+                .ui.circular.segment
+                    .ui.small.header Frank White
+                    p CTO
+                    img.ui.medium.circular.image(src='/images/biopic_fmw.png' alt='170x170x3')
+            .column
+                .ui.circular.segment
+                    .ui.small.header Charles Whitby
+                    p VP Sales and Marketing
+                    img.ui.medium.circular.image(src='/images/IMG_1239.JPG' alt='170x170x4')
+            .column
+                .ui.circular.segment
+                    .ui.small.header Palas Gajera
+                    p Development Manager
+                    img.ui.medium.circular.image(src='/images/palas.JPG' alt='170x170x6')
+            .column
+                .ui.circular.segment
+                    .ui.small.header Cristina Mae Baluyot
+                    p Partner Support Representative
+                    img.ui.medium.circular.image(src='/images/Mae.jpg' alt='170x170x6')
+            .column
+                .ui.circular.segment
+                    .ui.small.header Marvel Beraquit
+                    p Partner Support Manager
+                    img.ui.medium.circular.image(src='/images/marv.jpg' alt='170x170x6')
+
+
+
+template(name='our_features')
+    .ui.padded.stackable.two.column.grid
+        .row
+            .ui.heading-div-1.text-center
+                h2 Let&apos;s get you aboard.
+                img(src='/images/underline-1.png' alt='116x22')
+        .row
+            .column
+                .ui.icon.header
+                    i.globe.icon
+                    .content Trusted &amp; Reliable
+                .list-content
+                    p.content-top-space1
+                        | Joyful Giver is a trusted giving platform, a BBB Accredited Business with A Rating.
+                    .content-top-space1
+                        // <a href="#" class="readmore">READ MORE <i class="fa fa-long-arrow-right" aria-hidden="true"></i
+            .column
+                .ui.icon.header
+                    i.cog.icon
+                    .content Quick Start
+                .list-content
+                    p.content-top-space1
+                        | You can create your Giver account and share to your church or non profit in just minutes.
+                    .content-top-space1
+                        // <a href="#" class="readmore">READ MORE <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+            .column
+                .ui.icon.header
+                    i.cash.icon
+                    .content No penalties.
+                .list-content
+                    p.content-top-space1
+                        | Other donation services refund the money you&apos;ve raised if it doesn&apos;t meet your goal. Not with Joyful Giver.
+                    .content-top-space1
+                        // <a href="#" class="readmore">READ MORE <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+            .column
+                .ui.icon.header
+                    i.mobile.icon
+                    .content Go Mobile
+                .list-content
+                    p.content-top-space1 Use the Joyful Giver app to give to your church or non profit anytime, anywhere.
+                    .content-top-space1
+                        // <a href="#" class="readmore">READ MORE <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+            .column
+                .ui.icon.header
+                    i.line-chart.icon
+                    .content Online Community
+                .list-content
+                    p.content-top-space1
+                        | Once you&apos;ve put up your campaign online, we will be sending out emails to donors and organizations registered with Joyful Giver about this campaign. We&apos;ll also put it in all our social media platforms, letting the people know about your worthy cause.
+                    .content-top-space1
+                        // <a href="#" class="readmore">READ MORE <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+            .column
+                .ui.icon.header
+                    i.phone.icon
+                    .content Partner Support
+                .list-content
+                    p.content-top-space1
+                        | From getting you onboard to giving you unlimited support while you are registered with Joyul Giver, your campaign&apos;s success is our success. Your partner support representatives are always ready to assist to every need.
+                    .content-top-space1
+                        // <a href="#" class="readmore">READ MORE <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+            .row.text-center
+                .btn-top-space.text-center.btn1-div
+                    a.btn.btn-1(href='/register') Start A Giver Account
+
+
+
+template(name='counter')
+    .ui.padded.grid
+        .black.row
+            .col-xs-6.col-sm-3.text-center.counter-col
+                .counter-img
+                    img(src='/images/100x100x1.png' alt='100x100x1')
+                p.counter-value.top-space10
+                    span.count {{appstatics.amount}}
+                h4.counter-title.top-space10 TOTAL RAISED($)
+            .col-xs-6.col-sm-3.text-center.counter-col.counter1-resSpace
+                .counter-img
+                    img(src='/images/100x100x2.png' alt='100x100x2')
+                p.counter-value.top-space10
+                    span.count {{appstatics.userCount}}
+                h4.counter-title.top-space10 GIVERS CONNECTED
+            .col-xs-6.col-sm-3.text-center.counter-col.counter-resSpace
+                .counter-img
+                    img(src='/images/100x100x3.png' alt='100x100x3')
+                p.counter-value.top-space10
+                    span.count {{appstatics.churchCount}}
+                h4.counter-title.top-space10 HAPPY ORGANIZATIONS
+            .col-xs-6.col-sm-3.text-center.counter-col.counter-resSpace
+                .counter-img
+                    img(src='/images/100x100x4.png' alt='100x100x4')
+                p.counter-value.top-space10
+                    span.count {{appstatics.campaignCount}}
+                h4.counter-title.top-space10 CAMPAIGNS
+
+
+template(name='care_senior_citizen')
+  section.section-padding.section-2-bg
+    .container
+      .row
+        .col-sm-6.col-md-6.col-md-push-6.section-bottom-space20
+          img.ui.image(src='/images/Africa-App-Usage-600x403.jpg' alt='750x450x2')
+        .col-sm-6.col-md-6.col-md-pull-6
+          | AVAILABLE NOW
+          h3
+            b The Joyful Giver App
+          p.content-top-space
+            | Start and manage campaigns, engage with supporters, and discover important causes &mdash; all on the go
+          .btn-top-space.text-center.btn1-div
+            span
+              a(href='https://itunes.apple.com/us/app/joyful-giver/id1146177023?mt=8' target='_blank')
+                img(src='/image/app-store1.png')
+            span
+              a(href='https://play.google.com/store/apps/details?id=com.joyful_giver.jg&hl=en' target='_blank')
+                img(src='/image/google-play.png')
+
+
+template(name='free_camp')
+  section.section-padding.section-1-bg
+    .container
+      .heading-div-1.text-center
+        h2 FREE CAMP
+        img(src='/images/underline-1.png' alt='116x22')
+      .row
+        .col-sm-4.col-md-4.three-col-col.text-center.res-bottom-space30
+          .three-col-div
+            img.ui.image.ui.fluid.image(src='/images/380x300x10.jpg' alt='380x300x10')
+            .three-col-content
+              h4 EDUCATION CAMP FOR HOMELESS CHILDREN
+              p.content-top-space
+                | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consectetur non odio ut aliquet. Donec nulla libero, posuere in vestibulum.
+              .content-top-space1
+                a.readmore(href='#')
+                  | READ MORE
+                  i.fa.fa-long-arrow-right(aria-hidden='true')
+        .col-sm-4.col-md-4.three-col-col.text-center.res-bottom-space30
+          .three-col-div
+            img.ui.image.ui.fluid.image(src='/images/380x300x11.jpg' alt='380x300x11')
+            .three-col-content
+              h4 MEDICAL CAMP FOR REFUGEES CHILDREN
+              p.content-top-space
+                | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consectetur non odio ut aliquet. Donec nulla libero, posuere in vestibulum.
+              .content-top-space1
+                a.readmore(href='#')
+                  | READ MORE
+                  i.fa.fa-long-arrow-right(aria-hidden='true')
+        .col-sm-4.col-md-4.three-col-col.text-center
+          .three-col-div
+            img.ui.image.ui.fluid.image(src='/images/380x300x12.jpg' alt='380x300x12')
+            .three-col-content
+              h4 BLOOD DONATE CAMP FOR HOMELESS CHILDREN
+              p.content-top-space
+                | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consectetur non odio ut aliquet. Donec nulla libero, posuere in vestibulum.
+              .content-top-space1
+                a.readmore(href='#')
+                  | READ MORE
+                  i.fa.fa-long-arrow-right(aria-hidden='true')
+
+
+template(name='fund_needed')
+    section.section-padding.section-1-bg
+        .container
+            .heading-div-1.text-center
+                h2 FUND NEEDED
+                img(src='/images/underline-1.png' alt='116x22')
+            .fund-slider.owl-carousel.owl-theme
+                #each fundNeeded
+                    .item.fund-col.text-center
+                        .fund-div
+                            img.ui.image.fixedheight(src='{{this.header_image}}' alt='380x300x4')
+                            h4 {{this.campaign}}
+                            ul.fund-goal.content-ul.content-top-space
+                                li
+                                    | DONATED:
+                                    span {{totalRaised this.raised}}
+                                li
+                                    | NEEDED:
+                                    span ${{this.Goal_Donation}}
+                            .fund-content
+                                .btn-top-space.text-center.btn1-div
+                                    a.btn.btn-1(href="{{pathFor 'customLanding' code=this.code}}") DONATE NOW
+
+
+
+template(name='cta')
+    .cta-bgimage.bgimage-property.clearfix
+        .container
+            .cta-div.text-center
+                h1 Why You&apos;ll Love Joyful Giver
+                p.content-top-space
+                    | At its heart, Joyful Giver is a three-tap, easy way for donors to give to any cause from their smartphones. However, there&rsquo;s much more to it, like donation tracking for users (think taxes) and a web portal for registered nonprofits that allows them to customize their presence on Joyful Giver, track donations and receive donation payouts.
+                .btn-top-space.text-center.btn1-div
+
+
+
+
+template(name='help_homeless')
+    section.section-2-bg.two-left-right-bg
+        .container-fluid
+            .row
+                .col-sm-12.col-md-6.two-left-bgimage-1.bgimage-property
+                .container
+                    .col-sm-12.col-md-6.two-left-div-1.clearfix
+                        .two-left-col-1
+                            h3
+                                a(href='#') HELP HOMELESS PEOPLE
+                            p.content-top-space
+                                | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae semper nulla. Nunc tempus consequat blandit.Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                            ul.content-ul.top-space25.about-points-1
+                                li
+                                    .about-div
+                                        .list-img
+                                            a(href='#')
+                                                img(src='/images/48x48x8.png' alt='48x48x8')
+                                        .list-content
+                                            h4 LOREM IPSUM
+                                            p.content-top-space1 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                li
+                                    .about-div
+                                        .list-img
+                                            a(href='#')
+                                                img(src='/images/48x48x9.png' alt='48x48x9')
+                                        .list-content
+                                            h4 PHASELLUS VITAE
+                                            p.content-top-space1 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                li.top-space20
+                                    .about-div
+                                        .list-img
+                                            a(href='#')
+                                                img(src='/images/48x48x10.png' alt='48x48x10')
+                                        .list-content
+                                            h4 CONSECTETUR
+                                            p.content-top-space1 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                li.top-space20
+                                    .about-div
+                                        .list-img
+                                            a(href='#')
+                                                img(src='/images/48x48x11.png' alt='48x48x11')
+                                        .list-content
+                                            h4 LOREM IPSUM
+                                            p.content-top-space1 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                li.top-space20
+                                    .about-div
+                                        .list-img
+                                            a(href='#')
+                                                img(src='/images/48x48x12.png' alt='48x48x12')
+                                        .list-content
+                                            h4 PHASELLUS VITAE
+                                            p.content-top-space1 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                li.top-space20
+                                    .about-div
+                                        .list-img
+                                            a(href='#')
+                                                img(src='/images/48x48x13.png' alt='48x48x13')
+                                        .list-content
+                                            h4 CONSECTETUR
+                                            p.content-top-space1 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+
+template(name='gallery')
+    #gallery.section-padding.section-2-bg
+        .container
+            .heading-div-1.text-center
+                h2 OUR GALLERY
+                img(src='/images/underline-1.png' alt='116x22')
+            .row.popup-gallery.gallery-div
+                .col-xs-6.col-sm-4.gallery-col.gallery-space
+                    .gallery-image
+                        a(href='/images/jgconference.jpg' title='Gallery')
+                            img.ui.image(src='/images/jgconference.jpg' alt='750x610x4')
+                            .overlay
+                            span
+                                i.fa.fa-search(aria-hidden='true')
+                .col-xs-6.col-sm-4.gallery-col.gallery-space
+                    .gallery-image
+                        a(href='/images/uniting.jpg' title='Gallery')
+                            img.ui.image(src='/images/uniting.jpg' alt='750x610x5')
+                            .overlay
+                            span
+                                i.fa.fa-search(aria-hidden='true')
+                .col-xs-6.col-sm-4.gallery-col.gallery-space
+                    .gallery-image
+                        a(href='/images/ASM.jpg' title='Gallery')
+                            img.ui.image(src='/images/ASM.jpg' alt='750x610x1')
+                            .overlay
+                            span
+                                i.fa.fa-search(aria-hidden='true')
+                .col-xs-6.col-sm-4.gallery-col.gallery-space1
+                    .gallery-image
+                        a(href='/images/childrenofBP.jpg' title='Gallery')
+                            img.ui.image(src='/images/childrenofBP.jpg' alt='750x610x2')
+                            .overlay
+                            span
+                                i.fa.fa-search(aria-hidden='true')
+                .col-xs-6.col-sm-4.gallery-col.gallery-space1.gallery-resSpace1
+                    .gallery-image
+                        a(href='/images/church2.jpg' title='Gallery')
+                            img.ui.image(src='/images/church2.jpg' alt='750x610x3')
+                            .overlay
+                            span
+                                i.fa.fa-search(aria-hidden='true')
+                .col-xs-6.col-sm-4.gallery-col.gallery-space1
+                    .gallery-image
+                        a(href='/images/COT_2.jpg' title='Gallery')
+                            img.ui.image(src='/images/COT_2.jpg' alt='750x610x6')
+                            .overlay
+                            span
+                                i.fa.fa-search(aria-hidden='true')
+
+
+template(name='adopt_child')
+    section.section-1-bg.two-left-left-bg
+        .container-fluid
+            .row
+                .container
+                    .col-sm-12.col-md-12.two-left-div
+                        .two-left-col
+                            .heading-div-1.text-center
+                                h3
+                                    a(href='#') WHAT MAKES JOYFUL GIVER BETTER?
+                                p.content-top-space
+                                    | The Joyful Giver app is the fastest and most efficient mobile giving app for your church or non profit.
+                            .col-sm-12.col-md-6
+                                ul.content-ul.top-space25.about-points
+                                    li
+                                        .about-div
+                                            .list-img
+                                                // <a href="#"><img src="/images/48x48x5.png" alt="48x48x5"/></a>
+                                                i.pe-7s-culture.icon-medium.iconStyle
+                                            .list-content
+                                                h4 More convenient than donating through a website.
+                                                // <p class="content-top-space1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae semper nulla. Nunc tempus consequat blandit.</p>
+                                    li.top-space25
+                                        .about-div
+                                            .list-img
+                                                // <a href="#"><img src="/images/48x48x6.png" alt="48x48x6"/></a>
+                                                i.pe-7s-science.icon-medium.iconStyle
+                                            .list-content
+                                                h4 Easier to use than text to give.
+                                                // <p class="content-top-space1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae semper nulla. Nunc tempus consequat blandit.</p>
+                                    li.top-space25
+                                        .about-div
+                                            .list-img
+                                                // <a href="#"><img src="/images/48x48x7.png" alt="48x48x7"/></a>
+                                                i.pe-7s-display1.icon-medium.iconStyle
+                                            .list-content
+                                                h4 Faster than offering kiosks.
+                                                // <p class="content-top-space1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae semper nulla. Nunc tempus consequat blandit.</p>
+                            .col-sm-12.col-md-6
+                                ul.content-ul.top-space25.about-points
+                                    li.top-space25
+                                        .about-div
+                                            .list-img
+                                                // <a href="#"><img src="/images/48x48x7.png" alt="48x48x7"/></a>
+                                                i.pe-7s-cloud-upload.icon-medium.iconStyle
+                                            .list-content
+                                                h4 Less complex and easier to use than PayPal.
+                                                // <p class="content-top-space1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae semper nulla. Nunc tempus consequat blandit.</p>
+                                    li.top-space25
+                                        .about-div
+                                            .list-img
+                                                // <a href="#"><img src="/images/48x48x7.png" alt="48x48x7"/></a>
+                                                i.pe-7s-global.icon-medium.iconStyle
+                                            .list-content
+                                                h4 Quicker and simpler than Square.
+                                                // <p class="content-top-space1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae semper nulla. Nunc tempus consequat blandit.</p>
+                                    li.top-space25
+                                        .about-div
+                                            .list-img
+                                                // <a href="#"><img src="/images/48x48x7.png" alt="48x48x7"/></a>
+                                                i.pe-7s-users.icon-medium.iconStyle
+                                            .list-content
+                                                h4 Costs less than building your own.
+                                                // <p class="content-top-space1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae semper nulla. Nunc tempus consequat blandit.</p>
+
+
+
+template(name='causes')
+    section#causes.section-padding.section-2-bg
+        .container
+            .row
+                .col-sm-12.col-md-6.section-bottom-space20
+                    // <img src="/images/750x450x1.jpg" alt="750x450x1" class="ui.image"/>
+                    .videoWrapper.video.embed-responsive.embed-responsive-16by9
+                        // <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/hoFwDLrQo4s?version=3&amp;loop=1&amp;playlist=Jc-EDXnzDbk"></iframe>
+                        video(width='100%' controls='')
+                            // <source src="/video/homepage.mp4" type="video/mp4">
+                            source(src='/video/Explainer_Video_Joyful_Giver.mp4' type='video/mp4')
+                            | Your browser does not support the video tag.
+                .col-sm-12.col-md-6
+                    h3 WHY YOU&apos;LL LOVE JOYFUL GIVER
+                    p.content-top-space
+                        | At its heart, Joyful Giver is a safe, secured, and simple way for donors to give to any cause from their smartphones. However, there&rsquo;s much more to it, like donation tracking for users (think taxes) and a web portal for registered nonprofits that allows them to customize their presence on Joyful Giver, track donations and receive donation payouts.
+                    p.content-top-space
+                        | The free Joyful Giver donation app makes giving and tracking donations easier and more beautiful.
+                    .btn-top-space.text-center.btn1-div
+                        h3 Safe. Secured. Trusted
+                        a(href='#')
+                            img(src='/images/stripe.png' alt='100x80x1')
+                        a(href='#')
+                            img(src='/images/ssl.jpg' alt='100x80x2')
+                        a(href='https://www.bbb.org/dallas/business-reviews/financial-services/joyful-giver-in-plano-tx-90907663#bbbseal' target='_blank')
+                            img(src='/images/BBBArating.png' alt='100x80x2')
+
+
+
+
+template(name='slider')
+    .item
+        img.ui.centered.image(src='/images/ri 2.jpg' alt='United')
+        .container
+            .header-div.header-div-1-center.heading-padding-1.text-left
+                h1
+                    | Give your organization, church or non profit, a safe, secured, and simple way of receiving from online giving.
+                .btn-top-space.text-center.btn1-div
+                    a.btn.btn-1(href='/register') Create a Giver Account
+                p.content-top-space2
+                    | Non profit organizations can make a diference through their worthy causes. 3E United is a non profit organization that utilizes the Joyful Giver app or website to receive online donations.
+    .item
+        img.ui.centered.image(src='/images/ri 1.jpg' alt='City of transformation church')
+        .container
+            .header-div.header-div-1-center.heading-padding-1.text-left
+                h1 Register Your Church Today
+                .btn-top-space.text-center.btn1-div
+                    a.btn.btn-1(href='/register') Sign Up
+                p.content-top-space2
+                    | Churches can receive online giving made by credit or debit card using the Joyful Giver app or website. City of Transformation Christian Center is a church that uses Joyful Giver to accept online offering.
+    .item
+        img.ui.centered.image(src='/images/ri 3.jpg' alt='Mirror Edge')
+        .container
+            .header-div.header-div-1-right.heading-padding-1.text-left
+                h1 Register Your Non Profit Today.
+                .btn-top-space.text-center.btn1-div
+                    a.btn.btn-1(href='/register') Sign Up
+                p.content-top-space2
+                    | You can now give to your preferred church or non profit registered with Joyful Giver. Type in the name or keyword in the name of the church or non profit in the Search button to your top right to start giving.
+    .item
+        img.ui.centered.image(src='/images/ri 4.jpg' alt='Mobile app responsive image')
+        .container
+            .header-div.header-div-1-center.heading-padding-1.text-center
+                h1 Download the app now
+                .btn-top-space.text-center.btn1-div
+                    a(href='https://itunes.apple.com/us/app/joyful-giver/id1146177023?mt=8' target='_blank')
+                        img(src='/image/app-store1.png')
+                .btn-top-space.text-center.btn1-div
+                    a(href='https://play.google.com/store/apps/details?id=com.joyful_giver.jg&hl=en' target='_blank')
+                        img(src='/image/google-play.png')
+                p.content-top-space2
+                    | The Joyful Giver mobile giving app is faster than online giving and easier than text-to-give, making it the best option during service or on the go.
+
+
+template(name='what_we_do')
+    .ui.stackable.three.column.grid
+        .column
+            .services-div.services-bg-1.text-center.bgimage-property
+                .ui.center.aligned.header
+                    img.ui.image(src='/images/48x48x1.png' alt='48x48x1')
+                    a(href="{{pathFor 'register_church'}}") CHURCHES
+                p.content-top-space
+                    | Joyful Giver allows for your congregation to give the non traditional way. No cash or check and only have a credit card or debit card with you? No problem. You can give the non traditional way using the Joyul Giver app or website.
+                .content-top-space1
+                    // <a href="#" class="readmore-white">READ MORE <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+        .column
+            .services-div.services-bg-2.text-center.bgimage-property
+                .ui.center.aligned.header
+                    img.ui.image(src='/images/48x48x2.png' alt='48x48x2')
+                    a(href="{{pathFor 'register_nonprofit'}}") NON-PROFIT
+                p.content-top-space
+                    | Joyful Giver lets supporters make donations right on the fundraiser itself, taking you off the trouble of sending them home with a pledge card without any assurance.
+                .content-top-space1
+                    // <a href="#" class="readmore-white">READ MORE <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+        .column
+            .services-div.services-bg-3.text-center.bgimage-property
+                .ui.center.aligned.header
+                    img.ui.image(src='/images/48x48x3.png' alt='48x48x3')
+                    a(href="{{pathFor 'register_giver'}}") GIVERS
+                p.content-top-space
+                    | The Joyful Giver mobile app is free and it allows you to donate to your favorite charities and organizations quickly and efficiently, while accurately tracking your donations for taxes
+                .content-top-space1
+                    // <a href="#" class="readmore-white">READ MORE <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+
+
+
+
+template(name='make_child_smile')
+    section.section-padding.section-1-bg
+        .container
+            .heading-div-1.text-center
+                h2 TOP CAMPAIGNS
+                img(src='/images/underline-1.png' alt='116x22')
+            .row
+                each churchCampaignDet
+                    .col-sm-4.causes-col.text-center.res-bottom-space30
+                        .causes-div
+                            .causes-img
+                                img.ui.image.fixedheight(src='{{this.header_image}}' alt='380x300x1')
+                                .pie-title-center.demo-pie-1(data-percent='{{percentDonation this.raised this.Goal_Donation}}')
+                                    span.pie-value
+                            .causes-content
+                                ul.causes-goal.content-ul
+                                    li
+                                        | RAISED:
+                                        span {{totalRaised this.raised}}
+                                    li
+                                        | GOAL:
+                                        span ${{this.Goal_Donation}}
+                                h4.content-top-space {{this.campaign}}
+                                .btn-top-space.text-center.btn1-div
+                                    a.btn.btn-1(href="{{pathFor 'customLanding' code=this.code}}") DONATE NOW
+
+
+template(name='video')
+    section#video.section-padding.section-1-bg
+        .container
+            .heading-div-1.text-center
+                h2 WHY SIGN UP WITH JOYFUL-GIVER?
+                img(src='/images/underline-1.png' alt='116x22')
+            .col-sm-12.text-center
+                .videoWrapper.video.embed-responsive.embed-responsive-16by9
+                    video(width='100%' controls='')
+                        source(src='/video/Explainer_Video_Joyful_Giver.mp4' type='video/mp4')
+                        |     Your browser does not support the video tag.
+

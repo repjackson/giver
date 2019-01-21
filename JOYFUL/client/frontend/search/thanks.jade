@@ -1,0 +1,21 @@
+template(name='thanks')
+  .row
+    .col-lg-6.col-lg-offset-3
+      .hpanel
+        .panel-heading
+        .panel-body.list
+          h4.text-center
+            i Thank you for your gift of
+          h1.text-center {{amount}}
+          h3.text-center to {{church.profile.churchName}}
+          if ios
+            a(href='com.joyful-giver.joyful-giver:') Return to App
+          else
+            if currentUser
+              p
+                a.btn.btn-default(href='/mytithes') View My Gifts
+            else
+              unless tithe.userID
+                .btn.btn-info.createAccount.btn-lg.btn-block Create an Account &amp; Save my Payment Info
+              else
+                a.btn.btn-info.btn-lg.btn-block(href='/login') Login to View More Info

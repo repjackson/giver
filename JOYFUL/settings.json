@@ -1,0 +1,104 @@
+{
+	"development": {
+		"public": {
+			"stripePublishable": "pk_test_nKAEIow2MIiHw1MQYGWWoOj3",
+			"stripeClientId": "ca_6RRBYgxCy530ZpeD2njVFZZrQKqVYEBM",
+			"stripeConnectRedirect": "https://connect.stripe.com/oauth/authorize?response_type=code&scope=read_write&redirect_uri=http://localhost:3000/church/connect&client_id=",
+			"mapsApiKey": "AIzaSyCq74K6wK4q7o7B5GpBI78HFGWAXYT4PAU",
+			"Tawk_API": "f4d303eb42bcae89e7339a334690e1110ce6a91b"
+
+
+		},
+		"private": {
+			"stripeSecret": "sk_test_DO3qR59n9I8AzeyCkx2cItFg",
+			"STRIPE_SECRET": "sk_test_DO3qR59n9I8AzeyCkx2cItFg",
+			"makeAdminPW": "987DRS20!5",
+			"makeAdminCODE": "0089",
+			"TWILIO": {
+				"FROM": "18555784483",
+				"SID": "AC517e50152e4f31aa9b0a27580bd45771",
+				"TOKEN": "2267f3430493f7fecc5a2f33c9d961ae"
+			},
+
+			"facebook": {
+				"appId": "322646161503421",
+				"secret": "d03ef72c1f63e67e509d6bea6ab8d814"
+			},
+			"google": {
+				"clientId": "326805966143-5qbh03lv83iiqa0dn1idq74f3h2211so.apps.googleusercontent.com",
+				"secret": "x2XQaoqaLYufzfswsY7-V3IK",
+				"mapsApiKey": "AIzaSyCq74K6wK4q7o7B5GpBI78HFGWAXYT4PAU"
+			}
+		}
+	},
+	"staging": {
+		"public": {
+			"stripePublishable": "pk_test_nKAEIow2MIiHw1MQYGWWoOj3",
+			"stripeClientId": "ca_6RRBYgxCy530ZpeD2njVFZZrQKqVYEBM",
+			"stripeConnectRedirect": "https://connect.stripe.com/oauth/authorize?response_type=code&scope=read_write&redirect_uri=http://joyful-giver.com/church/connect&client_id=",
+			"mapsApiKey": "AIzaSyCq74K6wK4q7o7B5GpBI78HFGWAXYT4PAU",
+			"Tawk_API": "f4d303eb42bcae89e7339a334690e1110ce6a91b"
+
+
+		},
+		"private": {
+			"stripeSecret": "sk_test_DO3qR59n9I8AzeyCkx2cItFg",
+			"makeAdminPW": "987DRS20!5",
+			"makeAdminCODE": "0089",
+			"TWILIO": {
+				"FROM": "18555784483",
+				"SID": "AC517e50152e4f31aa9b0a27580bd45771",
+				"TOKEN": "2267f3430493f7fecc5a2f33c9d961ae"
+			},
+			"facebook": {
+				"appId": "157155791357224",
+				"secret": "6e31b811907faadc5225d00a42096a8c"
+			},
+			"google": {
+				"clientId": "326805966143-5qbh03lv83iiqa0dn1idq74f3h2211so.apps.googleusercontent.com",
+				"secret": "x2XQaoqaLYufzfswsY7-V3IK",
+				"mapsApiKey": "AIzaSyCq74K6wK4q7o7B5GpBI78HFGWAXYT4PAU"
+			}
+
+		}
+	},
+	"production": {
+		"public": {
+			"stripePublishable": "pk_live_YIbHlzoVocZreZdL6B1s7IXS",
+			"stripeClientId": "ca_6RRBbYJA695Ev9V5qIFrGnJ6ATwdOqFD",
+			"stripeConnectRedirect": "https://connect.stripe.com/oauth/authorize?response_type=code&scope=read_write&redirect_uri=https://joyful-giver.com/church/connect&client_id=",
+			"mapsApiKey": "AIzaSyCq74K6wK4q7o7B5GpBI78HFGWAXYT4PAU",
+			"Tawk_API": "f4d303eb42bcae89e7339a334690e1110ce6a91b"
+
+		},
+		"private": {
+			"stripeSecret": "sk_live_QZUWzMGN39wPN5M6pJk9bAft",
+			"makeAdminPW": "987DRS20!5",
+			"makeAdminCODE": "0089",
+			"TWILIO": {
+				"FROM": "18555784483",
+				"SID": "AC517e50152e4f31aa9b0a27580bd45771",
+				"TOKEN": "2267f3430493f7fecc5a2f33c9d961ae"
+			},
+			"facebook": {
+				"appId": "157155791357224",
+				"secret": "6e31b811907faadc5225d00a42096a8c"
+			},
+			"google": {
+				"clientId": "326805966143-5qbh03lv83iiqa0dn1idq74f3h2211so.apps.googleusercontent.com",
+				"secret": "x2XQaoqaLYufzfswsY7-V3IK",
+				"mapsApiKey": "AIzaSyCq74K6wK4q7o7B5GpBI78HFGWAXYT4PAU"
+			}
+
+		}
+	},
+	"public": {
+		"Tawk_API": "f4d303eb42bcae89e7339a334690e1110ce6a91b"
+	},
+	"galaxy.meteor.com": {
+		"env": {
+			"MONGO_URL": "mongodb://joyfuladmin:Heavenly83@ds215099-a0.mlab.com:15099,ds215099-a1.mlab.com:15099/joyfulgiver?replicaSet=rs-ds215099",
+			"ROOT_URL": "https://www.joyful.meteorapp.com"
+		}
+	}
+}

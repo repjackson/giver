@@ -1,0 +1,76 @@
+template(name='appSettings')
+  .content.animate-panel
+    .row
+      .col-lg-8
+        .hpanel
+          .panel-heading
+            h3 App Settings
+          .panel-body
+            .table-responsive
+              table.table(cellpadding='1' cellspacing='1')
+                tbody
+                  tr
+                    td
+                      h3
+                        strong Site Status
+                    td
+                      +toggleSetting setting_id='live' status=config.live
+                  tr
+                    td(colspan='2')
+                      h3
+                        strong Dashboards
+                  tr
+                    td
+                      h3 User Dashboard
+                    td
+                      +toggleSetting setting_id='dashboard_user' status=config.dashboard_user
+                  tr
+                    td
+                      h3 Organization Dashboard
+                    td
+                      +toggleSetting setting_id='dashboard_commercial' status=config.dashboard_commercial
+                  tr
+                    td(colspan='2')
+                      h3
+                        strong Registration
+                  tr
+                    td
+                      h3 User Registration
+                    td
+                      +toggleSetting setting_id='register_user' status=config.register_user
+                  tr
+                    td
+                      h3 Organization Registration
+                    td
+                      +toggleSetting setting_id='register_commercial' status=config.register_commercial
+                  tr
+                    td
+                      h3 Admin Elevation
+                    td
+                      +toggleSetting setting_id='register_reseller' status=config.register_reseller
+
+
+template(name='toggleSetting')
+  if status
+    .btn-group
+      a.btn.btn-success(href='#') LIVE
+      a.btn.btn-default.dropdown-toggle(href='#' data-toggle='dropdown')
+        span.caret
+      ul.dropdown-menu
+        if testLive
+          li.btn-warning
+            a.toggle_config(href='#' id='{{setting_id}}') Switch to Production
+        else
+          li.btn-danger
+            a.toggle_config(href='#' id='{{setting_id}}') Go Dark
+  else
+    .btn-group
+      if testLive
+        a.btn.btn-warning(href='#') Production
+      else
+        a.btn.btn-danger(href='#') Dark
+      a.btn.btn-default.dropdown-toggle(href='#' data-toggle='dropdown')
+        span.caret
+      ul.dropdown-menu
+        li.btn-success
+          a.toggle_config(href='#' id='{{setting_id}}') {{#if testLive}}Switch to Live{{else}}Go Live{{/if}}

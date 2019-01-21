@@ -1,0 +1,28 @@
+template(name='userGifts')
+  .normalheader.transition.animated.fadeIn
+    .hpanel
+      .panel-body
+        h2.font-light.m-b-xs
+          | User Gifts Report
+        .row
+          .col-md-12
+            .hpanel
+              .panel-body
+                .table-responsive
+                  table#userGiftsReportDatatable.table.table-striped.table-bordered.table-hover
+                    thead
+                      tr
+                        th Date
+                        th Org. Name
+                        // <th>Give Code</th>
+                        th Amount
+                        th Receipt
+                    tbody
+                      each tithes
+                        tr
+                          td #{newDate}
+                          td #{userName}
+                          // <td>{{this.churchCODE}}</td>
+                          td #{newAmount}
+                          td
+                            a(href='/receipt/{{_id}}' target='_blank') View Receipt

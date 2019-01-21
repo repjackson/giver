@@ -1,0 +1,95 @@
+template(name='church_account')
+    .normalheader.transition.animated.fadeIn
+        .hpanel
+            .panel-body
+                h2.font-light.m-b-xs
+                    | Account Management
+    .content.animate-panel
+        .row
+            .col-lg-4.col-md-4
+                .hpanel.hblue
+                    .panel-heading
+                        | STRIPE / Payment Account
+                    .panel-body
+                        if currentUser.profile.stripe
+                            .alert.alert-success
+                                p.lead Congrats! Your payment account is connected!
+                                #removeStripe.btn.btn-xs.btn-info Disconnect Account
+                        else
+                            .alert.alert-danger
+                                p.lead You do not have a payment account connected.
+                                a#addStripe.btn.btn-xs.btn-info(href='{{SETTINGS.stripeConnectRedirect}}{{SETTINGS.stripeClientId}}') Create or Connect An Account
+                    if currentUser.profile.stripe
+                        .panel-body
+                            .alert.alert-info
+                                p
+                                    small
+                                        | Access your stripe dashboard! Used for refunds, declining payments and monitoring account transactions.
+                                br
+                                #dashboardStripe.btn.btn-xs.btn-info Stripe Dashboard
+            .col-lg-8.col-md-8
+                .hpanel.hblue
+                    .panel-heading
+                        | Organization Details
+                    .panel-body
+                        +church_account_editor
+                        p.clearfix
+                        hr
+                        +churchRepAccountEditor
+                        +password_editor
+
+
+template(name='church_account_editor')
+    #churchForm.form-horizontal
+        legend Church Information
+        .ui.input
+            label.col-lg-2.control-label(for='name') Organization Name
+            .col-lg-10
+                input#name.form-control(type='text' name='name' placeholder='Your Organization Name' value='{{currentUser.profile.churchName}}')
+        .ui.input
+            label.col-lg-2.control-label(for='address') Address
+            .col-lg-10
+                input#address.form-control(type='text' name='address' value='{{currentUser.profile.address.street}}')
+        .ui.input
+            label.col-lg-2.control-label(for='city') City
+            .col-lg-10
+                input#city.form-control(type='text' name='city' value='{{currentUser.profile.address.city}}')
+        .ui.input
+            label.col-lg-2.control-label(for='state') State
+            .col-lg-4
+                input#state.form-control(type='text' name='state' value='{{currentUser.profile.address.state}}')
+            label.col-lg-2.control-label(for='zip') Zip
+            .col-lg-4
+                input#zip.form-control(type='text' name='zip' value='{{currentUser.profile.address.zip}}')
+        .ui.input
+            label.col-lg-2.control-label(for='website') Website
+            .col-lg-10
+                input#website.form-control(type='text' name='website' value='{{currentUser.profile.website}}')
+        .ui.input
+            label.col-lg-2.control-label(for='phone') Phone Number
+            .col-lg-10
+                input#phone.form-control(type='text' name='phone' value='{{currentUser.profile.phone}}')
+        .ui.input
+            label.col-lg-2.control-label(for='phone') Profile Pic
+            .col-lg-4
+                input#Profile_photo.generate.form-control(type='file')
+            .col-lg-6
+                .image.img-responsive
+                    if currentUser.profile.profilePic
+                        img.img-responsive.clsProfilePic(src='{{currentUser.profile.profilePic}}' alt='Profile Pic' width='100' height='100')
+                    else
+                        img.img-responsive.clsProfilePic(src='/icons/Logo_sm_100.png' alt='Profile Pic' width='100' height='100')
+        .btn.btn-primary.update_account.pull-right Update Organization Settings
+
+
+template(name='churchRepAccountEditor')
+    #userInfo.col-lg-6.form-horizontal
+        legend Representative Information
+        .ui.input
+            label.col-lg-2.control-label(for='email') Email
+            .col-lg-10
+                // <input type="text" class="form-control" id="email" name='email'  value="{{#each currentUser.emails}}{{address}}{{/each}}" disabled>
+                input#email.form-control(type='text' name='email' value='{{loggedinUserIDDet currentUser.emails}}')
+        .btn.btn-primary.update_user.pull-right Update User
+
+

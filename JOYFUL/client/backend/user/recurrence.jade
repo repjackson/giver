@@ -1,0 +1,107 @@
+template(name='user_recurring')
+    .normalheader.transition.animated.fadeIn
+        .hpanel
+            .panel-body
+                h2.font-light.m-b-xs
+                    | My Recurring Gifts
+                unless count
+                    h3 You have no recurring plans.
+                if active
+                    .content.animate-panel
+                        .row
+                            .col-lg-12
+                                .hpanel
+                                    .panel-heading
+                                        h2 Active Plans
+                                    .panel-body
+                                        .table-responsive
+                                            table#user_recurringActiveDatatable.table.table-striped.table-bordered.table-hover.example2
+                                                thead
+                                                    tr
+                                                        th Amount
+                                                        th Organization
+                                                        th Recurrence
+                                                        th Status
+                                                        th
+                                                tbody
+                                                    each active
+                                                        +recurringDetail
+        .visible-xs.visible-xm.hidden-lg.hidden-md
+            each active
+                +recurringDetailWell
+            else
+                .alert.alert-warning You don't have any active plans.
+    if paused
+        .content.animate-panel
+            .row
+                .col-lg-12
+                    .hpanel
+                        .panel-heading
+                            h2 Paused Plans
+                        .panel-body
+                            .table-responsive
+                                table#user_recurringPauseDatatable.table.table-striped.table-bordered.table-hover.example2
+                                    thead
+                                        tr
+                                            th Amount
+                                            th Organization
+                                            th Recurrence
+                                            th Status
+                                            th
+                                    tbody
+                                        each paused
+                                            +recurringDetail
+
+        .visible-xs.visible-xm.hidden-lg.hidden-md
+            each paused
+                +recurringDetailWell
+            else
+                .alert.alert-warning You don't have any paused plans.
+    if canceled
+        .content.animate-panel
+            .row
+                .col-lg-12
+                    .hpanel
+                        .panel-heading
+                            h2 Canceled Plans
+                        .panel-body
+                            .table-responsive
+                                table#user_recurringCancelDatatable.table.table-striped.table-bordered.table-hover.example2
+                                    thead
+                                        tr
+                                            th Amount
+                                            th Organization
+                                            th Recurrence
+                                            th Status
+                                            th
+                                    tbody
+                                        each canceled
+                                            +recurringDetail
+        .visible-xs.visible-xm.hidden-lg.hidden-md
+            each canceled
+                +recurringDetailWell
+            else
+                .alert.alert-warning You don't have any canceled plans.
+
+
+
+template(name='recurringDetail')
+    tr
+        td #{newAmount}
+        td #{churchName}
+        td #{newRecurrence}
+        td
+            // .label(class="label-{{action.style}}" style='text-transform:uppercase') {{status}}
+            br
+            a(href='#' class=action.class id=_id) {{action.title}}
+        td
+            a(href="/plan/#{_id}}") View / Edit
+            |  -
+
+template(name='recurringDetailWell')
+    .well.well-default
+        | {{newAmount}} -- {{churchName}} -- {{newRecurrence}}
+        // .label(class="label-{{action.style}}" style='text-transform:uppercase') {{status}}
+        br
+        a.btn.btn-info(href='#' class=action.class id=_id) {{action.title}}
+        a.btn.btn-info(href="/plan/#{_id}") View / Edit

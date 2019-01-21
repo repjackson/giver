@@ -1,0 +1,50 @@
+template(name='admin_churches')
+    .content.animate-panel
+        .row
+            .col-lg-12.text-center.m-t-md
+                h2
+                    i.fa.fa-group
+                    |  Registered Churches
+        br
+        .row.projects
+            each churches
+                .col-md-6
+                    .hpanel.hgreen
+                        .panel-body
+                            .row
+                                .col-sm-7
+                                    h4
+                                        a(href='')
+                                            i.fa.fa-building-o
+                                            | #{this.profile.churchName}
+                                    p #{this.profile.address.city}, #{this.profile.address.state}
+                                .col-sm-5.project-info
+                                    .project-action.m-t-md
+                                        .btn-group
+                                            p
+                                            p
+                                                .btn.btn-block.btn-success.login Login As this Organization
+                                        if this.profile.isActive
+                                            .btn-group
+                                                p
+                                                p.disable_account
+                                                    .btn.btn-block.btn-success
+                                                        | Disable Account
+                                        else
+                                            .btn-group
+                                                p
+                                                p.enable_account
+                                                    .btn.btn-block.btn-success
+                                                        | Enable Account
+                                        if this.profile.isJGFeesApply
+                                            .btn-group
+                                                p
+                                                p.disableFees
+                                                    .btn.btn-block.btn-success
+                                                        | Free to JG Fees
+                                        else
+                                            .btn-group
+                                                p
+                                                p.enableFees
+                                                    .btn.btn-block.btn-success
+                                                        | Apply JG Fees

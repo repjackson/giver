@@ -1,0 +1,42 @@
+template(name='churchCodes')
+  .normalheader.transition.animated.fadeIn
+    .hpanel
+      .panel-body
+        h2.font-light.m-b-xs
+          | Your Campaigns:
+        p.lead
+          | Distribute one of the codes below to accept general donations or donations for specific campaigns.
+        .btn.btn-info.generate Generate New Code
+  .content.animate-panel
+    .row
+      .col-lg-12
+        .hpanel
+          .panel-body.table-responsive
+            table#churchCodesDatatable.table.table-striped.table-bordered.table-hover.example2
+              thead
+                tr
+                  th Code
+                  th Campaign
+                  th Custom Page
+                  th Actions
+              tbody
+                each codes
+                  tr
+                    td {{code}}
+                    td
+                      if campaign
+                        |#{campaign}
+                      else
+                        i General Fund / No Campaign
+                    td
+                      if custom
+                        a.btn.btn-xs.btn-info(href="{{pathFor 'customLanding' code=code}}" style='margin-bottom: 7px;') View
+                        a.btn.btn-xs.btn-info(href="{{pathFor 'churchCustomPage' id=_id}}" style='margin-bottom: 7px;') Edit
+                      else
+                        .btn.btn-xs.btn-success.addCustom(id='{{_id}}') Add Page
+                    td
+                      a.btn.btn-xs.btn-danger.remove_code(href='#' id='{{_id}}')
+                        if isActive
+                          | InActive
+                        else
+                          | Active

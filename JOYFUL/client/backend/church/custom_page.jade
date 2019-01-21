@@ -1,0 +1,40 @@
+template(name='churchCustomPage')
+  .content
+    div
+      .row
+        .col-lg-12.col-md-12
+          .hpanel
+            .panel-heading
+              h2
+                if code.campaign
+                  |#{code.campaign}
+                else
+                  i General Fund / No Campaign
+              h4 Custom Page
+              p.lead
+                | Enter details below to create your custom donation page.
+                br
+                |  (*All details are auto save)
+            .panel-body
+              .row
+                .col-lg-4.col-md-4
+                  h4 Add / Change Main Image
+                  input#header_photo.generate.form-control(type='file')
+                  hr
+                  h4 Campaign Code
+                  input#campaign_code.form-control(type='text' value='{{code.code}}')
+                  hr
+                  h4 Campaign Name
+                  i Leave blank for General Fund
+                  input#campaign_name.form-control(type='text' value='{{code.campaign}}')
+                  hr
+                  h4 Total Donation for Campaign
+                  i Enter just amount without any sign ex. 50000
+                  input#campaign_Goal_Donation.form-control(type='text' value='{{code.Goal_Donation}}')
+                .col-lg-8.col-md-8
+                  .image.img-responsive
+                    img.image.img-responsive(src='{{code.customPage.header_image}}')
+              br
+              .row
+                #summernote.summernote(name='{{code._id}}')
+                  | !{code.customPage.textContent}

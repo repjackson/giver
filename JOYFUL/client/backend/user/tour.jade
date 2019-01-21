@@ -1,0 +1,42 @@
+template(name='newUserTour')
+  .tourSlideHolder
+    .container
+      h1
+        span.glyphicon.glyphicon-info-sign
+        | Video Tour
+      .embed-responsive.embed-responsive-16by9
+        video(width='100%' controls='')
+          if androidOS
+            source(src='https://joyful-giver.com/video/tour.mp4' type='video/mp4')
+          else
+            source(src='/video/tour.mp4' type='video/mp4')
+          | Your browser does not support the video tag.
+      br
+      p
+        | No Thanks,
+        #goHome.btn.btn-default Take me Home
+      #tourSlide0.row.tourSlide
+        .wow.swing.text-center
+          h1 Welcome, {{#with currentUser}}{{profile.name}}{{/with}}
+        #letsStart.text-center.noShow
+          h2 Let&apos;s get started:
+          #startTour.btn.btn-info.btn-lg
+            | Start the Tour
+            span.glyphicon.glyphicon-chevron-right
+          p
+            | No Thanks,
+            #goHome.btn.btn-default Take me Home
+      #tourSlide1.row.noShow.tourSlide
+        .wow.fadeInUp.text-center
+          h1
+            span.glyphicon.glyphicon-info-sign
+            | Video Tour
+        #slide1B.text-center.noShow
+          h2 Searching is Easy
+          .embed-responsive.embed-responsive-16by9
+            video(width='100%' controls='')
+              source(src='/video/tour.mp4' type='video/mp4')
+              | Your browser does not support the video tag.
+          p
+            | No Thanks,
+            #goHome.btn.btn-default Take me Home

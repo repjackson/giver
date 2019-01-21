@@ -1,0 +1,84 @@
+template(name='comments')
+    .ui.secondary.segment
+        .ui.header
+            i.comment.outline.icon
+            |Comments
+        .ui.fluid.icon.input
+            i.plus.icon
+            input.add_comment(type='text' placeholder='Add comment...')
+        .ui.comments
+            each doc_comments
+                .comment
+                    .content
+                        .header #{body}
+                        .meta #{when}
+                        .actions
+                            i.thumbs.up.link.icon
+                            i.remove.link.remove_comment.icon
+
+template(name='follow')
+    .ui.secondary.segment
+        .ui.header
+            i.bell.grey.outline.icon
+            |Follow
+        if following
+            .ui.fluid.circular.button.unfollow
+                i.bell.slash.icon
+                |Unfollow
+        else
+            .ui.fluid.circular.button.follow
+                i.bell.icon
+                |Follow
+        .ui.small.header Following
+        .ui.list
+            each followers
+                +user_list_info
+
+
+template(name='user_list_info')
+    .item
+        |#{user.profile.name}
+        // |#{username} #{emails[0].address}
+
+
+
+
+template(name='user_info')
+    |#{user.profile.name}
+
+
+template(name='role_editor')
+    each roles
+        .ui.button #{this}
+
+template(name='author_info')
+    .ui.header #{author.username}
+
+template(name='creation_info')
+    .ui.header #{when}
+
+
+
+
+
+template(name='bookmark_button')
+    .ui.icon.bookmark.circular.button(title='bookmark' class=bookmark_class)
+        i.bookmark.outline.icon
+    each bookmark_ids
+        +user_info
+
+
+
+
+template(name='voting')
+    if points
+        strong #{points}
+    .ui.icon.circular.button.upvote
+        i.thumbs.up.icon(class=upvote_class)
+    each upvoter_ids
+        +user_info
+    .ui.icon.circular.button.downvote
+        i.thumbs.down.icon(class=downvote_class)
+    each downvoter_ids
+        +user_info
+

@@ -1,0 +1,128 @@
+template(name='give')
+  div(class='{{contentClass}}')
+    .m-b-md
+      if title
+        h4.pull-left
+          strong #{title}
+          br
+      else
+        if subtitle
+          h4.pull-left
+            strong {{subtitle}}
+            br
+    .m-b-md.donationTracker
+    .row
+      div(class='{{widthClass}}')
+        .hpanel.stats
+          .panel-body
+            if isPhone
+              .row
+                #scanBtn.btn.btn-info.pull-right Scan Card
+            form#giveForm.giveFormNoCC(action='#')
+              .row
+                .ui.input.col-lg-12.card_data
+                  label Email address
+                  input#email.form-control(type='text' name='email')
+                .ui.input.col-lg-12
+                  label Amount
+                  br
+                  button.btn.btn-outline.btn-primary.btnBlockAmount(type='button' data-value='3') $3
+                  button.btn.btn-outline.btn-primary.btnBlockAmount(type='button' data-value='5') $5
+                  button.btn.btn-outline.btn-primary.btnBlockAmount(type='button' data-value='10') $10
+                  button.btn.btn-outline.btn-primary.btnBlockAmount(type='button' data-value='15') $15
+                  button.btn.btn-outline.btn-primary.btnBlockAmount(type='button' data-value='20') $20
+                  button.btn.btn-outline.btn-primary.btnBlockAmount(type='button' data-value='25') $25
+                  button.btn.btn-outline.btn-primary.btnBlockAmount(type='button' data-value='50') $50
+                  button.btn.btn-outline.btn-primary.btnBlockAmount(type='button' data-value='100') $100
+                  button.btn.btn-outline.btn-primary.btnBlockAmount(type='button' data-value='other') Other
+                  .editable-input(style='position: relative;')
+                    input#amount.form-control.inputAmount(type='text' style='padding-right: 24px;' name='amount')
+                    span.editable-clear-x.inputAmount
+                if currentUser
+                  .ui.input.col-lg-6.checkbox
+                    input#repeat.i-checks(type='checkbox')
+                    label
+                      | Repeat this Gift
+                  .ui.input.col-lg-6
+                    select#repeat_type.form-control(name='repeat_type' style='display:none')
+                      option(value='0')
+                        i select an option
+                      option(value='monthly') every month
+                      option(value='bi-weekly') every two weeks
+                      option(value='weekly') every week
+                if cardCount
+                  .ui.input.col-lg-12
+                    label Select Card
+                    select#card_select.form-control(name='card_select')
+                      option(value='')
+                        i select a card
+                      option(value='NEW') NEW CARD
+                      each mycards
+                        option(value=cardid) #{brand} #{last4} exp #{exp_month}/#{exp_year}
+                .ui.input.col-lg-12.card_data
+                  label Card
+                  input#card.form-control(type='number' name='card')
+                .ui.input.col-md-12.card_data
+                  .col-md-2
+                    label Exp.
+                  .col-md-5
+                    select.form-control.m-b(name='month')
+                      each monthDDL
+                        option(value='{{this.value}}') {{this.text}}
+                  .col-md-5
+                    select.form-control.m-b(name='year')
+                      each yearDDL
+                        option(value='{{this.value}}') {{this.text}}
+                .ui.input.col-md-12
+                  label CVV
+                  input#cvc.form-control(type='number' name='cvc')
+              .text-center
+                button#give.btn.btn-primary
+                  | Give
+                  span.total
+            .btn-top-space.text-center.btn1-div
+              h3 Safe. Secured. Trusted
+              a(href='#')
+                img(src='/images/stripe.png' alt='100x80x1')
+              a(href='#')
+                img(src='/images/ssl.jpg' alt='100x80x2')
+              a(href='https://www.bbb.org/dallas/business-reviews/financial-services/joyful-giver-in-plano-tx-90907663#bbbseal' target='_blank')
+                img(src='/images/BBBArating.png' alt='100x80x2')
+
+      div(class='{{infoWidthClass}}')
+        .panel-body
+          hr(style='margin-top:0px;')
+          p(style='font-weight:800;') {{church.profile.churchName}}
+          .row
+            .row
+              .col-xs-12
+                .col-xs-1.text-center
+                  span.glyphicon.glyphicon-globe(aria-hidden='true')
+                .col-xs-10
+                  a(href='{{getProperUrl church.profile.website}}' target='_blank')   {{church.profile.website}}
+                  br
+            .row
+              .col-xs-12
+                .col-xs-1.text-center
+                  span.glyphicon.glyphicon-earphone(aria-hidden='true')
+                .col-xs-10
+                  | #{church.profile.phone}
+                  br
+            .row
+              .col-xs-12
+                .col-xs-1.text-center
+                  span.glyphicon.glyphicon-map-marker(aria-hidden='true')
+                .col-xs-10
+                  address
+                    | #{church.profile.address.street}, #{church.profile.address.city}, {{church.profile.address.state}} {{church.profile.address.zip}}
+                    br
+            .row
+              .col-xs-12
+                .col-xs-6
+                  button#fbShhare.btnz.facebook
+                    i.fa.fa-facebook
+                    |  Share
+                .col-xs-6
+                  button#twShhare.btnz.btn-twitter
+                    i.fa.fa-twitter
+                    |  Tweet

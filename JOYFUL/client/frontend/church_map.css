@@ -1,0 +1,37 @@
+@media(min-width:991px) {
+
+  .map-container {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    height: 375px;
+    margin: 0px 0px 3px 0px;
+  }
+
+}
+
+
+@media(max-width:768px) {
+
+  .map-container {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    height: 300px;
+    margin: 0px 0px 3px 0px;
+  }
+
+}
+
+@media(max-width:320px) {
+
+  .map-container {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    height: 200px;
+    margin: 0px 0px 3px 0px;
+  }
+
+
+}

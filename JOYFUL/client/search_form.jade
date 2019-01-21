@@ -1,0 +1,8 @@
+template(name='searchForm')
+  input.form-control.input-lg.typeahead(placeholder='Search for a organization, location, etc.' type='search' name='churchSearch' autocomplete='off' spellcheck='off' data-source='churchSearch' data-template='searchFormResponse' data-min-length='3')
+template(name='searchFormResponse')
+  // <p class='churchLink' onclick='Router.go("/give/{{id}}")'>{{value}}<br><span class='text-muted small'>{{address}}</span></p>
+  p.churchLink(onclick='var givid="{{id}}"; iosorgpageload(givid);return false;')
+    | {{value}}
+    br
+    span.small {{address}}

@@ -1,0 +1,33 @@
+template(name='admin_users')
+
+    h2 Registered Users
+    .ui.button.clean_email Clean Addresses
+    table.ui.celled.table
+        thead
+            tr
+                th Name
+                th User Email
+                th Roles
+                th Actions
+        tbody
+            each users
+                +user_detail
+
+
+template(name='user_detail')
+    tr
+        td
+            a(href="/user/#{_id}")
+                |#{profile.name} #{profile.lastname} #{profile.name}
+        td {{#each emails}}{{address}}{{/each}}
+        td
+            each roles
+                .ui.label #{this}
+        td
+            a.btn.btn-success(href='/user/gifts/{{_id}}') View Gifts
+            if profile.isActive
+                .ui.button.disable_account
+                    | Disable
+            else
+                .ui.button.enable_account
+                    | Enable
