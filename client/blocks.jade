@@ -61,19 +61,9 @@ template(name='creation_info')
 
 
 
-template(name='bookmark_button_small')
-    .ui.icon.bookmark.circular.button(class=bookmark_class title='Bookmark')
-        i.bookmark.outline.icon
-
-template(name='bookmark_button_big')
-    .ui.fluid.bookmark.circular.button(class=bookmark_class title='Bookmark')
-        i.bookmark.outline.icon
-        |Bookmark
-    each bookmark_ids
-        +user_info
 
 template(name='user_list_toggle')
-    .ui.fluid.toggle.circular.button(class=user_list_toggle_class title=add_label)
+    .ui.toggle.circular.button(class=user_list_toggle_class title=add_label)
         i.icon(class=icon)
         if big
             if in_list
@@ -100,9 +90,16 @@ template(name='voting')
 
 
 
-template(name='view_button')
-    a.ui.icon.circular.button.view(title='view' href="/view/#{_id}")
+template(name='view_button_small')
+    a.ui.icon.circular.button.view(title='View' href="/#{type}/#{_id}/view")
         i.play.icon
+
+template(name='view_button_big')
+    a.ui.circular.button.view(title='view' href="/#{type}/#{_id}/view")
+        i.play.icon
+        |View
+
+
 
 template(name='remove_button')
     a.ui.icon.circular.button.remove(title='remove')
@@ -116,18 +113,25 @@ template(name='add_button')
 
 
 template(name='edit_button_small')
-    a.ui.icon.circular.button.edit(title='edit' href="/#{type}/#{_id}/edit")
-        i.pencil.icon
+    if currentUser
+        a.ui.icon.circular.button.edit(title='edit' href="/#{type}/#{_id}/edit")
+            i.pencil.icon
 
 template(name='edit_button_big')
-    a.ui.fluid.circular.button.edit(title='edit' href="/#{type}/#{_id}/edit")
-        i.pencil.icon
-        |Edit
+    if currentUser
+        a.ui.fluid.circular.button.edit(title='edit' href="/#{type}/#{_id}/edit")
+            i.pencil.icon
+            |Edit
 
 template(name='save_button')
     a.ui.icon.fluid.circular.button.save(title='save' href="/#{type}/#{_id}/view")
         i.checkmark.icon
 
+
+template(name='tags_view_small')
+    i.tags.icon
+    each tags
+        .ui.basic.circular.label #{this}
 
 
 template(name='toggle_button')

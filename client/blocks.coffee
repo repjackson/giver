@@ -74,8 +74,18 @@ Template.user_list_toggle.events
 
 Template.user_list_toggle.helpers
     user_list_toggle_class: ->
-        parent = Template.parentData()
-        if parent["#{@key}"] and Meteor.userId() in parent["#{@key}"] then @color else ''
+        classes = []
+        if Meteor.user()
+            parent = Template.parentData()
+            if parent["#{@key}"] and Meteor.userId() in parent["#{@key}"]
+                classes.push @color
+            if @big
+                classes.push 'fluid'
+            else
+                classes.push 'icon'
+        else
+            classes.push 'disabled'
+        classes
 
     in_list: ->
         parent = Template.parentData()
