@@ -59,7 +59,8 @@ Template.follow.events
             $pull:follower_ids:Meteor.userId()
 
 Template.user_list_toggle.onCreated ->
-    @autorun => Meteor.subscribe 'user_list', @key
+    console.log Template.parentData()
+    @autorun => Meteor.subscribe 'user_list', Template.parentData(),@key
 
 Template.user_list_toggle.events
     'click .toggle': ->

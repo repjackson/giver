@@ -108,7 +108,7 @@ template(name='chat_view')
 					.ui.small.header
 						i.users.grey.icon
 						|Participants
-					+user_list_toggle key='participant_ids' icon='user add' add_label='Join' remove_label='Leave'
+					+user_list_toggle key='participant_ids' icon='user add' add_label='Join' remove_label='Leave' color='teal' big=true
 				+follow
 			.ten.wide.column
 				.ui.fluid.segment
@@ -126,6 +126,7 @@ template(name='chat_view')
 												i.remove.link.remove_message.icon
 											else
 												i.thumbs.up.link.icon
-					.ui.fluid.icon.input
-						i.plus.icon
-						input.add_message(type='text')
+					if in_list 'participant_ids'
+						.ui.fluid.icon.input
+							i.plus.icon
+							input.add_message(type='text')

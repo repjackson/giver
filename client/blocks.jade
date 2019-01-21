@@ -75,10 +75,11 @@ template(name='bookmark_button_big')
 template(name='user_list_toggle')
     .ui.fluid.toggle.circular.button(class=user_list_toggle_class title=add_label)
         i.icon(class=icon)
-        if in_list
-            |#{remove_label}
-        else
-            |#{add_label}
+        if big
+            if in_list
+                |#{remove_label}
+            else
+                |#{add_label}
     each list_users
         +user_info
 
