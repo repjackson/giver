@@ -6,7 +6,6 @@ Docs.before.insert (userId, doc)=>
     weekdaynum = moment(timestamp).isoWeekday()
     weekday = moment().isoWeekday(weekdaynum).format('dddd')
 
-
     month = moment(timestamp).format('MMMM')
     year = moment(timestamp).format('YYYY')
 
@@ -19,3 +18,16 @@ Docs.before.insert (userId, doc)=>
 
     doc.author_id = Meteor.userId()
     return
+
+
+Docs.helpers
+    author: -> Meteor.users.findOne @author_id
+    when: -> moment(@timestamp).fromNow()
+    is_author: -> Meteor.userId() is @author_id
+
+    downvoters: ->
+        Meteor.users.find
+            _id: $in: @downvoter_ids
+    upvoters: ->
+        Meteor.users.find
+            _id: $in: @upvoters_ids

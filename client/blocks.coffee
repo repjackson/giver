@@ -58,29 +58,48 @@ Template.follow.events
         Docs.update @_id,
             $pull:follower_ids:Meteor.userId()
 
-Template.bookmark_button.events
-    'click .bookmark': ->
-        if @bookmark_ids and Meteor.userId() in @bookmark_ids
-            Docs.update @_id,
-                $pull:bookmark_ids:Meteor.userId()
-        else
-            Docs.update @_id,
-                $addToSet:bookmark_ids:Meteor.userId()
+Template.user_list_toggle.onCreated ->
+    @autorun => Meteor.subscribe 'user_list', @key
 
-Template.bookmark_button.helpers
-    bookmark_class: -> if @bookmark_ids and Meteor.userId() in @bookmark_ids then 'teal' else ''
+Template.user_list_toggle.events
+    'click .toggle': ->
+        parent = Template.parentData()
+        if parent["#{@key}"] and Meteor.userId() in parent["#{@key}"]
+            Docs.update parent._id,
+                $pull:"#{@key}":Meteor.userId()
+        else
+            Docs.update parent._id,
+                $addToSet:"#{@key}":Meteor.userId()
+
+Template.user_list_toggle.helpers
+    user_list_toggle_class: ->
+        parent = Template.parentData()
+        if parent["#{@key}"] and Meteor.userId() in parent["#{@key}"] then @color else ''
+
+    in_list: ->
+        parent = Template.parentData()
+        if parent["#{@key}"] and Meteor.userId() in parent["#{@key}"] then true else false
+
+    list_users: ->
+        parent = Template.parentData()
+        Meteor.users.find _id:$in:parent["#{@key}"]
+
+
+
+
+
+
+
+
+
+
+
 
 
 Template.voting.helpers
     upvote_class: -> if @upvoter_ids and Meteor.userId() in @upvoter_ids then 'green' else 'outline'
     downvote_class: -> if @downvoter_ids and Meteor.userId() in @downvoter_ids then 'red' else 'outline'
 
-    downvoters: ->
-        Meteor.users.find
-            _id: $in: @downvoter_ids
-    upvoters: ->
-        Meteor.users.find
-            _id: $in: @upvoters_ids
 
 
 
@@ -122,15 +141,28 @@ Template.voting.events
 
 
 
-Template.bookmark_button.helpers
-    bookmarkers: ->
-        Meteor.users.find _id:$in:@bookmarker_ids
+
+Template.add_button.events
+    'click .add': ->
+        Docs.insert
+            type: @type
 
 
-Template.bookmark_button.events
-    'click .bookmark': ->
-        Docs.update @_id,
-            $addToSet: bookmarker_ids:Meteor.userId()
+
+Template.add_type_button.events
+    'click .add': ->
+        new_id = Docs.insert type: @type
+        Router.go "/edit/#{new_id}"
+
+Template.view_user_button.events
+    'click .view_user': ->
+        Router.go "/u/#{username}"
+
+
+Template.view_button.events
+    'click .view': ->
+        Router.go "/view/#{@_id}"
+
 
 
 

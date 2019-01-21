@@ -61,10 +61,25 @@ template(name='creation_info')
 
 
 
-template(name='bookmark_button')
+template(name='bookmark_button_small')
     .ui.icon.bookmark.circular.button(class=bookmark_class title='Bookmark')
         i.bookmark.outline.icon
+
+template(name='bookmark_button_big')
+    .ui.fluid.bookmark.circular.button(class=bookmark_class title='Bookmark')
+        i.bookmark.outline.icon
+        |Bookmark
     each bookmark_ids
+        +user_info
+
+template(name='user_list_toggle')
+    .ui.fluid.toggle.circular.button(class=user_list_toggle_class title=add_label)
+        i.icon(class=icon)
+        if in_list
+            |#{remove_label}
+        else
+            |#{add_label}
+    each list_users
         +user_info
 
 
@@ -81,4 +96,57 @@ template(name='voting')
         i.thumbs.down.icon(class=downvote_class)
     each downvoter_ids
         +user_info
+
+
+
+template(name='view_button')
+    a.ui.icon.circular.button.view(title='view' href="/view/#{_id}")
+        i.play.icon
+
+template(name='remove_button')
+    a.ui.icon.circular.button.remove(title='remove')
+        i.remove.icon
+
+template(name='add_button')
+    a.ui.icon.circular.button.add(title='add')
+        i.plus.icon
+        |#{type}
+
+
+
+template(name='edit_button_small')
+    a.ui.icon.circular.button.edit(title='edit' href="/#{type}/#{_id}/edit")
+        i.pencil.icon
+
+template(name='edit_button_big')
+    a.ui.fluid.circular.button.edit(title='edit' href="/#{type}/#{_id}/edit")
+        i.pencil.icon
+        |Edit
+
+template(name='save_button')
+    a.ui.icon.fluid.circular.button.save(title='save' href="/#{type}/#{_id}/view")
+        i.checkmark.icon
+
+
+
+template(name='toggle_button')
+    .ui.icon.toggle.circular.button(title=label)
+        i.icon(class=icon)
+    each selected
+        |#{username}
+
+
+
+
+
+template(name='view_user_button')
+    .ui.icon.view_user.circular.button.view(title="view #{username}")
+        i.play.icon
+
+
+template(name='add_type_button')
+    .ui.icon.circular.button.add(title="add #{type}")
+        i.plus.icon
+        |#{type}
+
 

@@ -39,7 +39,7 @@ template(name='campaign_item')
                 .ui.basic.circular.label #{this}
         .extra
             +voting
-            +bookmark_button
+            +bookmark_button_small
             a.ui.circular.button(href="/campaign/#{_id}/view")
                 |View
                 i.right.chevron.icon
@@ -107,7 +107,7 @@ template(name='campaign_view')
                 each tags
                     .ui.basic.circular.label #{this}
                 div
-                +bookmark_button
+                +bookmark_button_big
                 div
                 i.calendar.icon
                 |Due

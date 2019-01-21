@@ -40,7 +40,7 @@ template(name='chat_item')
 			each tags
 				.ui.basic.circular.label #{this}
 		.extra
-			+bookmark_button
+			+bookmark_button_small
 			a.ui.circular.button(href="/chat/#{_id}/view")
 				|View
 				i.right.chevron.icon
@@ -88,25 +88,29 @@ template(name='chat_edit')
 template(name='chat_view')
 	with doc
 		.ui.stackable.padded.grid
-			.four.wide.column
+			.six.wide.column
 				.ui.header
 					a(href="/chats" title='chats')
 						i.chat.link.circular.icon
 					|View Chat
-				.ui.header
-					|#{title}
-				h4 #{body}
-				i.tags.icon
-				|Tags
-				each tags
-					.ui.basic.circular.label #{this}
-				div
-				+bookmark_button
-				a.ui.fluid.circular.button(href="/chat/#{_id}/edit")
-					i.pencil.icon
-					|Edit
+				.ui.segment
+					.ui.header
+						|#{title}
+					h4 #{body}
+					i.tags.icon
+					|Tags
+					each tags
+						.ui.basic.circular.label #{this}
+					div
+					+bookmark_button_big
+					+edit_button_big
+				.ui.segment
+					.ui.small.header
+						i.users.grey.icon
+						|Participants
+					+user_list_toggle key='participant_ids' icon='user add' add_label='Join' remove_label='Leave'
 				+follow
-			.twelve.wide.column
+			.ten.wide.column
 				.ui.fluid.segment
 					.ui.comments
 						each messages
@@ -117,8 +121,11 @@ template(name='chat_view')
 										span.date #{when}
 									.text.f6 #{body}
 									.actions
-										i.thumbs.up.link.icon
-										i.remove.link.remove_message.icon
+										if currentUser
+											if is_author
+												i.remove.link.remove_message.icon
+											else
+												i.thumbs.up.link.icon
 					.ui.fluid.icon.input
 						i.plus.icon
 						input.add_message(type='text')

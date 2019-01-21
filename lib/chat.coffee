@@ -74,6 +74,7 @@ if Meteor.isClient
 
     Template.chat_view.onCreated ->
         @autorun -> Meteor.subscribe 'doc', Router.current().params.id
+        @autorun -> Meteor.subscribe 'all_users'
 
     Template.chat_view.events
         'keyup .add_message': (e,t)->

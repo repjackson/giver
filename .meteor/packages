@@ -65,3 +65,5 @@ matb33:collection-hooks
 dburles:collection-helpers
 underscore
 juliancwirko:postcss@1.0.0
+babrahams:temple
+constellation:autopublish

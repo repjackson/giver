@@ -22,8 +22,11 @@ template(name='header')
                     .mobile.hidden Dashboard
                 a.item(href='/account')
                     i.grey.user.icon
-                    .mobile.hidden Account
-                    |#{currentUser.username}
+                    .mobile.hidden
+                        if currentUser.username
+                            |#{currentUser.username}
+                        else
+                            |Account
                 if logging_out
                     .icon.disabled.item
                         i.loading.refresh.icon

@@ -374,3 +374,11 @@ Meteor.publish 'children', (doc_id)->
     Docs.find
         parent_id: doc_id
 
+Meteor.publish 'all_users', ->
+    Meteor.users.find()
+
+Meteor.publish 'user_list', (doc,key)->
+    Meteor.users.find _id:$in:doc["#{@key}"]
+
+
+

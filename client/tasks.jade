@@ -45,7 +45,7 @@ template(name='task_item')
             |#{assignee}
         .extra
             +voting
-            +bookmark_button
+            +bookmark_button_small
             a.ui.circular.button(href="/task/#{_id}/view")
                 |View
                 i.right.chevron.icon
@@ -111,14 +111,10 @@ template(name='task_view')
                     a(href="/tasks" title='Tasks')
                         i.tasks.link.circular.icon
                     |View Task
-                a.ui.fluid.circular.button(href="/task/#{_id}/edit")
-                    i.pencil.icon
-                    |Edit
+                +edit_button_big
                 +follow
             .twelve.wide.column
                 .ui.header
-                    if complete
-                        i.green.checkmark.icon
                     |#{title}
                 h4 #{body}
                 i.tags.icon
@@ -126,7 +122,7 @@ template(name='task_view')
                 each tags
                     .ui.basic.circular.label #{this}
                 div
-                +bookmark_button
+                +bookmark_button_big
                 div
                 i.calendar.icon
                 |Due
