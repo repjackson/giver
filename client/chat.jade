@@ -36,7 +36,7 @@ template(name='chat_item')
             .ui.small.header #{body}
             +tags_view_small
         .extra
-            +user_list_toggle key='bookmark_ids' icon='bookmark' add_label='Bookmark' remove_label='Unbookmark' color='red' big=false
+            +user_list_toggle key='bookmark_ids' add_icon='bookmark' remove_icon='bookmark' add_label='Bookmark' remove_label='Unbookmark' color='red' big=false
             +view_button_big
             +edit_button_small
 
@@ -90,18 +90,14 @@ template(name='chat_view')
                     .ui.header
                         |#{title}
                     h4 #{body}
-                    i.tags.icon
-                    |Tags
-                    each tags
-                        .ui.basic.circular.label #{this}
-                    div
-                    +user_list_toggle key='bookmark_ids' icon='bookmark' add_label='Bookmark' remove_label='Unbookmark' color='red' big=true
+                    +tags_view_big
+                    +user_list_toggle key='bookmark_ids' add_icon='bookmark' remove_icon='bookmark' add_label='Bookmark' remove_label='Unbookmark' color='red' big=true
                     +edit_button_big
                 .ui.segment
                     .ui.small.header
                         i.users.grey.icon
                         |Participants
-                    +user_list_toggle key='participant_ids' icon='user add' add_label='Join' remove_label='Leave' color='teal' big=true
+                    +user_list_toggle key='participant_ids' add_icon='user add' remove_icon='user times' add_label='Join' remove_label='Leave' color='teal' big=true
                 +follow
             .ten.wide.column
                 .ui.fluid.segment

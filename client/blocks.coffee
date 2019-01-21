@@ -74,17 +74,18 @@ Template.user_list_toggle.events
 
 Template.user_list_toggle.helpers
     user_list_toggle_class: ->
-        classes = []
+        classes = ""
         if Meteor.user()
             parent = Template.parentData()
             if parent["#{@key}"] and Meteor.userId() in parent["#{@key}"]
-                classes.push @color
+                classes += "#{@color} "
             if @big
-                classes.push 'fluid'
+                classes += 'fluid '
             else
-                classes.push 'icon'
+                classes += 'icon '
         else
-            classes.push 'disabled'
+            classes += 'disabled '
+        console.log classes
         classes
 
     in_list: ->
@@ -168,12 +169,5 @@ Template.add_type_button.events
 Template.view_user_button.events
     'click .view_user': ->
         Router.go "/u/#{username}"
-
-
-Template.view_button.events
-    'click .view': ->
-        Router.go "/view/#{@_id}"
-
-
 
 

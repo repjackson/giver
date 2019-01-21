@@ -21,18 +21,7 @@ template(name='follow')
         .ui.header
             i.bell.grey.outline.icon
             |Follow
-        if following
-            .ui.fluid.circular.button.unfollow
-                i.bell.slash.icon
-                |Unfollow
-        else
-            .ui.fluid.circular.button.follow
-                i.bell.icon
-                |Follow
-        .ui.small.header Following
-        .ui.list
-            each followers
-                +user_list_info
+        +user_list_toggle key='follower_ids' add_icon='bell' remove_icon='bell slash' add_label='Follow' remove_label='Unfollow' color='blue' big=true
 
 
 template(name='user_list_info')
@@ -64,7 +53,10 @@ template(name='creation_info')
 
 template(name='user_list_toggle')
     .ui.toggle.circular.button(class=user_list_toggle_class title=add_label)
-        i.icon(class=icon)
+        if in_list
+            i.icon(class=remove_icon)
+        else
+            i.icon(class=add_icon)
         if big
             if in_list
                 |#{remove_label}
@@ -133,6 +125,12 @@ template(name='tags_view_small')
     each tags
         .ui.basic.circular.label #{this}
 
+template(name='tags_view_big')
+    i.tags.icon
+    |Tags
+    each tags
+        .ui.basic.circular.label #{this}
+    div
 
 template(name='toggle_button')
     .ui.icon.toggle.circular.button(title=label)
