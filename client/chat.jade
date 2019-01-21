@@ -1,0 +1,124 @@
+template(name='chats')
+	.ui.stackable.padded.grid
+		.four.wide.column
+			.ui.center.aligned.header
+				i.chat.outline.icon
+				| Chat
+			.ui.circular.fluid.button.add_chat
+				i.plus.icon
+				|Add Chat
+			.ui.small.header
+				i.grey.tags.icon
+				|Filter Tags
+			.ui.icon.small.fluid.input
+				i.search.icon
+				input#search(type='text' autocomplete='off' placeholder='Search Tags')
+			if selected_tags
+				#clear_tags.ui.grey.icon.circular.button
+					i.remove.icon
+			each selected_tags
+				.unselect_tag.ui.grey.circular.button
+					b #{this}
+			each global_tags
+				.select_tag.ui.circular.button
+					|#{this.name}
+					small #{this.count}
+		.twelve.wide.column
+			each chats
+				+chat_item
+
+
+template(name='chat_item')
+	.ui.segment
+		a.ui.header(href="/chat/#{_id}/view")
+			if complete
+				i.green.checkmark.icon
+			|#{title}
+		.description
+			.ui.small.header #{body}
+			i.tags.icon
+			each tags
+				.ui.basic.circular.label #{this}
+		.extra
+			+bookmark_button
+			a.ui.circular.button(href="/chat/#{_id}/view")
+				|View
+				i.right.chevron.icon
+			a.ui.icon.circular.button(href="/chat/#{_id}/edit" title='Edit')
+				i.pencil.icon
+
+
+template(name='chat_edit')
+	with doc
+		.ui.stackable.padded.grid
+			.four.wide.column
+				.ui.header
+					i.pencil.icon
+					|Edit Chat
+				a.ui.fluid.circular.button(href="/chat/#{_id}/view")
+					i.checkmark.icon
+					|Save
+				.ui.circular.button.delete_chat
+					i.remove.icon
+					|Delete
+			.twelve.wide.column
+				.ui.segment
+					.ui.form
+						.field
+							label Title
+							input.title(type='text' value=title)
+						.field
+							label Description
+							textarea.body(rows='5') #{body}
+						.field
+							label Tags
+							each tags
+								.ui.basic.circular.label
+									i.remove.link.icon.remove_tag
+									|#{this}
+							.ui.icon.input
+								input.new_tag(type='text' placeholder='Add tag...')
+								i.plus.icon
+						.field
+							label Participants:
+							input.assignee(type='text' value=asignee)
+							each participants
+								+user_list_item
+
+template(name='chat_view')
+	with doc
+		.ui.stackable.padded.grid
+			.four.wide.column
+				.ui.header
+					a(href="/chats" title='chats')
+						i.chat.link.circular.icon
+					|View Chat
+				.ui.header
+					|#{title}
+				h4 #{body}
+				i.tags.icon
+				|Tags
+				each tags
+					.ui.basic.circular.label #{this}
+				div
+				+bookmark_button
+				a.ui.fluid.circular.button(href="/chat/#{_id}/edit")
+					i.pencil.icon
+					|Edit
+				+follow
+			.twelve.wide.column
+				.ui.fluid.segment
+					.ui.comments
+						each messages
+							.comment
+								.content
+									a.author #{author.profile.name}
+									.metadata
+										span.date #{when}
+									.text.f6 #{body}
+									.actions
+										i.thumbs.up.link.icon
+										i.remove.link.remove_message.icon
+					.ui.fluid.icon.input
+						i.plus.icon
+						input.add_message(type='text')

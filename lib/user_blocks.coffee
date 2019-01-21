@@ -1,23 +1,10 @@
 if Meteor.isClient
-    Template.user_messages.onCreated ->
-        @autorun -> Meteor.subscribe 'messages'
-
-    Template.user_messages.helpers
-        messages: ->
-            Docs.find
-                type:'message'
-
-
     Template.friend_list.onCreated ->
         @autorun -> Meteor.subscribe 'users'
 
     Template.friend_list.helpers
         users: ->
             Meteor.users.find()
-
-
-    Template.chat.onCreated ->
-        @autorun -> Meteor.subscribe 'type', 'chat'
 
 
     Template.assigned_tasks.onCreated ->

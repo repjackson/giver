@@ -20,21 +20,6 @@ template(name='friend_list')
                 .item #{_id} #{username}
 
 
-template(name='mail')
-    .ui.header
-        i.mail.icon
-        |Mail
-
-
-template(name='chat')
-    .ui.segment
-        .ui.header
-            i.chat.icon
-            |Chat
-        each chats
-            .ui.small.header #{text}
-        .ui.input
-            input(type='text')
 
 
 template(name='assigned_tasks')

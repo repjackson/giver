@@ -16,4 +16,10 @@
 @AppSettings = new (Meteor.Collection)('appsettings')
 # Makes sure we can query churches by location
 if Meteor.isServer
-  Meteor.users._ensureIndex 'profile.loc': '2dsphere'
+    Meteor.users._ensureIndex 'profile.loc': '2dsphere'
+
+
+Docs.helpers
+    author: -> Meteor.users.findOne @author_id
+    when: -> moment(@timestamp).fromNow()
+

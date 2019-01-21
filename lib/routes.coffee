@@ -33,9 +33,6 @@ Router.map ->
 		layoutTemplate: false
 
 
-Router.route '/tasks', -> @render 'tasks'
-Router.route '/task/:id/edit', -> @render 'task_edit'
-Router.route '/task/:id/view', -> @render 'task_view'
 
 Router.route '/reset-password/:token', -> @render 'reset-password'
 Router.route '/forgot-password', -> @render 'forgot_password'
@@ -172,12 +169,6 @@ Router.route '/account', ->
 	# 		profile: Meteor.users.find(Meteor.userId())
 	# 		cards: MyCards.find(user: Meteor.userId())
 	# 	templateData
-
-Router.route 'mail', ->
-	path: '/mail'
-	layoutTemplate: 'layout'
-	@render 'mail'
-
 
 
 Router.map ->
