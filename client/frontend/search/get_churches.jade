@@ -1,32 +1,32 @@
 template(name='getchurches')
-  .row
-    .col-lg-3.col-md-3.col-md-offset-3.col-lg-offset-3
-      a.btn.btn-danger.btn-block(href='{{backPath}}')
-        span.glyphicon.glyphicon-chevron-left
-        | Go Back
-    .col-lg-6.col-lg-offset-3.col-md-6.col-md-offset-3
-      if churches
-        h2.text-center
-          i.fa.fa-building-o
-          | Organizations
-        hr
-        each churches
-          +allChurchInfoHolder
-      else
-        .alert.alert-danger
-          | We couldn't find a registered organizations or campaigns with that code or name. Are you sure it&apos;s correct?
+	.row
+		.col-lg-3.col-md-3.col-md-offset-3.col-lg-offset-3
+			a.btn.btn-danger.btn-block(href='{{backPath}}')
+				span.glyphicon.glyphicon-chevron-left
+				| Go Back
+		.col-lg-6.col-lg-offset-3.col-md-6.col-md-offset-3
+			if churches
+				h2.text-center
+					i.fa.fa-building-o
+					| Organizations
+				hr
+				each churches
+					+allChurchInfoHolder
+			else
+				.alert.alert-danger
+					| We couldn't find a registered organizations or campaigns with that code or name. Are you sure it&apos;s correct?
 
 template(name='allChurchInfoHolder')
-  .well.well-default.text-center(style='padding-top: 0px; padding-bottom: 0px;')
-    .row
-      .col-sm-6.col-xs-12
-        h3
-          i.fa.fa-building-o
-          |#{profile.churchName}
-        p #{profile.address.city}, #{profile.address.state}
-      .col-sm-6.col-xs-12
-        p
-          .btn.btn-success.give Give to this Organization
-        if currentUser
-          p
-            .btn.btn-info.add(id='{{../code}}') Add to My Organizations
+	.well.well-default.text-center(style='padding-top: 0px; padding-bottom: 0px;')
+		.row
+			.col-sm-6.col-xs-12
+				h3
+					i.fa.fa-building-o
+					|#{profile.churchName}
+				p #{profile.address.city}, #{profile.address.state}
+			.col-sm-6.col-xs-12
+				p
+					.btn.btn-success.give Give to this Organization
+				if currentUser
+					p
+						.btn.btn-info.add(id='{{../code}}') Add to My Organizations

@@ -1,10 +1,10 @@
 template(name='demo')
-  .embed-responsive.embed-responsive-16by9
-    video(width='100%' controls='')
-      if androidOS
-          // <source src="https://joyful-giver.com/video/homepage.mp4" type="video/mp4">
-          source(src='https://joyful-giver.com/video/Explainer_Video_Joyful_Giver.mp4' type='video/mp4')
-      else
-          // <source src="/video/homepage.mp4" type="video/mp4">
-          source(src='/video/Explainer_Video_Joyful_Giver.mp4' type='video/mp4')
-      |Your browser does not support the video tag.
+	.embed-responsive.embed-responsive-16by9
+		video(width='100%' controls='')
+			if androidOS
+					// <source src="https://joyful-giver.com/video/homepage.mp4" type="video/mp4">
+					source(src='https://joyful-giver.com/video/Explainer_Video_Joyful_Giver.mp4' type='video/mp4')
+			else
+					// <source src="/video/homepage.mp4" type="video/mp4">
+					source(src='/video/Explainer_Video_Joyful_Giver.mp4' type='video/mp4')
+			|Your browser does not support the video tag.

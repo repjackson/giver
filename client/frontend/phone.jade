@@ -1,0 +1,28 @@
+template(name='smsaddphone')
+	.container
+		.row
+			if currentUser.profile.phone
+				.alert.alert-dismissible.alert-success
+					button.close(type='button' data-dismiss='alert') &times;
+					strong Your phone number is enabled.
+				unless cardCount
+					h3 Add a credit card to complete setup:
+					+addSMSCardForm
+					button.btn.btn-primary.save_new_card(type='button') Save Card
+				else
+					a.btn.btn-primary(href='sms://+18555784483') Text #{code} to Continue
+
+template(name='addSMSCardForm')
+	#addcardform.form-horizontal
+		.(class='ui.input')
+			label.col-lg-2.control-label(for='card') Card
+			.col-lg-10
+				input#card.form-control(type='text' name='card' maxlength='16')
+		.(class='ui.input')
+			label.col-lg-2.control-label(for='exp') Exp.
+			.col-lg-4
+				input#exp.form-control(type='text' name='exp' placeholder='MM/YY' maxlength='5')
+		.(class='ui.input')
+			label.col-lg-2.control-label(for='exp') CVC
+			.col-lg-4
+				input#cvc.form-control(type='text' name='cvc' maxlength='5')
