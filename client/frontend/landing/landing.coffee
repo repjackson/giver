@@ -419,3 +419,18 @@
 #         Router.go 'register'
 #     'click #generalPlan29': (e, t) ->
 #         Router.go 'register'
+
+
+Template.slider.onRendered ->
+    Meteor.setTimeout ->
+        $('.shape').shape();
+    , 1000
+
+
+Template.slider.events
+    'click .next': ->
+        $('.shape').shape('flip right');
+    'click .back': ->
+        $('.shape').shape('flip back');
+
+

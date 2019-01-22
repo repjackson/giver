@@ -20,7 +20,7 @@ template(name='post_item')
                 .description
                 .extra
                     +voting
-                    +bookmark_button_small
+                    +user_list_toggle key='bookmark_ids' add_icon='bookmark' remove_icon='bookmark' add_label='Bookmark' remove_label='Unbookmark' color='red' big=false
                     a.ui.fluid.button(href="/post/#{_id}/view")
                         |View
 

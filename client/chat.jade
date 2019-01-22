@@ -115,7 +115,11 @@ template(name='chat_view')
                                                 i.remove.link.remove_message.icon
                                             else
                                                 i.thumbs.up.link.icon
+                                            if read
+                                                i.envelope.open.icon
+                                            else
+                                                i.envelope.icon
                     if in_list 'participant_ids'
                         .ui.fluid.icon.input
                             i.plus.icon
-                            input.add_message(type='text')
+                            input.add_message(type='text' placeholder='Add message...')

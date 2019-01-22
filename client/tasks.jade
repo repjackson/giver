@@ -45,7 +45,7 @@ template(name='task_item')
             |#{assignee}
         .extra
             +voting
-            +bookmark_button_small
+            +user_list_toggle key='bookmark_ids' add_icon='bookmark' remove_icon='bookmark' add_label='Bookmark' remove_label='Unbookmark' color='red' big=small
             a.ui.circular.button(href="/task/#{_id}/view")
                 |View
                 i.right.chevron.icon
@@ -122,7 +122,7 @@ template(name='task_view')
                 each tags
                     .ui.basic.circular.label #{this}
                 div
-                +bookmark_button_big
+                +user_list_toggle key='bookmark_ids' add_icon='bookmark' remove_icon='bookmark' add_label='Bookmark' remove_label='Unbookmark' color='red' big=true
                 div
                 i.calendar.icon
                 |Due

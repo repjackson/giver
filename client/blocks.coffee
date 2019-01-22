@@ -59,7 +59,6 @@ Template.follow.events
             $pull:follower_ids:Meteor.userId()
 
 Template.user_list_toggle.onCreated ->
-    console.log Template.parentData()
     @autorun => Meteor.subscribe 'user_list', Template.parentData(),@key
 
 Template.user_list_toggle.events
@@ -80,12 +79,11 @@ Template.user_list_toggle.helpers
             if parent["#{@key}"] and Meteor.userId() in parent["#{@key}"]
                 classes += "#{@color} "
             if @big
-                classes += 'fluid '
+                classes += ''
             else
                 classes += 'icon '
         else
             classes += 'disabled '
-        console.log classes
         classes
 
     in_list: ->
