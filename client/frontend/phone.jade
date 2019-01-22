@@ -14,15 +14,15 @@ template(name='smsaddphone')
 
 template(name='addSMSCardForm')
 	#addcardform.form-horizontal
-		.(class='ui.input')
+		.ui.input
 			label.col-lg-2.control-label(for='card') Card
 			.col-lg-10
 				input#card.form-control(type='text' name='card' maxlength='16')
-		.(class='ui.input')
+		.ui.input
 			label.col-lg-2.control-label(for='exp') Exp.
 			.col-lg-4
 				input#exp.form-control(type='text' name='exp' placeholder='MM/YY' maxlength='5')
-		.(class='ui.input')
+		.ui.input
 			label.col-lg-2.control-label(for='exp') CVC
 			.col-lg-4
 				input#cvc.form-control(type='text' name='cvc' maxlength='5')
