@@ -1,13 +1,13 @@
 # churchCampaignDet = new ReactiveVar
 # fundNeeded = new ReactiveVar
-# appStatics = new ReactiveVar
-# Template.front.onCreated ->
-#     Meteor.callPromise('getChurchCampaignDetail', -1).then (res) ->
-#         churchCampaignDet.set res
-#     Meteor.callPromise('getChurchCampaignDetail', 1).then (res) ->
-#         fundNeeded.set res
-#     Meteor.callPromise('appStatics').then (res) ->
-#         appStatics.set res
+appStatics = new ReactiveVar
+Template.front.onCreated ->
+    Meteor.callPromise('getChurchCampaignDetail', -1).then (res) ->
+        churchCampaignDet.set res
+    Meteor.callPromise('getChurchCampaignDetail', 1).then (res) ->
+        fundNeeded.set res
+    Meteor.callPromise('appStatics').then (res) ->
+        appStatics.set res
 # Template.front.onRendered ->
 #     `var owl`
 #     `var owl`
@@ -379,38 +379,38 @@
 # Template.front.onDestroyed ->
 #     $('body').removeClass 'landing-page'
 #     return
-# Template.front.helpers
-#     todayDate: ->
-#         moment().format 'MM/DD/YYYY'
-#     'androidOS': ->
-#         if Meteor.isCordova
-#             devicePlatform = device.platform
-#             console.log 'mobile platform: ', devicePlatform
-#             if devicePlatform == 'iOS'
-#                 return false
-#             else
-#                 # This is an android device!!!
-#                 return true
-#         false
-#     'totalRaised': (raised) ->
-#         numeral(raised / 100).format '$0,0'
-#     churchCampaignDet: ->
-#         churchCampaignDet.get()
-#     percentDonation: (raised, goal) ->
-#         start = 0
-#         current = numeral(raised / 100)
-#         percent = Math.round(100 * (current - start) / (goal - start))
-#         if percent == 100 and current != goal
-#             percent = 99
-#         if percent > 100
-#             percent = 100
-#         if percent < 0
-#             percent = 0
-#         percent
-#     fundNeeded: ->
-#         fundNeeded.get()
-#     appstatics: ->
-#         appStatics.get()
+Template.front.helpers
+    todayDate: ->
+        moment().format 'MM/DD/YYYY'
+    'androidOS': ->
+        if Meteor.isCordova
+            devicePlatform = device.platform
+            console.log 'mobile platform: ', devicePlatform
+            if devicePlatform == 'iOS'
+                return false
+            else
+                # This is an android device!!!
+                return true
+        false
+    'totalRaised': (raised) ->
+        numeral(raised / 100).format '$0,0'
+    churchCampaignDet: ->
+        churchCampaignDet.get()
+    percentDonation: (raised, goal) ->
+        start = 0
+        current = numeral(raised / 100)
+        percent = Math.round(100 * (current - start) / (goal - start))
+        if percent == 100 and current != goal
+            percent = 99
+        if percent > 100
+            percent = 100
+        if percent < 0
+            percent = 0
+        percent
+    fundNeeded: ->
+        fundNeeded.get()
+    appstatics: ->
+        appStatics.get()
 # Template.front.events
 #     'click #demoModal': (e, t) ->
 #         e.preventDefault()

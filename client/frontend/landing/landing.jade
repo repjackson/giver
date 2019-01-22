@@ -8,9 +8,12 @@ template(name='front')
     // +cta
     // +fund_needed
     // +care_senior_citizen
-    +counter
+    // .ui.hidden.divider
+    // +counter
+    .ui.hidden.divider
     // // +free_camp
     +video
+    .ui.hidden.divider
     +our_features
     +our_volunteers
     // +contact_us
@@ -42,37 +45,32 @@ template(name='clients')
 
 template(name='testimonials')
     .ui.basic.segment
-        .heading-div-1.text-center
-            h2 TESTIMONIES
-            img(src='/images/underline-2.png' alt='116x22')
-        .ui.stackable.three.column.grid
+        h2.ui.large.dividing.center.aligned.header Testimonies
+        .ui.stackable.three.column.padded.grid
             .column
-                .testimonial-div
-                    p.testimonial-name
-                        | David Daniels
-                        span Pastor
-                    // <p class="testimonial-para">“We were having a difficult time engaging people with our current online giving system. After we implemented Joyful Giver we received over a 1,000% increase. I had to re-run the numbers because it was so astonishing.”
-                    p.testimonial-para
-                        | Balm of Gilead - Global Ministries
-                    img.ui.image(src='/images/david_daniels_balm.jpg' alt='100x100x5')
+                .ui.header
+                    | David Daniels
+                    span Pastor
+                p "We were having a difficult time engaging people with our current online giving system. After we implemented Joyful Giver we received over a 1,000% increase. I had to re-run the numbers because it was so astonishing.”
+                p.testimonial-para
+                    | Balm of Gilead - Global Ministries
+                img.ui.medium.centered.circular.image(src='/images/david_daniels_balm.jpg' alt='100x100x5')
             .column
-                .testimonial-div
-                    p.testimonial-name
-                        | Pastor Dwayne Campbell
-                        span Pastor
-                    // <p class="testimonial-para">“Wanted to give you an update. We rolled out Joyful Giver today to the church and about 75% of those that use envelopes used Joyfu giver in service. Can’t wait to see how this does once everyone downloads the app and sees how easy it is!”
-                    p.testimonial-para
-                        | City of Transformation Christian Center
-                    img.ui.image(src='/images/Pastor_Dwayne.jpg' alt='100x100x6')
+                .ui.header
+                    | Pastor Dwayne Campbell
+                    span Pastor
+                p “Wanted to give you an update. We rolled out Joyful Giver today to the church and about 75% of those that use envelopes used Joyfu giver in service. Can’t wait to see how this does once everyone downloads the app and sees how easy it is!”
+                p.testimonial-para
+                    | City of Transformation Christian Center
+                img.ui.medium.centered.circular.image(src='/images/Pastor_Dwayne.jpg' alt='100x100x6')
             .column
-                .testimonial-div
-                    p.testimonial-name
-                        | Mike Hatch
-                        span Pastor
-                    // <p class="testimonial-para">“I just wanted to say thank you for caring about us and our congregation. We have also noticed an increase in giving! Between the videos and the convenience that the app brings, this was a big step forward for our church. There are people giving now that never really gave before, simply because they don’t have to wait for Sunday morning. Thanks!”
-                    p.testimonial-para
-                        | Balm of Gilead - Global Ministries
-                    img.ui.image(src='/images/Mike_Hatch.jpg' alt='100x100x7')
+                .ui.header
+                    | Mike Hatch
+                    span Pastor
+                p “I just wanted to say thank you for caring about us and our congregation. We have also noticed an increase in giving! Between the videos and the convenience that the app brings, this was a big step forward for our church. There are people giving now that never really gave before, simply because they don’t have to wait for Sunday morning. Thanks!”
+                p.testimonial-para
+                    | Balm of Gilead - Global Ministries
+                img.ui.medium.centered.circular.image(src='/images/Mike_Hatch.jpg' alt='100x100x7')
 
 
 template(name='packages')
@@ -278,135 +276,123 @@ template(name='contact_us')
 template(name='our_volunteers')
     .ui.basic.segment
         .ui.center.aligned.dividing.header
-            | OUR TEAM
+            | Our Team
     .ui.stackable.four.column.grid
         .centered.row
             .column
                 .ui.circular.segment
                     .ui.small.header Brandon Spencer
                     p Founder, CEO
-                    img.ui.medium.circular.image(src='/images/2603ece.jpg' alt='170x170x1')
+                    .iamge_wrapper
+                        img.ui.medium.circular.image.clip(src='/images/2603ece.jpg' alt='170x170x1')
             .column
                 .ui.circular.segment
                     .ui.small.header Oliver Sims
                     p CFO
-                    img.ui.medium.circular.image(src='/images/Oliver.jpg' alt='170x170x2')
+                    .iamge_wrapper
+                        img.ui.medium.circular.image.clip(src='/images/Oliver.jpg' alt='170x170x2')
             .column
                 .ui.circular.segment
                     .ui.small.header Frank White
                     p CTO
-                    img.ui.medium.circular.image(src='/images/biopic_fmw.png' alt='170x170x3')
+                    .iamge_wrapper
+                        img.ui.medium.circular.image.clip(src='/images/biopic_fmw.png' alt='170x170x3')
             .column
                 .ui.circular.segment
                     .ui.small.header Charles Whitby
                     p VP Sales and Marketing
-                    img.ui.medium.circular.image(src='/images/IMG_1239.JPG' alt='170x170x4')
+                    .iamge_wrapper
+                        img.ui.medium.circular.image.clip(src='/images/IMG_1239.JPG' alt='170x170x4')
             .column
                 .ui.circular.segment
                     .ui.small.header Palas Gajera
                     p Development Manager
-                    img.ui.medium.circular.image(src='/images/palas.JPG' alt='170x170x6')
+                    .iamge_wrapper
+                        img.ui.medium.circular.image.clip(src='/images/palas.JPG' alt='170x170x6')
             .column
                 .ui.circular.segment
                     .ui.small.header Cristina Mae Baluyot
                     p Partner Support Representative
-                    img.ui.medium.circular.image(src='/images/Mae.jpg' alt='170x170x6')
+                    .iamge_wrapper
+                        img.ui.medium.circular.image(src='/images/Mae.jpg' alt='170x170x6')
             .column
                 .ui.circular.segment
                     .ui.small.header Marvel Beraquit
                     p Partner Support Manager
-                    img.ui.medium.circular.image(src='/images/marv.jpg' alt='170x170x6')
+                    .iamge_wrapper
+                        img.ui.medium.circular.image(src='/images/marv.jpg' alt='170x170x6')
 
 
 
 template(name='our_features')
-    .ui.padded.stackable.two.column.grid
-        .row
-            .ui.heading-div-1.text-center
-                h2 Let&apos;s get you aboard.
-                img(src='/images/underline-1.png' alt='116x22')
-        .row
-            .column
-                .ui.icon.header
+    .ui.padded.stackable.grid
+        .centered.row
+            .twelve.wide.center.aligned.column
+                h1.ui.dividing.center.aligned.header Let's Get You Aboard
+        .centered.row
+            .six.wide.column
+                .ui.header
                     i.globe.icon
-                    .content Trusted &amp; Reliable
-                .list-content
-                    p.content-top-space1
-                        | Joyful Giver is a trusted giving platform, a BBB Accredited Business with A Rating.
-                    .content-top-space1
-                        // <a href="#" class="readmore">READ MORE <i class="fa fa-long-arrow-right" aria-hidden="true"></i
-            .column
-                .ui.icon.header
-                    i.cog.icon
+                    .content Trusted & Reliable
+                .f7 Joyful Giver is a trusted giving platform, a BBB Accredited Business with A Rating.
+                .ui.hidden.divider
+            .six.wide.column
+                .ui.header
+                    i.lightning.icon
                     .content Quick Start
-                .list-content
-                    p.content-top-space1
-                        | You can create your Giver account and share to your church or non profit in just minutes.
-                    .content-top-space1
-                        // <a href="#" class="readmore">READ MORE <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-            .column
-                .ui.icon.header
-                    i.cash.icon
+                .f7 You can create your Giver account and share to your church or non profit in just minutes.
+                .ui.hidden.divider
+            .six.wide.column
+                .ui.header
+                    i.money.icon
                     .content No penalties.
-                .list-content
-                    p.content-top-space1
-                        | Other donation services refund the money you&apos;ve raised if it doesn&apos;t meet your goal. Not with Joyful Giver.
-                    .content-top-space1
-                        // <a href="#" class="readmore">READ MORE <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-            .column
-                .ui.icon.header
+                .f7 Other donation services refund the money you've raised if it doesn't meet your goal. Not with Joyful Giver.
+                .ui.hidden.divider
+            .six.wide.column
+                .ui.header
                     i.mobile.icon
                     .content Go Mobile
-                .list-content
-                    p.content-top-space1 Use the Joyful Giver app to give to your church or non profit anytime, anywhere.
-                    .content-top-space1
-                        // <a href="#" class="readmore">READ MORE <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-            .column
-                .ui.icon.header
-                    i.line-chart.icon
+                .f7 Use the Joyful Giver app to give to your church or non profit anytime, anywhere.
+                .ui.hidden.divider
+            .six.wide.column
+                .ui.header
+                    i.users.icon
                     .content Online Community
-                .list-content
-                    p.content-top-space1
-                        | Once you&apos;ve put up your campaign online, we will be sending out emails to donors and organizations registered with Joyful Giver about this campaign. We&apos;ll also put it in all our social media platforms, letting the people know about your worthy cause.
-                    .content-top-space1
-                        // <a href="#" class="readmore">READ MORE <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-            .column
-                .ui.icon.header
+                .f7 Once you've put up your campaign online, we will be sending out emails to donors and organizations registered with Joyful Giver about this campaign. We'll also put it in all our social media platforms, letting the people know about your worthy cause.
+                .ui.hidden.divider
+            .six.wide.column
+                .ui.header
                     i.phone.icon
                     .content Partner Support
-                .list-content
-                    p.content-top-space1
-                        | From getting you onboard to giving you unlimited support while you are registered with Joyul Giver, your campaign&apos;s success is our success. Your partner support representatives are always ready to assist to every need.
-                    .content-top-space1
-                        // <a href="#" class="readmore">READ MORE <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-            .row.text-center
-                .ui.button
-                    a.ui.button(href='/register') Start A Giver Account
+                .f7 From getting you onboard to giving you unlimited support while you are registered with Joyul Giver, your campaign's success is our success. Your partner support representatives are always ready to assist to every need.
+                .ui.hidden.divider
+        .centered.row
+            a.ui.large.green.circular.button(href='/register') Start A Giver Account
 
 
 
 template(name='counter')
     .ui.padded.grid
-        .black.row
-            .col-xs-6.col-sm-3.text-center.counter-col
+        .black.four.column.row
+            .column
                 .counter-img
                     img(src='/images/100x100x1.png' alt='100x100x1')
                 p.counter-value.top-space10
                     span.count {{appstatics.amount}}
                 h4.counter-title.top-space10 TOTAL RAISED($)
-            .col-xs-6.col-sm-3.text-center.counter-col.counter1-resSpace
+            .column
                 .counter-img
                     img(src='/images/100x100x2.png' alt='100x100x2')
                 p.counter-value.top-space10
                     span.count {{appstatics.userCount}}
                 h4.counter-title.top-space10 GIVERS CONNECTED
-            .col-xs-6.col-sm-3.text-center.counter-col.counter-resSpace
+            .column
                 .counter-img
                     img(src='/images/100x100x3.png' alt='100x100x3')
                 p.counter-value.top-space10
                     span.count {{appstatics.churchCount}}
                 h4.counter-title.top-space10 HAPPY ORGANIZATIONS
-            .col-xs-6.col-sm-3.text-center.counter-col.counter-resSpace
+            .column
                 .counter-img
                     img(src='/images/100x100x4.png' alt='100x100x4')
                 p.counter-value.top-space10
@@ -433,48 +419,6 @@ template(name='care_senior_citizen')
             span
               a(href='https://play.google.com/store/apps/details?id=com.joyful_giver.jg&hl=en' target='_blank')
                 img(src='/image/google-play.png')
-
-
-template(name='free_camp')
-  section.section-padding.section-1-bg
-    .container
-      .heading-div-1.text-center
-        h2 FREE CAMP
-        img(src='/images/underline-1.png' alt='116x22')
-      .row
-        .col-sm-4.col-md-4.three-col-col.text-center.res-bottom-space30
-          .three-col-div
-            img.ui.image.ui.fluid.image(src='/images/380x300x10.jpg' alt='380x300x10')
-            .three-col-content
-              h4 EDUCATION CAMP FOR HOMELESS CHILDREN
-              p.content-top-space
-                | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consectetur non odio ut aliquet. Donec nulla libero, posuere in vestibulum.
-              .content-top-space1
-                a.readmore(href='#')
-                  | READ MORE
-                  i.fa.fa-long-arrow-right(aria-hidden='true')
-        .col-sm-4.col-md-4.three-col-col.text-center.res-bottom-space30
-          .three-col-div
-            img.ui.image.ui.fluid.image(src='/images/380x300x11.jpg' alt='380x300x11')
-            .three-col-content
-              h4 MEDICAL CAMP FOR REFUGEES CHILDREN
-              p.content-top-space
-                | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consectetur non odio ut aliquet. Donec nulla libero, posuere in vestibulum.
-              .content-top-space1
-                a.readmore(href='#')
-                  | READ MORE
-                  i.fa.fa-long-arrow-right(aria-hidden='true')
-        .col-sm-4.col-md-4.three-col-col.text-center
-          .three-col-div
-            img.ui.image.ui.fluid.image(src='/images/380x300x12.jpg' alt='380x300x12')
-            .three-col-content
-              h4 BLOOD DONATE CAMP FOR HOMELESS CHILDREN
-              p.content-top-space
-                | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consectetur non odio ut aliquet. Donec nulla libero, posuere in vestibulum.
-              .content-top-space1
-                a.readmore(href='#')
-                  | READ MORE
-                  i.fa.fa-long-arrow-right(aria-hidden='true')
 
 
 template(name='fund_needed')
@@ -645,7 +589,7 @@ template(name='causes')
                             source(src='/video/Explainer_Video_Joyful_Giver.mp4' type='video/mp4')
                             | Your browser does not support the video tag.
                 .col-sm-12.col-md-6
-                    h3 WHY YOU&apos;LL LOVE JOYFUL GIVER
+                    h3 WHY YOU'LL LOVE JOYFUL GIVER
                     p.content-top-space
                         | At its heart, Joyful Giver is a safe, secured, and simple way for donors to give to any cause from their smartphones. However, there&rsquo;s much more to it, like donation tracking for users (think taxes) and a web portal for registered nonprofits that allows them to customize their presence on Joyful Giver, track donations and receive donation payouts.
                     p.content-top-space
@@ -694,8 +638,8 @@ template(name='slider')
                         .side
                             img.ui.fluid.image.next(src='/images/ri4.jpg' alt='Mobile app responsive image')
                             .ui.container
-                                .ui.header Download the app now
                                 .ui.basic.segment
+                                    .ui.header Download the app now
                                     | The Joyful Giver mobile giving app is faster than online giving and easier than text-to-give, making it the best option during service or on the go.
                                     a(href='https://itunes.apple.com/us/app/joyful-giver/id1146177023?mt=8' target='_blank')
                                         img.ui.small.image(src='/image/app-store1.png')
@@ -729,43 +673,11 @@ template(name='what_we_do')
 
 
 
-
-template(name='make_child_smile')
-    section.section-padding.section-1-bg
-        .container
-            .heading-div-1.text-center
-                h2 TOP CAMPAIGNS
-                img(src='/images/underline-1.png' alt='116x22')
-            .row
-                each churchCampaignDet
-                    .col-sm-4.causes-col.text-center.res-bottom-space30
-                        .causes-div
-                            .causes-img
-                                img.ui.image.fixedheight(src='{{this.header_image}}' alt='380x300x1')
-                                .pie-title-center.demo-pie-1(data-percent='{{percentDonation this.raised this.Goal_Donation}}')
-                                    span.pie-value
-                            .causes-content
-                                ul.causes-goal.content-ul
-                                    li
-                                        | RAISED:
-                                        span {{totalRaised this.raised}}
-                                    li
-                                        | GOAL:
-                                        span ${{this.Goal_Donation}}
-                                h4.content-top-space {{this.campaign}}
-                                .ui.button
-                                    a.ui.button(href="{{pathFor 'customLanding' code=this.code}}") DONATE NOW
-
-
 template(name='video')
-    section#video.section-padding.section-1-bg
-        .container
-            .heading-div-1.text-center
-                h2 WHY SIGN UP WITH JOYFUL-GIVER?
-                img(src='/images/underline-1.png' alt='116x22')
-            .col-sm-12.text-center
-                .videoWrapper.video.embed-responsive.embed-responsive-16by9
-                    video(width='100%' controls='')
-                        source(src='/video/Explainer_Video_Joyful_Giver.mp4' type='video/mp4')
-                        |     Your browser does not support the video tag.
+    .ui.container
+        .ui.center.aligned.divided.header Why Sign Up with Joyful-Giver?
+        .videoWrapper.video.embed-responsive.embed-responsive-16by9
+            video(width='100%' controls='')
+                source(src='/video/Explainer_Video_Joyful_Giver.mp4' type='video/mp4')
+                |     Your browser does not support the video tag.
 
