@@ -1,29 +1,13 @@
 template(name='header')
     .ui.attached.borderless.menu
-        a.icon.item.toggle_topbar(href='#')
-            i.bars.icon
         a.icon.item.toggle_leftbar(href='#')
-            i.bars.icon
-        a.icon.item.toggle_rightbar(href='#')
             i.bars.icon
         .image.item
             a(href='/')
                 img.ui.tiny.image(src='/brand/Logorev01.png')
-        a.item(href='/campaigns')
-            i.bullhorn.grey.icon
-            .mobile.hidden Campaigns
-        a.item(href='/people')
-            i.users.grey.icon
-            .mobile.hidden People
-        a.item(href='/gallery')
-            i.users.picture.icon
-            .mobile.hidden Gallery
         if currentUser
-            a.item(href='/user_reports' title='Reports')
-                i.newspaper.grey.icon
-                .mobile.hidden Reports
             .right.menu
-                a.icon.item(href='/alerts' title='Alerts')
+                a.icon.item.toggle_topbar(href='#')
                     i.grey.bell.icon
                 a.icon.item(href='/mail' title='Mail')
                     i.grey.envelope.icon
@@ -34,6 +18,8 @@ template(name='header')
                 a.item(href='/dashboard')
                     i.grey.dashboard.icon
                     .mobile.hidden Dashboard
+                a.icon.item.toggle_rightbar(href='#')
+                    i.bars.icon
                 a.item(href='/account')
                     i.grey.user.icon
                     .mobile.hidden

@@ -3,7 +3,7 @@ template(name='nav')
         if currentUser
             .centered.nav_bar.row
                 .one.wide.column.pointer.toggle_leftbar.item
-                    .ui.inverted.header
+                    .ui.header
                         i.menu.icon
                         if current_type.icon
                             i.urrent_type.icon
@@ -40,56 +40,49 @@ template(name='topbar')
             .four.wide.column
             .four.wide.column
             .four.wide.column
+        a.icon.item(href='/alerts' title='Alerts')
 
 
 
 template(name='leftbar')
     .ui.left.vertical.sidebar.nav_bar.menu.leftbar
-        each bookmarks
-            a.item.pick_delta.toggle_leftbar(href='#')
-                .ui.small.inverted.header(title=title)
-                    i.icon
-                        i.con.icon
-                    | #{title}
+        a.item(href='/campaigns')
+            i.bullhorn.grey.icon
+            | Campaigns
+        a.item(href='/people')
+            i.users.grey.icon
+            | People
+        a.item(href='/gallery')
+            i.users.picture.icon
+            | Gallery
+        a.item(href='/user_reports' title='Reports')
+            i.newspaper.grey.icon
+            | Reports
+
 
 
 template(name='rightbar')
     .ui.right.vertical.sidebar.nav_bar.menu.rightbar
         .item
-            .ui.inverted.header
+            .ui.header
                 | #{currentUser.first_name} #{currentUser.last_name}
                 small @#{currentUser.username}
         .item.profile
-            .ui.inverted.small.header
-                i.leaderboard.icon
-                | Leaderboard
+            i.leaderboard.icon
+            | Leaderboard
         .item.profile
-            .ui.inverted.small.header
-                i.contacts.icon
-                | Profile
+            i.contacts.icon
+            | Profile
         .item.settings
-            .ui.inverted.small.header
-                i.settings.icon
-                | Settings
+            i.settings.icon
+            | Settings
         .item.sla
-            .ui.inverted.small.header
-                i.workflow.icon
-                | SLA Settings
-        .item
-            .ui.compact.icon.button.delete_delta(title='Clear Session')
-                i.remove.icon
-                |Clear
-            .ui.compact.icon.button.run_fo(title='Reload Session')
-                i.refresh.icon
-                // |Reset
-            if is_dev
-                .ui.icon.compact.button.show_delta
-                    i.code.icon
+            i.workflow.icon
+            | SLA Settings
         .item
             #logout.sixteen.wide.column
-                .ui.inverted.small.header
-                    // i.exit.icon
-                    if signing_out
+                // i.exit.icon
+                if signing_out
                         i.notched.circle.loading.big.icon
                     else
                         i.exit.icon

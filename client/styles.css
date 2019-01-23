@@ -66,6 +66,27 @@ a {
   clip: rect(0px,1000px,100px,0px) !important;
 }
 
+#container {
+   /*min-height:100%;*/
+   /*position:relative;*/
+  display: flex;
+  flex-direction: column;
+}
+#main {
+    min-height: 100vh;
+   /*min-height:100%;*/
+   /*position:relative;*/
+   /*padding:10px;*/
+   /*padding-bottom:200px;*/
+   /*height:100%;*/
+  flex: 1;
+}
+
+
+.rounded {
+  border-radius: 15px
+}
+
 
 
 .f10 {
