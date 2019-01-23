@@ -1,10 +1,10 @@
 template(name='account')
-    .ui.padded.stackable.three.column.grid
+    .ui.padded.stackable.grid
         .row
             .sixteen.wide.column
                 h2.ui.center.aligned.header My Account
         .row
-            .column
+            .four.wide.column
                 .ui.segment
                     .ui.header
                         i.user.icon
@@ -22,62 +22,30 @@ template(name='account')
                             label Profile Pic
                             input#Profile_photo.generate(type='file')
                     .ui.fluid.blue.button.update_profile Update
-            .column
-                +user_messages
-            .column
                 +password_editor
-            .column
                 +phone_editor
-            .column
-                .ui.segment
-                    .ui.small.header Payment Methods
-                    .panel-body
-                        .ui.button.addCard Add Card
-                        .clearfix
-                        if cards
-                            each cards
-                                +card_holder
-                        else
-                            .alert.alert-danger
-                                h3 You don't have any cards saved.
-                                p
-                                    | Add a card or simply Donate to a organization or cause to store cards for future use.
-            +add_card_modal
+            .twelve.wide.column
+                +user_messages
+                +payment_methods
 
 
-template(name='card_holder')
-    .well.well-default
-        .row
-            .col-lg-4
-                | {{brand}} {{last4}}
-                if default
-                    span.label.label-info Default
-                else
-                    span.btn.btn-default.btn-sm.make_default Make Default
-            .col-lg-4
-                | Expires {{exp_month}} / {{exp_year}}
-            .col-lg-4
-                .btn.btn-info.remove Remove
-                // <div class='btn btn-info edit'>Edit</div>
-
-
-template(name='phone_editor')
+template(name='payment_methods')
     .ui.segment
-        .ui.small.dividing.header
-            i.phone.icon
-            |Phone Number
-        .ui.labeled.icon.fluid.input
-            if currentUser.profile.phone_verified
-                .ui.green.label Verified
+        .ui.small.header
+            i.credit.card.icon
+            |Payment Methods
+        .panel-body
+            .ui.button.add_card Add Card
+            .clearfix
+            if cards
+                each cards
+                    +card_holder
             else
-                .ui.orange.label Unverified
-            i.link.refresh.icon.resend_verification(title='Resend Verification')
-            input#phone(type='phone' name='phone' value='{{newNumber}}')
-        i.remove.circular.red.link.icon.remove_phone(title='Remove Phone')
-        .ui.fluid.blue.button.update_phone Add / Update Phone
-
-template(name='add_card_modal')
-    #add_card_modal.modal(style='display:none')
+                .alert.alert-danger
+                    h3 You don't have any cards saved.
+                    p
+                        | Add a card or simply Donate to a organization or cause to store cards for future use.
+    #add_card_modal.ui.modal(style='display:none')
         .modal-dialog
             .modal-content
                 .modal-header
@@ -114,6 +82,36 @@ template(name='add_card_modal')
                 #edit_buttons.modal-footer(style='display:none')
                     .btn.btn-info.update_existing_card Update Card
                     .btn.btn-info.closePopup Cancel
+
+
+template(name='card_holder')
+    .ui.segment
+        | {{brand}} {{last4}}
+        if default
+            span.label.label-info Default
+        else
+            span.btn.btn-default.btn-sm.make_default Make Default
+        | Expires {{exp_month}} / {{exp_year}}
+        .ui.button.remove Remove
+        // <div class='btn btn-info edit'>Edit</div>
+
+
+template(name='phone_editor')
+    .ui.segment
+        .ui.small.dividing.header
+            i.phone.icon
+            |Phone Number
+        .ui.labeled.icon.fluid.input
+            if currentUser.profile.phone_verified
+                .ui.green.label Verified
+            else
+                .ui.orange.label Unverified
+            i.link.refresh.icon.resend_verification(title='Resend Verification')
+            input#phone(type='phone' name='phone' value='{{newNumber}}')
+        i.remove.circular.red.link.icon.remove_phone(title='Remove Phone')
+        .ui.fluid.blue.button.update_phone Add / Update Phone
+
+template(name='add_card_modal')
 
 
 

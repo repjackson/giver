@@ -46,11 +46,9 @@ template(name='task_item')
         .extra
             +voting
             +user_list_toggle key='bookmark_ids' add_icon='bookmark' remove_icon='bookmark' add_label='Bookmark' remove_label='Unbookmark' color='red' big=small
-            a.ui.circular.button(href="/task/#{_id}/view")
-                |View
-                i.right.chevron.icon
-            a.ui.icon.circular.button(href="/task/#{_id}/edit" title='Edit')
-                i.pencil.icon
+            +view_button_large
+            if is_author
+                +edit_button_big
 
 
 template(name='task_edit')
@@ -111,7 +109,8 @@ template(name='task_view')
                     a(href="/tasks" title='Tasks')
                         i.tasks.link.circular.icon
                     |View Task
-                +edit_button_big
+                if is_author
+                    +edit_button_big
                 +follow
             .twelve.wide.column
                 .ui.header

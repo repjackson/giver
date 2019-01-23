@@ -17,8 +17,18 @@ head
 
 
 template(name='layout')
-    +header
-    +yield
+    #container.context.example
+        // +nav
+        +header
+        .ui.bottom.attached.basic.segment.pushable
+            +topbar
+            +leftbar
+            +rightbar
+            .pusher
+                #main
+                    +yield
+
+
     // +footer
 
 

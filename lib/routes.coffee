@@ -157,7 +157,7 @@ Router.route 'user_profile', ->
 	path: '/user/profile/:_id'
 	layoutTemplate: 'layout'
 	waitOn: ->
-		Meteor.subscribe 'userProfilePub', @params._id
+		Meteor.subscribe 'user_profilePub', @params._id
 
 Router.route '/account', ->
 	console.log 'account'
@@ -415,9 +415,7 @@ Router.map ->
             templateData
 
 
-
-Router.route 'admin/users', ->
-    @render 'admin_users'
+Router.route 'admin/users', -> @render 'admin_users'
         # onBeforeAction: ->
         #     if Roles.userIsInRole(Meteor.user(), 'superadmin') or Roles.userIsInRole(Meteor.userId(), 'admin')
         #         @next()

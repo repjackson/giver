@@ -1,4 +1,4 @@
-Template.userProfile.helpers
+Template.user_profile.helpers
   userDet: ->
     Meteor.users.findOne '_id': Router.current().params._id
   'titheTotalGive': ->

@@ -1,0 +1,96 @@
+template(name='nav')
+    .ui.stackable.padded.grid.menu
+        if currentUser
+            .centered.nav_bar.row
+                .one.wide.column.pointer.toggle_leftbar.item
+                    .ui.inverted.header
+                        i.menu.icon
+                        if current_type.icon
+                            i.urrent_type.icon
+                        | #{current_type.title}
+                .one.wide.column.toggle_topbar.pointer
+                    i.contacts.icon
+                .one.wide.column.toggle_topbar.pointer
+                    i.shopping.icon
+                .eight.wide.column.pointer.toggle_topbar.item
+                    img.ui.small.centered.image(src='https://jan-pro.com/wp-content/themes/underboot/img/jan-pro-white.svg')
+                .one.wide.column.toggle_topbar.pointer
+                    i.bookmark.icon
+                .one.wide.column.toggle_topbar.pointer
+                    i.tasks.icon
+                .one.wide.column.toggle_topbar.pointer
+                    i.mailbox.icon
+                .one.wide.column.toggle_topbar.pointer
+                    i.appointment.icon
+                .one.wide.column.toggle_rightbar.pointer.item
+                    if currentUser.image_id
+                        img.ui.mini.centered.image(src="{{c.url currentUser.image_id width=50 height=50 gravity='face' crop='fill'}}")
+                    else
+                        i.gender.icon
+
+
+
+
+
+
+template(name='topbar')
+    .ui.top.sidebar.segment.push.nav_bar.row.topbar
+        .ui.grid
+            .four.wide.column
+            .four.wide.column
+            .four.wide.column
+            .four.wide.column
+
+
+
+template(name='leftbar')
+    .ui.left.vertical.sidebar.nav_bar.menu.leftbar
+        each bookmarks
+            a.item.pick_delta.toggle_leftbar(href='#')
+                .ui.small.inverted.header(title=title)
+                    i.icon
+                        i.con.icon
+                    | #{title}
+
+
+template(name='rightbar')
+    .ui.right.vertical.sidebar.nav_bar.menu.rightbar
+        .item
+            .ui.inverted.header
+                | #{currentUser.first_name} #{currentUser.last_name}
+                small @#{currentUser.username}
+        .item.profile
+            .ui.inverted.small.header
+                i.leaderboard.icon
+                | Leaderboard
+        .item.profile
+            .ui.inverted.small.header
+                i.contacts.icon
+                | Profile
+        .item.settings
+            .ui.inverted.small.header
+                i.settings.icon
+                | Settings
+        .item.sla
+            .ui.inverted.small.header
+                i.workflow.icon
+                | SLA Settings
+        .item
+            .ui.compact.icon.button.delete_delta(title='Clear Session')
+                i.remove.icon
+                |Clear
+            .ui.compact.icon.button.run_fo(title='Reload Session')
+                i.refresh.icon
+                // |Reset
+            if is_dev
+                .ui.icon.compact.button.show_delta
+                    i.code.icon
+        .item
+            #logout.sixteen.wide.column
+                .ui.inverted.small.header
+                    // i.exit.icon
+                    if signing_out
+                        i.notched.circle.loading.big.icon
+                    else
+                        i.exit.icon
+                    | Log Out

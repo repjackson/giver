@@ -359,7 +359,7 @@ Meteor.publish 'adminEmailList', ->
         'emails.address': 1
         'roles': 1
 
-Meteor.publish 'userProfilePub', (userId) ->
+Meteor.publish 'user_profilePub', (userId) ->
     tithes = Tithes.find({ userID: userId }, fields:
         'church': 1
         'churchCODE': 1
