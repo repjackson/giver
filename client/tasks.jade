@@ -117,10 +117,7 @@ template(name='task_view')
                 .ui.header
                     |#{title}
                 h4 #{body}
-                i.tags.icon
-                |Tags
-                each tags
-                    .ui.basic.circular.label #{this}
+                +tags_view_big
                 div
                 +user_list_toggle key='bookmark_ids' add_icon='bookmark' remove_icon='bookmark' add_label='Bookmark' remove_label='Unbookmark' color='red' big=true
                 div

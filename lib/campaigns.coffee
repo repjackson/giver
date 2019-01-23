@@ -8,8 +8,6 @@ Router.route '/campaign/:id/view', ->
     @render 'campaign_view'
 
 
-
-
 if Meteor.isClient
     @selected_tags = new ReactiveArray []
     @selected_usernames = new ReactiveArray []

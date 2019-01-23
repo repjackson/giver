@@ -331,6 +331,29 @@ Meteor.publish 'adminReportPub', ->
         churchCodes
     ]
 
+
+Meteor.publish 'type', (type)->
+    Docs.find
+        type:type
+
+Meteor.publish 'users', () ->
+    Meteor.users.find {
+        roles:$in:['user']},
+        limit:10
+
+
+Meteor.publish 'my_following', ->
+    me = Meteor.user()
+    Docs.find
+        follower_ids:$in:[me._id]
+
+Meteor.publish 'assigned_tasks', ->
+    Docs.find
+        assigned_ids:$in:[Meteor.userId()]
+
+
+
+
 Meteor.publish 'adminEmailList', ->
     Meteor.users.find {}, fields:
         'emails.address': 1

@@ -1,24 +1,22 @@
-Router.route '/chats', -> @render 'chats'
-Router.route '/chat/:id/edit', -> @render 'chat_edit'
-Router.route '/chat/:id/view', -> @render 'chat_view'
+Router.route '/inbox', -> @render 'inbox'
+Router.route '/message/:id/edit', -> @render 'message_edit'
+Router.route '/message/:id/view', -> @render 'message_view'
 
 
 if Meteor.isClient
-    @selected_tags = new ReactiveArray []
-    @selected_usernames = new ReactiveArray []
-    @selected_status = new ReactiveArray []
-
-    Template.chats.events
-        'click .add_chat': ->
-            new_chat_id = Docs.insert type:'chat'
-            Router.go "/chat/#{new_chat_id}/edit"
+    Template.inbox.onCreated ->
+        @autorun -> Meteor.subscribe 'inbox'
 
 
+    Template.inbox.events
+        'click .add_message': ->
+            new_message_id = Docs.insert type:'message'
+            Router.go "/message/#{new_message_id}/edit"
 
-    Template.chat_view.onCreated ->
+    Template.message_view.onCreated ->
         @autorun -> Meteor.subscribe 'children', Router.current().params.id
 
-    Template.chat_view.helpers
+    Template.message_view.helpers
         messages: ->
             Docs.find
                 type:'message'
@@ -26,56 +24,24 @@ if Meteor.isClient
 
 
 
-    Template.chats.helpers
-        chats: ->
+    Template.inbox.helpers
+        inbox: ->
             Docs.find
-                type:'chat'
+                type:'message'
+                to_user_id: Meteor.userId()
+
+    Template.inbox.events
 
 
-        selected_tags: -> selected_tags.list()
-
-        global_tags: ->
-            doccount = Docs.find().count()
-            if 0 < doccount < 3 then Tags.find { count: $lt: doccount } else Tags.find()
-
-        single_doc: ->
-            count = Docs.find({}).count()
-            if count is 1 then true else false
-
-        global_usernames: -> Usernames.find()
-        selected_usernames: -> selected_usernames.list()
-
-    Template.chats.onCreated ->
-        @autorun -> Meteor.subscribe('tags', selected_tags.array(), selected_usernames.array(), 'chat')
-        @autorun -> Meteor.subscribe('docs', selected_tags.array(), selected_usernames.array(), 'chat')
-
-    Template.chats.events
-        'click .select_tag': -> selected_tags.push @name
-        'click .unselect_tag': -> selected_tags.remove @valueOf()
-        'click #clear_tags': -> selected_tags.clear()
-        'keyup #search': (e)->
-            switch e.which
-                when 13
-                    if e.target.value is 'clear'
-                        selected_tags.clear()
-                        $('#search').val('')
-                    else
-                        selected_tags.push e.target.value.toLowerCase().trim()
-                        $('#search').val('')
-                when 8
-                    if e.target.value is ''
-                        selected_tags.pop()
-
-
-    Template.chat_edit.onCreated ->
+    Template.message_edit.onCreated ->
         @autorun -> Meteor.subscribe 'doc', Router.current().params.id
 
 
 
-    Template.chat_view.onCreated ->
+    Template.message_view.onCreated ->
         @autorun -> Meteor.subscribe 'doc', Router.current().params.id
 
-    Template.chat_view.events
+    Template.message_view.events
         'keyup .add_message': (e,t)->
             if e.which is 13
                 parent = Docs.findOne Router.current().params.id
@@ -91,32 +57,70 @@ if Meteor.isClient
                 Docs.remove @_id
 
 
+    Template.message_edit.onCreated ->
+        @user_results = new ReactiveVar
 
-    Template.chat_edit.events
-        'blur .title': (e,t)->
-            title = t.$('.title').val()
-            Docs.update Router.current().params.id,
-                $set:title:title
 
+    Template.message_edit.helpers
+        user_results: ->
+            user_results = Template.instance().user_results.get()
+            user_results
+
+    Template.message_edit.events
         'blur .body': (e,t)->
             body = t.$('.body').val()
             Docs.update Router.current().params.id,
                 $set:body:body
 
-        'keyup .new_tag': (e,t)->
-            if e.which is 13
-                tag = t.$('.new_tag').val().trim()
-                Docs.update Router.current().params.id,
-                    $addToSet:tags:tag
-                t.$('.new_tag').val('')
 
-        'click .remove_tag': (e,t)->
-            tag = @valueOf()
-            Docs.update Router.current().params.id,
-                $pull:tags:tag
-            t.$('.new_tag').val(tag)
+        'click .clear_results': (e,t)->
+            t.user_results.set null
 
-        'click .delete_chat': ->
-            if confirm 'Confirm delete chat'
+        'keyup #multiple_user_select_input': (e,t)->
+            search_value = $(e.currentTarget).closest('#multiple_user_select_input').val().trim()
+            Meteor.call 'lookup_user', search_value, (err,res)=>
+                if err then console.error err
+                else
+                    t.user_results.set res
+
+        'click .select_user': (e,t) ->
+            page_doc = Docs.findOne FlowRouter.getQueryParam('doc_id')
+            Meteor.call 'assign_user', page_doc._id, @, (err,res)=>
+            $('#multiple_user_select_input').val ''
+            t.user_results.set null
+            Docs.update page_doc._id,
+                $set: assignment_timestamp:Date.now()
+
+
+        'click .pull_user': ->
+            context = Template.currentData(0)
+            if confirm "Remove #{@username}?"
+                page_doc = Docs.findOne FlowRouter.getQueryParam('doc_id')
+                Meteor.call 'unassign_user', page_doc._id, @
+
+
+
+
+
+
+        'click .delete_message': ->
+            if confirm 'Confirm delete message'
                 Docs.remove @_id
-                Router.go '/chats'
+                Router.go '/inbox'
+
+
+
+if Meteor.isServer
+    Meteor.publish 'inbox', ->
+        Docs.find
+            type:'message'
+            to_user_id: Meteor.userId()
+
+
+    Meteor.methods
+        lookup_user: (username_query)->
+            found_users =
+                Meteor.users.find({
+                    username: {$regex:"#{username_query}", $options: 'i'}
+                    }).fetch()
+            found_users

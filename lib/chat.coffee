@@ -1,6 +1,6 @@
-Router.route '/inbox', -> @render 'inbox'
-Router.route '/message/:id/edit', -> @render 'message_edit'
-Router.route '/message/:id/view', -> @render 'message_view'
+Router.route '/chats', -> @render 'chats'
+Router.route '/chat/:id/edit', -> @render 'chat_edit'
+Router.route '/chat/:id/view', -> @render 'chat_view'
 
 
 if Meteor.isClient
@@ -8,17 +8,17 @@ if Meteor.isClient
     @selected_usernames = new ReactiveArray []
     @selected_status = new ReactiveArray []
 
-    Template.inbox.events
-        'click .add_message': ->
-            new_message_id = Docs.insert type:'message'
-            Router.go "/message/#{new_message_id}/edit"
+    Template.chats.events
+        'click .add_chat': ->
+            new_chat_id = Docs.insert type:'chat'
+            Router.go "/chat/#{new_chat_id}/edit"
 
 
 
-    Template.message_view.onCreated ->
+    Template.chat_view.onCreated ->
         @autorun -> Meteor.subscribe 'children', Router.current().params.id
 
-    Template.message_view.helpers
+    Template.chat_view.helpers
         messages: ->
             Docs.find
                 type:'message'
@@ -26,10 +26,10 @@ if Meteor.isClient
 
 
 
-    Template.inbox.helpers
-        inbox: ->
+    Template.chats.helpers
+        chats: ->
             Docs.find
-                type:'message'
+                type:'chat'
 
 
         selected_tags: -> selected_tags.list()
@@ -45,11 +45,11 @@ if Meteor.isClient
         global_usernames: -> Usernames.find()
         selected_usernames: -> selected_usernames.list()
 
-    Template.inbox.onCreated ->
-        @autorun -> Meteor.subscribe('tags', selected_tags.array(), selected_usernames.array(), 'message')
-        @autorun -> Meteor.subscribe('docs', selected_tags.array(), selected_usernames.array(), 'message')
+    Template.chats.onCreated ->
+        @autorun -> Meteor.subscribe('tags', selected_tags.array(), selected_usernames.array(), 'chat')
+        @autorun -> Meteor.subscribe('docs', selected_tags.array(), selected_usernames.array(), 'chat')
 
-    Template.inbox.events
+    Template.chats.events
         'click .select_tag': -> selected_tags.push @name
         'click .unselect_tag': -> selected_tags.remove @valueOf()
         'click #clear_tags': -> selected_tags.clear()
@@ -67,15 +67,15 @@ if Meteor.isClient
                         selected_tags.pop()
 
 
-    Template.message_edit.onCreated ->
+    Template.chat_edit.onCreated ->
         @autorun -> Meteor.subscribe 'doc', Router.current().params.id
 
 
 
-    Template.message_view.onCreated ->
+    Template.chat_view.onCreated ->
         @autorun -> Meteor.subscribe 'doc', Router.current().params.id
 
-    Template.message_view.events
+    Template.chat_view.events
         'keyup .add_message': (e,t)->
             if e.which is 13
                 parent = Docs.findOne Router.current().params.id
@@ -92,7 +92,7 @@ if Meteor.isClient
 
 
 
-    Template.message_edit.events
+    Template.chat_edit.events
         'blur .title': (e,t)->
             title = t.$('.title').val()
             Docs.update Router.current().params.id,
@@ -116,7 +116,7 @@ if Meteor.isClient
                 $pull:tags:tag
             t.$('.new_tag').val(tag)
 
-        'click .delete_message': ->
-            if confirm 'Confirm delete message'
+        'click .delete_chat': ->
+            if confirm 'Confirm delete chat'
                 Docs.remove @_id
-                Router.go '/inbox'
+                Router.go '/chats'

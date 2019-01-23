@@ -1,11 +1,6 @@
-Router.route '/posts', ->
-    @render 'posts'
-
-Router.route '/post/:id/edit', ->
-    @render 'post_edit'
-
-Router.route '/post/:id/view', ->
-    @render 'post_view'
+Router.route '/posts', -> @render 'posts'
+Router.route '/post/:id/edit', -> @render 'post_edit'
+Router.route '/post/:id/view', -> @render 'post_view'
 
 
 

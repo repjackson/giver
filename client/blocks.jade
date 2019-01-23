@@ -47,10 +47,6 @@ template(name='creation_info')
     .ui.header #{when}
 
 
-
-
-
-
 template(name='user_list_toggle')
     .ui.toggle.circular.button(class=user_list_toggle_class title=add_label)
         if in_list
@@ -64,8 +60,6 @@ template(name='user_list_toggle')
                 |#{add_label}
     each list_users
         +user_info
-
-
 
 
 template(name='voting')
@@ -137,9 +131,6 @@ template(name='toggle_button')
         i.icon(class=icon)
     each selected
         |#{username}
-
-
-
 
 
 template(name='view_user_button')
