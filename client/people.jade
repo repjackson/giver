@@ -21,27 +21,29 @@ template(name='people')
                     |#{this.name}
                     small #{this.count}
         .twelve.wide.column
-            each people
-                +person_item
+            .ui.stackable.four.cards
+                each people
+                    +person_card
 
 
-template(name='person_item')
-    .ui.segment
-        a.ui.header(href="/user/#{_id}/view")
-            |#{profile.name}
-            |#{profile.first_name} #{profile.last_name}
-        .description
-            .ui.small.header #{body}
-            i.tags.icon
-            each tags
-                .ui.basic.circular.label #{this}
-        .extra
-            +user_list_toggle key='bookmark_ids' add_icon='bookmark' remove_icon='bookmark' add_label='Bookmark' remove_label='Unbookmark' color='red' big=small
-            a.ui.circular.button(href="/user/profile/#{_id}")
-                |View
-                i.right.chevron.icon
-            a.ui.icon.circular.button(href="/person/#{_id}/edit" title='Edit')
-                i.pencil.icon
+template(name='person_card')
+    .ui.card
+        .content
+            a.ui.header(href="/user/#{_id}/view")
+                |#{profile.name}
+                |#{profile.first_name} #{profile.last_name}
+            .description
+                .ui.small.header #{body}
+                i.tags.icon
+                each tags
+                    .ui.basic.circular.label #{this}
+            .extra
+                +user_list_toggle key='bookmark_ids' add_icon='bookmark' remove_icon='bookmark' add_label='Bookmark' remove_label='Unbookmark' color='red' big=small
+                a.ui.circular.button(href="/user/#{_id}")
+                    |View
+                    i.right.chevron.icon
+                a.ui.icon.circular.button(href="/person/#{_id}/edit" title='Edit')
+                    i.pencil.icon
 
 
 template(name='person_view')

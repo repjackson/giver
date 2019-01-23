@@ -2,7 +2,7 @@ template(name='userDashboard')
     unless currentUser.profile.tour
         +newUserTour
     else
-        .ui.padded.three.column.grid
+        .ui.padded.three.column.stackable.grid
             .column
                 +give_stats
             .column

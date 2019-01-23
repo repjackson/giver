@@ -1,4 +1,4 @@
-Template.header.events
+Template.topnav.events
   'click .hide-menu': (event) ->
         event.preventDefault()
         if $(window).width() < 769
@@ -16,10 +16,10 @@ Template.header.events
         Meteor.logout ->
             Session.set 'logging_out', false
 
-Template.header.helpers
+Template.topnav.helpers
     logging_out: -> Session.get 'logging_out'
 
-Template.header.events
+Template.topnav.events
     'click #requestDemobtn': (e, t) ->
         data = {}
         data['firstName'] = $('#firstName').val()
@@ -65,7 +65,7 @@ Template.header.events
             $('#feedBack_email').val ''
             $('#feedbackForm').modal 'toggle'
 
-Template.header.onRendered ->
+Template.topnav.onRendered ->
     Meteor.setTimeout ->
         $('.item').popup()
     , 1000

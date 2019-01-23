@@ -17,9 +17,8 @@ head
 
 
 template(name='layout')
-    #container.context.example
-        +header
-        // +nav
+    #container.context
+        +topnav
         .ui.bottom.attached.basic.segment.pushable
             +topbar
             +leftbar
@@ -27,10 +26,7 @@ template(name='layout')
             .pusher
                 #main
                     +yield
-
-
-    // +footer
-
+        +bottomnav
 
 template(name='notFound')
     .ui.center.aligned.basic.segment

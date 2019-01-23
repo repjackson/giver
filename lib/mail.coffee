@@ -1,14 +1,14 @@
-Router.route '/inbox', -> @render 'inbox'
+Router.route '/mail', -> @render 'mail'
 Router.route '/message/:id/edit', -> @render 'message_edit'
 Router.route '/message/:id/view', -> @render 'message_view'
 
 
 if Meteor.isClient
-    Template.inbox.onCreated ->
+    Template.mail.onCreated ->
         @autorun -> Meteor.subscribe 'inbox'
 
 
-    Template.inbox.events
+    Template.mail.events
         'click .add_message': ->
             new_message_id = Docs.insert type:'message'
             Router.go "/message/#{new_message_id}/edit"
@@ -24,13 +24,13 @@ if Meteor.isClient
 
 
 
-    Template.inbox.helpers
+    Template.mail.helpers
         inbox: ->
             Docs.find
                 type:'message'
                 to_user_id: Meteor.userId()
 
-    Template.inbox.events
+    Template.mail.events
 
 
     Template.message_edit.onCreated ->

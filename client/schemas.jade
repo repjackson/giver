@@ -1,12 +1,12 @@
-template(name='tasks')
+template(name='schemas')
     .ui.stackable.padded.grid
         .four.wide.column
             .ui.center.aligned.header
-                i.tasks.icon
-                |Tasks
-            .ui.circular.fluid.button.add_task
+                i.schemas.icon
+                |schemas
+            .ui.circular.fluid.button.add_schema
                 i.plus.icon
-                |Add Task
+                |Add schema
             .ui.small.header
                 i.tags.icon
                 |Filter Tags
@@ -24,13 +24,13 @@ template(name='tasks')
                     |#{this.name}
                     // small #{this.count}
         .twelve.wide.column
-            each tasks
-                +task_item
+            each schemas
+                +schema_item
 
 
-template(name='task_item')
+template(name='schema_item')
     .ui.segment
-        a.ui.header(href="/task/#{_id}/view")
+        a.ui.header(href="/schema/#{_id}/view")
             if complete
                 i.green.checkmark.icon
             |#{title}
@@ -51,17 +51,17 @@ template(name='task_item')
                 +edit_button_big
 
 
-template(name='task_edit')
+template(name='schema_edit')
     with doc
         .ui.stackable.padded.grid
             .four.wide.column
                 .ui.header
                     i.pencil.icon
-                    |Edit Task
-                a.ui.fluid.circular.button(href="/task/#{_id}/view")
+                    |Edit schema
+                a.ui.fluid.circular.button(href="/schema/#{_id}/view")
                     i.checkmark.icon
                     |Save
-                .ui.circular.button.delete_task
+                .ui.circular.button.delete_schema
                     i.remove.icon
                     |Delete
             .twelve.wide.column
@@ -102,14 +102,14 @@ template(name='task_edit')
                             label Assignee: #{asignee}
                             input.assignee(type='text' value=asignee)
 
-template(name='task_view')
+template(name='schema_view')
     with doc
         .ui.stackable.padded.grid
             .four.wide.column
                 .ui.header
-                    a(href="/tasks" title='Tasks')
-                        i.tasks.link.circular.icon
-                    |View Task
+                    a(href="/schemas" title='schemas')
+                        i.schemas.link.circular.icon
+                    |View schema
                 if is_author
                     +edit_button_big
                 +follow

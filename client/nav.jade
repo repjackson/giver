@@ -1,0 +1,58 @@
+template(name='topnav')
+    .ui.attached.borderless.menu
+        a.icon.item.toggle_leftbar(href='#')
+            i.bars.icon
+        .image.item
+            a(href='/')
+                img.ui.tiny.image(src='/brand/Logorev01.png')
+        if currentUser
+            .right.menu
+                a.icon.item.toggle_topbar(href='#')
+                    i.grey.bell.icon
+                a.icon.item(href='/mail' title='Mail')
+                    i.grey.envelope.icon
+                a.icon.item(href='/chats' title='Chat')
+                    i.grey.chat.icon
+                a.icon.item(href='/tasks' title='Tasks')
+                    i.grey.tasks.icon
+                a.item(href='/dashboard')
+                    i.grey.dashboard.icon
+                    .mobile.hidden Dashboard
+                a.icon.item.toggle_rightbar(href='#')
+                    i.grey.user.icon
+                    |#{currentUser.username}
+        else
+            .right.menu
+                a.item(href='/campaigns') Campaigns
+                a.item(href='/gallery') Gallery
+                a.item(href='/contact') Contact Us
+                a.item(href='/login') Login
+                a.item(href='/register') Register
+
+template(name='bottomnav')
+    .ui.bottom.fixed.borderless.menu
+        a.icon.item.toggle_leftbar(href='#')
+            i.bars.icon
+        if currentUser
+            .right.menu
+                a.icon.item.toggle_topbar(href='#')
+                    i.grey.bell.icon
+                a.icon.item(href='/mail' title='Mail')
+                    i.grey.envelope.icon
+                a.icon.item(href='/chats' title='Chat')
+                    i.grey.chat.icon
+                a.icon.item(href='/tasks' title='Tasks')
+                    i.grey.tasks.icon
+                a.item(href='/dashboard')
+                    i.grey.dashboard.icon
+                    .mobile.hidden Dashboard
+                a.icon.item.toggle_rightbar(href='#')
+                    i.grey.user.icon
+                    |#{currentUser.username}
+        else
+            .right.menu
+                a.item(href='/campaigns') Campaigns
+                a.item(href='/gallery') Gallery
+                a.item(href='/contact') Contact Us
+                a.item(href='/login') Login
+                a.item(href='/register') Register

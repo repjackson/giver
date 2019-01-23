@@ -6,39 +6,45 @@ Template.leftbar.onRendered ->
     @autorun =>
         if @subscriptionsReady()
             Meteor.setTimeout ->
-                $('.context.example .ui.left.sidebar')
+                $('.context .ui.left.sidebar')
                     .sidebar({
-                        context: $('.context.example .bottom.segment')
+                        context: $('.context .bottom.segment')
+                        exclusive: false
+                        delaySetup:false
                         dimPage: false
                         transition:  'push'
                     })
-                    .sidebar('attach events', '.context.example .menu .toggle_leftbar')
-            , 750
+                    .sidebar('attach events', '.toggle_leftbar')
+            , 1000
 
 Template.topbar.onRendered ->
     @autorun =>
         if @subscriptionsReady()
             Meteor.setTimeout ->
-                $('.context.example .ui.top.sidebar')
+                $('.context .ui.top.sidebar')
                     .sidebar({
-                        context: $('.context.example .bottom.segment')
+                        context: $('.context .bottom.segment')
+                        exclusive: false
+                        delaySetup:false
                         dimPage: false
                         transition:  'push'
                     })
-                    .sidebar('attach events', '.context.example .menu .toggle_topbar')
-            , 750
+                    .sidebar('attach events', '.toggle_topbar')
+            , 1000
 
 Template.rightbar.onRendered ->
     if @subscriptionsReady()
             Meteor.setTimeout ->
-                $('.context.example .ui.right.sidebar')
+                $('.context .ui.right.sidebar')
                     .sidebar({
-                        context: $('.context.example .bottom.segment')
+                        context: $('.context .bottom.segment')
+                        exclusive: false
+                        delaySetup:false
                         dimPage: false
                         transition:  'push'
                     })
-                    .sidebar('attach events', '.context.example .menu .toggle_rightbar')
-            , 750
+                    .sidebar('attach events', '.toggle_rightbar')
+            , 1000
 
 
 
