@@ -37,12 +37,6 @@ a {
   height:100%;
 }
 
-/*.youtube{*/
-/*  filter: invert(100%);*/
-/*}*/
-/*.ui.button, .ui.label{*/
-/*  margin:.1em !important;*/
-/*}*/
 
 .button {
   animation: fadein .5s;
@@ -246,15 +240,6 @@ a {
   font-size: 1000%
 }
 
-.black_bat {
-  font-family: 'black_bat' !important;
-}
-
-.white_bat {
-  font-family: 'white_bat' !important;
-  /*font: white !important;*/
-}
-
 
 
 ::-webkit-scrollbar-thumb {
@@ -269,7 +254,7 @@ a {
 .scrolling{
   overflow-y:scroll;
   overflow-x:hidden;
-  max-height:800px;
+  /*max-height:800px;*/
   padding: 1em;
 }
 

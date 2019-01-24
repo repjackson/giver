@@ -20,8 +20,6 @@ Meteor.publish 'tags', (selected_tags, selected_author_ids, type)->
     if selected_tags.length > 0 then match.tags = $all: selected_tags
     if selected_author_ids.length > 0 then match.author_id = $in: selected_author_ids
 
-    console.log match
-
     cloud = Docs.aggregate [
         { $match: match }
         { $project: tags: 1 }
@@ -33,7 +31,6 @@ Meteor.publish 'tags', (selected_tags, selected_author_ids, type)->
         { $project: _id: 0, name: '$_id', count: 1 }
         ]
     cloud.forEach (tag) ->
-        console.log tag
         self.added 'Tags', Random.id(),
             name: tag.name
             count: tag.count

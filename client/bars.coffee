@@ -1,5 +1,5 @@
 Template.leftbar.onCreated ->
-    @autorun => Meteor.subscribe 'type', 'schema', 200
+    # @autorun => Meteor.subscribe 'type', 'schema', 200
 
 
 Template.leftbar.onRendered ->
@@ -27,10 +27,25 @@ Template.topbar.onRendered ->
                         exclusive: false
                         delaySetup:false
                         dimPage: false
-                        transition:  'push'
+                        transition:  'overlay'
                     })
                     .sidebar('attach events', '.toggle_topbar')
             , 1000
+
+# Template.bottombar.onRendered ->
+#     @autorun =>
+#         if @subscriptionsReady()
+#             Meteor.setTimeout ->
+#                 $('.context .ui.bottom.sidebar')
+#                     .sidebar({
+#                         context: $('.context .bottom.segment')
+#                         exclusive: false
+#                         delaySetup:false
+#                         dimPage: false
+#                         transition:  'overlay'
+#                     })
+#                     .sidebar('attach events', '.toggle_bottombar')
+#             , 1000
 
 Template.rightbar.onRendered ->
     if @subscriptionsReady()

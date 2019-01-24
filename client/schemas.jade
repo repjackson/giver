@@ -2,11 +2,11 @@ template(name='schemas')
     .ui.stackable.padded.grid
         .four.wide.column
             .ui.center.aligned.header
-                i.schemas.icon
-                |schemas
+                i.sitemap.icon
+                | Schemas
             .ui.circular.fluid.button.add_schema
                 i.plus.icon
-                |Add schema
+                |Add Schema
             .ui.small.header
                 i.tags.icon
                 |Filter Tags
@@ -39,16 +39,11 @@ template(name='schema_item')
             i.tags.icon
             each tags
                 .ui.basic.circular.label #{this}
-            i.calendar.circular.icon(title='Due Date')
-            |#{due_date}
-            i.user.circular.icon(title='Assignee')
-            |#{assignee}
         .extra
-            +voting
             +user_list_toggle key='bookmark_ids' add_icon='bookmark' remove_icon='bookmark' add_label='Bookmark' remove_label='Unbookmark' color='red' big=small
             +view_button_big
             if is_author
-                +edit_button_big
+                +edit_button_small
 
 
 template(name='schema_edit')
@@ -57,7 +52,7 @@ template(name='schema_edit')
             .four.wide.column
                 .ui.header
                     i.pencil.icon
-                    |Edit schema
+                    |Edit Schema
                 a.ui.fluid.circular.button(href="/schema/#{_id}/view")
                     i.checkmark.icon
                     |Save
@@ -73,19 +68,8 @@ template(name='schema_edit')
                         .field
                             label Notes
                             textarea.body(rows='5') #{body}
-                        .two.fields
-                            .field
-                                label Priority
-                                .ui.circular.button High
-                                .ui.circular.button Medium
-                                .ui.circular.button Low
-                            .field
-                                label Status
-                                .ui.circular.button.toggle_complete(class="{{#if complete}} green {{/if}}")
-                                    if complete
-                                        |Complete
-                                    else
-                                        |Incomplete
+
+                        +array_edit key='tags'
                         .field
                             label Tags
                             each tags
@@ -95,12 +79,6 @@ template(name='schema_edit')
                             .ui.icon.input
                                 input.new_tag(type='text' placeholder='Add tag...')
                                 i.plus.icon
-                        .field
-                            label Due Date: #{due_date}
-                            input.due_date(type='date' value=due_date)
-                        .field
-                            label Assignee: #{asignee}
-                            input.assignee(type='text' value=asignee)
 
 template(name='schema_view')
     with doc
@@ -108,7 +86,7 @@ template(name='schema_view')
             .four.wide.column
                 .ui.header
                     a(href="/schemas" title='schemas')
-                        i.schemas.link.circular.icon
+                        i.sitemap.circular.icon
                     |View schema
                 if is_author
                     +edit_button_big

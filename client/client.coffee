@@ -19,6 +19,13 @@ Template.registerHelper 'doc', () ->
     Docs.findOne Router.current().params.id
 
 
+Template.registerHelper 'brick_value', () ->
+    parent = Template.parentData()
+    if parent["#{@key}"] then parent["#{@key}"]
+
+
+
+
 Meteor.startup ->
     Meteor.call 'PUBLIC_SETTINGS', (error, result) ->
         Session.set 'SETTINGS', result

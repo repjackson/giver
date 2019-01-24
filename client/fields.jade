@@ -70,11 +70,10 @@ template(name='date_view')
 
 template(name='array_edit')
     .field
-        // label #{brick_key}
-        // |#{brick_value}
+        label #{key}
         if brick_value
             each brick_value
-                .ui.label
+                .ui.basic.label
                     i.remove.link.icon.remove_element
                     |#{this}
         .ui.icon.input

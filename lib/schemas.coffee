@@ -8,6 +8,9 @@ if Meteor.isClient
     @selected_usernames = new ReactiveArray []
     @selected_status = new ReactiveArray []
 
+    Template.schemas.onCreated ->
+        @autorun -> Meteor.subscribe('tags', selected_tags.array(), selected_usernames.array(), 'schema')
+        @autorun -> Meteor.subscribe('docs', selected_tags.array(), selected_usernames.array(), 'schema')
     Template.schemas.events
         'click .add_schema': ->
             new_schema_id = Docs.insert type:'schema'
@@ -30,9 +33,6 @@ if Meteor.isClient
         global_usernames: -> Usernames.find()
         selected_usernames: -> selected_usernames.list()
 
-    Template.schemas.onCreated ->
-        @autorun -> Meteor.subscribe('tags', selected_tags.array(), selected_usernames.array(), 'schema')
-        @autorun -> Meteor.subscribe('docs', selected_tags.array(), selected_usernames.array(), 'schema')
 
     Template.schemas.events
         'click .select_tag': -> selected_tags.push @name
@@ -66,16 +66,6 @@ if Meteor.isClient
             console.log title
             Docs.update Router.current().params.id,
                 $set:title:title
-
-        'blur .due_date': (e,t)->
-            due_date = t.$('.due_date').val()
-            Docs.update Router.current().params.id,
-                $set:due_date:due_date
-
-        'blur .assignee': (e,t)->
-            assignee = t.$('.assignee').val()
-            Docs.update Router.current().params.id,
-                $set:assignee:assignee
 
         'blur .body': (e,t)->
             body = t.$('.body').val()

@@ -40,6 +40,22 @@ template(name='topbar')
         a.icon.item(href='/alerts' title='Alerts')
 
 
+template(name='bottombar')
+    .ui.bottom.sidebar.segment.push.nav_bar.row.bottombar
+        .ui.header hi
+        .ui.header hi
+        .ui.header hi
+        .ui.header hi
+        .ui.header hi
+        .ui.header hi
+        .ui.grid
+            .four.wide.column
+            .four.wide.column
+            .four.wide.column
+            .four.wide.column
+        a.icon.item(href='/alerts' title='Alerts')
+
+
 
 template(name='leftbar')
     .ui.left.vertical.thin.sidebar.nav_bar.menu.leftbar
@@ -87,6 +103,6 @@ template(name='rightbar')
             .icon.disabled.item.toggle_rightbar
                     i.notched.circle.loading.big.icon
         else
-            #logout.item.toggle_rightbar
+            a#logout.item.toggle_rightbar(href='#')
                 i.sign.out.icon
                 | Log Out
