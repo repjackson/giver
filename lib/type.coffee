@@ -36,7 +36,7 @@ if Meteor.isClient
     Template.type.events
         'click .add_type_doc': ->
             new_doc_id = Docs.insert type:Router.current().params.type
-            Router.go "/s/#{type}/#{new_doc_id}/edit"
+            Router.go "/s/#{@type}/#{new_doc_id}/edit"
 
         'click .select_tag': -> selected_tags.push @name
         'click .unselect_tag': -> selected_tags.remove @valueOf()

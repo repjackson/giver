@@ -39,7 +39,7 @@ a {
 
 
 .button {
-  animation: fadein .5s;
+  animation: fadein .75s;
 }
 @keyframes fadein {
   from { opacity: 0}

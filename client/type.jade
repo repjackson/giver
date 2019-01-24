@@ -8,12 +8,13 @@ template(name='type')
                 .ui.circular.fluid.button.add_type_doc
                     i.plus.icon
                     |Add #{title}
-                .ui.small.header
-                    i.tags.grey.icon
-                    |Filter Tags
-                .ui.icon.small.input
-                    i.search.icon
-                    input#search(type='text' autocomplete='off' placeholder='Search Tags')
+                .ui.hidden.divider
+                i.tags.grey.icon
+                // .ui.small.header
+                //     |Filter Tags
+                // .ui.icon.small.transparent.input
+                //     i.search.icon
+                //     input#search(type='text' autocomplete='off' placeholder='Search Tags')
                 if selected_tags
                     #clear_tags.ui.red.icon.circular.button
                         i.remove.icon
@@ -31,7 +32,7 @@ template(name='type')
 
 
 template(name='type_item')
-    .ui.segment
+    .ui.secondary.segment
         a.ui.header(href="/s/#{type}/#{_id}/view")
             if icon
                 i.grey.icon(class=icon)
@@ -62,6 +63,8 @@ template(name='type_edit')
             .twelve.wide.column
                 .ui.segment
                     .ui.form
+                        each schema_fields
+                            +field_edit
                         +text_edit key='title'
                         +text_edit key='plural'
                         +text_edit key='slug'

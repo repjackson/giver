@@ -1,5 +1,5 @@
 template(name='topnav')
-    .ui.attached.borderless.menu
+    .ui.attached.borderless.secondary.menu
         a.icon.item.toggle_leftbar(href='#')
             i.bars.icon
         .image.item
@@ -9,11 +9,11 @@ template(name='topnav')
             .right.menu
                 a.icon.item.toggle_topbar(href='#')
                     i.grey.bell.icon
-                a.icon.item(href='/mail' title='Mail')
+                a.icon.item(href='/s/message' title='Mail')
                     i.grey.envelope.icon
-                a.icon.item(href='/chats' title='Chat')
+                a.icon.item(href='/s/chat' title='Chat')
                     i.grey.chat.icon
-                a.icon.item(href='/tasks' title='Tasks')
+                a.icon.item(href='/s/task' title='Tasks')
                     i.grey.tasks.icon
                 a.item(href='/dashboard')
                     i.grey.dashboard.icon
@@ -30,7 +30,7 @@ template(name='topnav')
                 a.item(href='/register') Register
 
 template(name='bottomnav')
-    .ui.bottom.fixed.borderless.menu
+    .ui.bottom.fixed.borderless.secondary.menu
         a.icon.item.toggle_leftbar(href='#')
             i.bars.icon
         // a.icon.item.toggle_bottombar(href='#')
@@ -40,11 +40,11 @@ template(name='bottomnav')
             .right.menu
                 a.icon.item.toggle_topbar(href='#')
                     i.grey.bell.icon
-                a.icon.item(href='/mail' title='Mail')
+                a.icon.item(href='/s/message' title='Mail')
                     i.grey.envelope.icon
-                a.icon.item(href='/chats' title='Chat')
+                a.icon.item(href='/s/chat' title='Chat')
                     i.grey.chat.icon
-                a.icon.item(href='/tasks' title='Tasks')
+                a.icon.item(href='/s/task' title='Tasks')
                     i.grey.tasks.icon
                 a.item(href='/dashboard')
                     i.grey.dashboard.icon
@@ -59,38 +59,6 @@ template(name='bottomnav')
                 a.item(href='/contact') Contact Us
                 a.item(href='/login') Login
                 a.item(href='/register') Register
-
-
-template(name='nav')
-    .ui.stackable.padded.grid.menu
-        if currentUser
-            .centered.nav_bar.row
-                .one.wide.column.pointer.toggle_leftbar.item
-                    .ui.header
-                        i.menu.icon
-                        if current_type.icon
-                            i.urrent_type.icon
-                        | #{current_type.title}
-                .one.wide.column.toggle_topbar.pointer
-                    i.contacts.icon
-                .one.wide.column.toggle_topbar.pointer
-                    i.shopping.icon
-                .eight.wide.column.pointer.toggle_topbar.item
-                    img.ui.small.centered.image(src='https://jan-pro.com/wp-content/themes/underboot/img/jan-pro-white.svg')
-                .one.wide.column.toggle_topbar.pointer
-                    i.bookmark.icon
-                .one.wide.column.toggle_topbar.pointer
-                    i.tasks.icon
-                .one.wide.column.toggle_topbar.pointer
-                    i.mailbox.icon
-                .one.wide.column.toggle_topbar.pointer
-                    i.appointment.icon
-                .one.wide.column.toggle_rightbar.pointer.item
-                    if currentUser.image_id
-                        img.ui.mini.centered.image(src="{{c.url currentUser.image_id width=50 height=50 gravity='face' crop='fill'}}")
-                    else
-                        i.gender.icon
-
 
 
 template(name='topbar')
@@ -121,7 +89,7 @@ template(name='bottombar')
 
 
 template(name='leftbar')
-    .ui.left.vertical.thin.sidebar.nav_bar.menu.leftbar
+    .ui.left.vertical.thin.sidebar.nav_bar.secondary.menu.leftbar
         each schemas
             a.item.toggle_leftbar(href="/s/#{slug}")
                 i.grey.icon(class=icon)
@@ -129,9 +97,9 @@ template(name='leftbar')
         a.item.toggle_leftbar(href='/people')
             i.users.grey.icon
             | People
-        a.item.toggle_leftbar(href='/schemas')
-            i.sitemap.grey.icon
-            | Schemas
+        // a.item.toggle_leftbar(href='/schemas')
+        //     i.sitemap.grey.icon
+        //     | Schemas
         a.item.toggle_leftbar(href='/user_reports')
             i.newspaper.grey.icon
             | Reports
@@ -139,7 +107,7 @@ template(name='leftbar')
 
 
 template(name='rightbar')
-    .ui.right.vertical.sidebar.nav_bar.menu.rightbar
+    .ui.right.vertical.sidebar.nav_bar.secondary.menu.rightbar
         .item.toggle_rightbar
             | #{currentUser.profile.first_name} #{currentUser.profile.last_name}
             | #{currentUser.username} #{currentUser.profile.name}

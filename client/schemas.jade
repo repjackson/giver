@@ -1,91 +1,91 @@
-template(name='schemas')
-    .ui.stackable.padded.grid
-        .four.wide.column
-            .ui.center.aligned.header
-                i.sitemap.icon
-                | Schemas
-            .ui.circular.fluid.button.add_schema
-                i.plus.icon
-                |Add Schema
-            .ui.small.header
-                i.tags.grey.icon
-                |Filter Tags
-            .ui.icon.small.input
-                i.search.icon
-                input#search(type='text' autocomplete='off' placeholder='Search Tags')
-            if selected_tags
-                #clear_tags.ui.red.icon.circular.button
-                    i.remove.icon
-            each selected_tags
-                .unselect_tag.ui.red.circular.button
-                    b #{this}
-            each global_tags
-                .select_tag.ui.circular.button
-                    |#{this.name}
-                    // small #{this.count}
-        .twelve.wide.column
-            each schemas
-                +schema_item
+// template(name='schemas')
+//     .ui.stackable.padded.grid
+//         .four.wide.column
+//             .ui.center.aligned.header
+//                 i.sitemap.icon
+//                 | Schemas
+//             .ui.circular.fluid.button.add_schema
+//                 i.plus.icon
+//                 |Add Schema
+//             .ui.small.header
+//                 i.tags.grey.icon
+//                 |Filter Tags
+//             .ui.icon.small.input
+//                 i.search.icon
+//                 input#search(type='text' autocomplete='off' placeholder='Search Tags')
+//             if selected_tags
+//                 #clear_tags.ui.red.icon.circular.button
+//                     i.remove.icon
+//             each selected_tags
+//                 .unselect_tag.ui.red.circular.button
+//                     b #{this}
+//             each global_tags
+//                 .select_tag.ui.circular.button
+//                     |#{this.name}
+//                     // small #{this.count}
+//         .twelve.wide.column
+//             each schemas
+//                 +schema_item
 
 
-template(name='schema_item')
-    .ui.segment
-        a.ui.header(href="/schema/#{_id}/view")
-            i.grey.icon(class=icon)
-            |#{title}
-        .description
-            .ui.small.header #{body}
-            +tags_view_small
-        .extra
-            +user_list_toggle key='bookmark_ids' add_icon='bookmark' remove_icon='bookmark' add_label='Bookmark' remove_label='Unbookmark' color='red' big=small
-            +view_button_big
-            if is_author
-                +edit_button_small
+// template(name='schema_item')
+//     .ui.segment
+//         a.ui.header(href="/schema/#{_id}/view")
+//             i.grey.icon(class=icon)
+//             |#{title}
+//         .description
+//             .ui.small.header #{body}
+//             +tags_view_small
+//         .extra
+//             +user_list_toggle key='bookmark_ids' add_icon='bookmark' remove_icon='bookmark' add_label='Bookmark' remove_label='Unbookmark' color='red' big=small
+//             +view_button_big
+//             if is_author
+//                 +edit_button_small
 
 
-template(name='schema_edit')
-    with doc
-        .ui.stackable.padded.grid
-            .four.wide.column
-                .ui.header
-                    i.pencil.icon
-                    |Edit Schema
-                a.ui.fluid.circular.button(href="/schema/#{_id}/view")
-                    i.checkmark.icon
-                    |Save
-                .ui.circular.button.delete_schema
-                    i.remove.icon
-                    |Delete
-            .twelve.wide.column
-                .ui.segment
-                    .ui.form
-                        +text_edit key='title'
-                        +text_edit key='plural'
-                        +text_edit key='slug'
-                        +text_edit key='icon'
-                        .field
-                            label Notes
-                            textarea.body(rows='5') #{body}
+// template(name='schema_edit')
+//     with doc
+//         .ui.stackable.padded.grid
+//             .four.wide.column
+//                 .ui.header
+//                     i.pencil.icon
+//                     |Edit Schema
+//                 a.ui.fluid.circular.button(href="/schema/#{_id}/view")
+//                     i.checkmark.icon
+//                     |Save
+//                 .ui.circular.button.delete_schema
+//                     i.remove.icon
+//                     |Delete
+//             .twelve.wide.column
+//                 .ui.segment
+//                     .ui.form
+//                         +text_edit key='title'
+//                         +text_edit key='plural'
+//                         +text_edit key='slug'
+//                         +text_edit key='icon'
+//                         .field
+//                             label Notes
+//                             textarea.body(rows='5') #{body}
 
-                        +array_edit key='tags'
+//                         +array_edit key='tags'
 
-template(name='schema_view')
-    with doc
-        .ui.stackable.padded.grid
-            .four.wide.column
-                .ui.header
-                    a(href="/schemas" title='schemas')
-                        i.sitemap.circular.icon
-                    |View Schema
-                if is_author
-                    +edit_button_big
-            .twelve.wide.column
-                .ui.header
-                    i.grey.icon(class=icon)
-                    |#{plural}
-                h4 #{body}
-                +tags_view_big
-                div
-                +user_list_toggle key='bookmark_ids' add_icon='bookmark' remove_icon='bookmark' add_label='Bookmark' remove_label='Unbookmark' color='red' big=true
-                div
-                +comments
+// template(name='schema_view')
+//     with doc
+//         .ui.stackable.padded.grid
+//             .four.wide.column
+//                 .ui.header
+//                     a(href="/schemas" title='schemas')
+//                         i.sitemap.circular.icon
+//                     |View Schema
+//                 if is_author
+//                     +edit_button_big
+//             .twelve.wide.column
+//                 .ui.header
+//                     i.grey.icon(class=icon)
+//                     |#{plural}
+//                 h4 #{body}
+//                 +tags_view_big
+//                 div
+//                 +user_list_toggle key='bookmark_ids' add_icon='bookmark' remove_icon='bookmark' add_label='Bookmark' remove_label='Unbookmark' color='red' big=true
+//                 div
+//                 +comments
