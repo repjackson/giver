@@ -80,6 +80,11 @@ Docs.helpers
         Meteor.users.find
             _id: $in: @upvoters_ids
 
+    schema: ->
+        Docs.findOne
+            type:'schema'
+            slug:@type
+
 
 Slingshot.fileRestrictions 'myFileUploads',
     allowedFileTypes: [

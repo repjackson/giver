@@ -62,7 +62,7 @@ Template.user_list_toggle.onCreated ->
     @autorun => Meteor.subscribe 'user_list', Template.parentData(),@key
 
 Template.user_list_toggle.events
-    'click .toggle': ->
+    'click .toggle': (e,t)->
         parent = Template.parentData()
         if parent["#{@key}"] and Meteor.userId() in parent["#{@key}"]
             Docs.update parent._id,
@@ -71,13 +71,14 @@ Template.user_list_toggle.events
             Docs.update parent._id,
                 $addToSet:"#{@key}":Meteor.userId()
 
+
 Template.user_list_toggle.helpers
     user_list_toggle_class: ->
         classes = ""
         if Meteor.user()
             parent = Template.parentData()
-            if parent["#{@key}"] and Meteor.userId() in parent["#{@key}"]
-                classes += "#{@color} "
+            # if parent["#{@key}"] and Meteor.userId() in parent["#{@key}"]
+            #     classes += "#{@color} "
             if @big
                 classes += ''
             else

@@ -1,11 +1,11 @@
 Meteor.publish 'user', (username)->
     Meteor.users.find username:username
 
-Meteor.publish 'docs', (selected_tags, selected_author_ids, type)->
+Meteor.publish 'docs', (selected_tags, type)->
     match = {}
     if type then match.type = type
     if selected_tags.length > 0 then match.tags = $all: selected_tags
-    if selected_author_ids.length > 0 then match.author_id = $in: selected_author_ids
+    # if selected_author_ids.length > 0 then match.author_id = $in: selected_author_ids
 
     Docs.find match,
         limit: 10
@@ -13,12 +13,11 @@ Meteor.publish 'docs', (selected_tags, selected_author_ids, type)->
 
 
 
-Meteor.publish 'tags', (selected_tags, selected_author_ids, type)->
+Meteor.publish 'tags', (selected_tags, type)->
     self = @
     match = {}
     if type then match.type = type
     if selected_tags.length > 0 then match.tags = $all: selected_tags
-    if selected_author_ids.length > 0 then match.author_id = $in: selected_author_ids
 
     cloud = Docs.aggregate [
         { $match: match }

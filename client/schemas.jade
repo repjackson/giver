@@ -8,7 +8,7 @@ template(name='schemas')
                 i.plus.icon
                 |Add Schema
             .ui.small.header
-                i.tags.icon
+                i.tags.grey.icon
                 |Filter Tags
             .ui.icon.small.input
                 i.search.icon
@@ -28,50 +28,14 @@ template(name='schemas')
                 +schema_item
 
 
-template(name='schema_section')
-    with schema
-        .ui.stackable.padded.grid
-            .four.wide.column
-                .ui.center.aligned.header
-                    i.icon(class=icon)
-                    | #{plural}
-                .ui.circular.fluid.button.add_schema
-                    i.plus.icon
-                    |Add Schema
-                .ui.small.header
-                    i.tags.icon
-                    |Filter Tags
-                .ui.icon.small.input
-                    i.search.icon
-                    input#search(type='text' autocomplete='off' placeholder='Search Tags')
-                if selected_tags
-                    #clear_tags.ui.red.icon.circular.button
-                        i.remove.icon
-                each selected_tags
-                    .unselect_tag.ui.red.circular.button
-                        b #{this}
-                each global_tags
-                    .select_tag.ui.circular.button
-                        |#{this.name}
-                        // small #{this.count}
-            .twelve.wide.column
-                each schemas
-                    +schema_item
-
-
-
-
 template(name='schema_item')
     .ui.segment
         a.ui.header(href="/schema/#{_id}/view")
-            if complete
-                i.green.checkmark.icon
+            i.grey.icon(class=icon)
             |#{title}
         .description
             .ui.small.header #{body}
-            i.tags.icon
-            each tags
-                .ui.basic.circular.label #{this}
+            +tags_view_small
         .extra
             +user_list_toggle key='bookmark_ids' add_icon='bookmark' remove_icon='bookmark' add_label='Bookmark' remove_label='Unbookmark' color='red' big=small
             +view_button_big
@@ -112,13 +76,13 @@ template(name='schema_view')
                 .ui.header
                     a(href="/schemas" title='schemas')
                         i.sitemap.circular.icon
-                    |View schema
+                    |View Schema
                 if is_author
                     +edit_button_big
-                +follow
             .twelve.wide.column
                 .ui.header
-                    |#{title}
+                    i.grey.icon(class=icon)
+                    |#{plural}
                 h4 #{body}
                 +tags_view_big
                 div
