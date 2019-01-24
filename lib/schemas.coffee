@@ -1,3 +1,4 @@
+Router.route '/s/:slug', -> @render 'schema_section'
 Router.route '/schemas', -> @render 'schemas'
 Router.route '/schema/:id/edit', -> @render 'schema_edit'
 Router.route '/schema/:id/view', -> @render 'schema_view'
@@ -8,13 +9,30 @@ if Meteor.isClient
     @selected_usernames = new ReactiveArray []
     @selected_status = new ReactiveArray []
 
+
+    Template.schema_section.onCreated ->
+        @autorun -> Meteor.subscribe 'schema', Router.current().params.slug
+
+
+    Template.schema_section.helpers
+        schema: ->
+            Docs.findOne
+                type:'schema'
+                slug: Router.current().params.slug
+
+
     Template.schemas.onCreated ->
         @autorun -> Meteor.subscribe('tags', selected_tags.array(), selected_usernames.array(), 'schema')
         @autorun -> Meteor.subscribe('docs', selected_tags.array(), selected_usernames.array(), 'schema')
+
+
+
     Template.schemas.events
         'click .add_schema': ->
             new_schema_id = Docs.insert type:'schema'
             Router.go "/schema/#{new_schema_id}/edit"
+
+
 
     Template.schemas.helpers
         schemas: ->
@@ -61,30 +79,11 @@ if Meteor.isClient
         @autorun -> Meteor.subscribe 'doc', Router.current().params.id
 
     Template.schema_edit.events
-        'blur .title': (e,t)->
-            title = t.$('.title').val()
-            console.log title
-            Docs.update Router.current().params.id,
-                $set:title:title
-
         'blur .body': (e,t)->
             body = t.$('.body').val()
             Docs.update Router.current().params.id,
                 $set:body:body
 
-
-        'keyup .new_tag': (e,t)->
-            if e.which is 13
-                tag = t.$('.new_tag').val().trim()
-                Docs.update Router.current().params.id,
-                    $addToSet:tags:tag
-                t.$('.new_tag').val('')
-
-        'click .remove_tag': (e,t)->
-            tag = @valueOf()
-            Docs.update Router.current().params.id,
-                $pull:tags:tag
-            t.$('.new_tag').val(tag)
 
         'click .toggle_complete': (e,t)->
             Docs.update Router.current().params.id,
@@ -95,3 +94,11 @@ if Meteor.isClient
             if confirm 'Confirm delete schema'
                 Docs.remove @_id
                 Router.go '/schemas'
+
+
+
+if Meteor.isServer
+    Meteor.publish 'schema', (slug)->
+        Docs.find
+            type:'schema'
+            slug:slug

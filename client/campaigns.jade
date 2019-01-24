@@ -69,15 +69,7 @@ template(name='campaign_edit')
                         .field
                             label Story
                             textarea.story(rows='5') #{story}
-                        .field
-                            label Tags
-                            each tags
-                                .ui.basic.circular.label
-                                    i.remove.link.icon.remove_tag
-                                    |#{this}
-                            .ui.icon.input
-                                input.new_tag(type='text' placeholder='Add tag...')
-                                i.plus.icon
+                        +array_edit key='tags'
                         .field
                             label
                                 i.dollar.icon

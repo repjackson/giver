@@ -1,5 +1,5 @@
 Template.leftbar.onCreated ->
-    # @autorun => Meteor.subscribe 'type', 'schema', 200
+    @autorun => Meteor.subscribe 'type', 'schema'
 
 
 Template.leftbar.onRendered ->
@@ -64,20 +64,14 @@ Template.rightbar.onRendered ->
 
 
 Template.leftbar.helpers
-    bookmarks: ->
+    schemas: ->
         if Meteor.user() and Meteor.user().roles
             Docs.find {
-                view_roles: $in:Meteor.user().roles
+                # view_roles: $in:Meteor.user().roles
                 type:'schema'
             }, sort:title:1
 
 Template.leftbar.events
-    'click .pick_delta': (e,t)->
-        e.preventDefault()
-        # console.log @
-        Session.set 'is_calculating', true
-        Meteor.call 'set_schema', @slug, ->
-            Session.set 'is_calculating', false
 
 
 Template.topbar.events

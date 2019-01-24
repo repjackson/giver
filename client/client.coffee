@@ -19,7 +19,7 @@ Template.registerHelper 'doc', () ->
     Docs.findOne Router.current().params.id
 
 
-Template.registerHelper 'brick_value', () ->
+Template.registerHelper 'field_value', () ->
     parent = Template.parentData()
     if parent["#{@key}"] then parent["#{@key}"]
 

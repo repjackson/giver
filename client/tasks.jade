@@ -48,7 +48,7 @@ template(name='task_item')
             +user_list_toggle key='bookmark_ids' add_icon='bookmark' remove_icon='bookmark' add_label='Bookmark' remove_label='Unbookmark' color='red' big=small
             +view_button_big
             if is_author
-                +edit_button_big
+                +edit_button_small
 
 
 template(name='task_edit')
@@ -67,9 +67,7 @@ template(name='task_edit')
             .twelve.wide.column
                 .ui.segment
                     .ui.form
-                        .field
-                            label Title
-                            input.title(type='text' value=title)
+                        +text_edit key='title'
                         .field
                             label Notes
                             textarea.body(rows='5') #{body}
@@ -86,21 +84,11 @@ template(name='task_edit')
                                         |Complete
                                     else
                                         |Incomplete
-                        .field
-                            label Tags
-                            each tags
-                                .ui.basic.label
-                                    i.remove.link.icon.remove_tag
-                                    |#{this}
-                            .ui.icon.input
-                                input.new_tag(type='text' placeholder='Add tag...')
-                                i.plus.icon
+                        +array_edit key='tags'
                         .field
                             label Due Date: #{due_date}
                             input.due_date(type='date' value=due_date)
-                        .field
-                            label Assignee: #{asignee}
-                            input.assignee(type='text' value=asignee)
+                        +text_edit key='assignee'
 
 template(name='task_view')
     with doc

@@ -59,18 +59,13 @@ template(name='bottombar')
 
 template(name='leftbar')
     .ui.left.vertical.thin.sidebar.nav_bar.menu.leftbar
-        a.item.toggle_leftbar(href='/campaigns')
-            i.bullhorn.grey.icon
-            | Campaigns
+        each schemas
+            a.item.toggle_leftbar(href="/s/#{slug}")
+                i.grey.icon(class=icon)
+                | #{plural}
         a.item.toggle_leftbar(href='/people')
             i.users.grey.icon
             | People
-        a.item.toggle_leftbar(href='/gallery')
-            i.picture.grey.icon
-            | Gallery
-        a.item.toggle_leftbar(href='/gallery')
-            i.lightbulb.grey.icon
-            | Ideas
         a.item.toggle_leftbar(href='/schemas')
             i.sitemap.grey.icon
             | Schemas

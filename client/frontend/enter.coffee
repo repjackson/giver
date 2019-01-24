@@ -21,40 +21,7 @@ Template.login.events
                     alert 'Your account suspended please contact Joyful Giver admin on info@joyful-giver.com'
         false
 
-    'keyup .username': ->
-        username = $('.username').val()
-        Session.set 'username', username
-        Meteor.call 'find_username', username, (err,res)->
-            if res
-                Session.set 'enter_mode', 'login'
-            else
-                Session.set 'enter_mode', 'register'
 
-
-    'click .enter': (e,t)->
-        username = $('.username').val()
-        password = $('.password').val()
-        Meteor.loginWithPassword username, password, (err,res)=>
-            if err
-                if err.error is 403
-                    Session.set 'message', "#{username} not found"
-                    Session.set 'enter_mode', 'register'
-                    Session.set 'username', "#{username}"
-            else
-                FlowRouter.go('/delta')
-
-    'keyup .password': (e,t)->
-        if e.which is 13
-            username = $('.username').val()
-            password = $('.password').val()
-            Meteor.loginWithPassword username, password, (err,res)=>
-                if err
-                    if err.error is 403
-                        Session.set 'message', "#{username} not found"
-                        Session.set 'enter_mode', 'register'
-                        Session.set 'username', "#{username}"
-                else
-                    FlowRouter.go('/delta')
 
 Template.login.helpers
     enter_class: ->
